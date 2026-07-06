@@ -463,3 +463,46 @@ a.contact-card__value:hover { color: var(--aps-blue-soft); }
   .partners__grid { grid-template-columns: repeat(2, 1fr); }
   .hero__cta .btn { flex: 1; }
 }
+
+/* ==========================================================================
+   HERO — single full-bleed image (replaces the old .hero slider; backup in
+   References/backups/hero-slider-2026-07-05/). White content over a scrimmed
+   industrial image; the white sticky header sits above it, separate.
+   ========================================================================== */
+.hero-solo { position: relative; display: flex; align-items: center; overflow: hidden;
+  min-height: clamp(560px, 84vh, 840px);
+  padding-block: calc(var(--header-h) + clamp(1.5rem, 4vw, 3rem)) clamp(2rem, 5vw, 4rem); }
+.hero-solo__media { position: absolute; inset: 0; z-index: 0; }
+.hero-solo__img { width: 100%; height: 100%; object-fit: cover; object-position: center 62%; }
+.hero-solo__scrim { position: absolute; inset: 0; background:
+  linear-gradient(90deg, rgba(8,24,40,.86) 0%, rgba(8,24,40,.60) 36%, rgba(8,24,40,.18) 68%, rgba(8,24,40,.05) 100%),
+  linear-gradient(to top, rgba(8,24,40,.55) 0%, transparent 52%); }
+[dir="rtl"] .hero-solo__scrim { background:
+  linear-gradient(270deg, rgba(8,24,40,.86) 0%, rgba(8,24,40,.60) 36%, rgba(8,24,40,.18) 68%, rgba(8,24,40,.05) 100%),
+  linear-gradient(to top, rgba(8,24,40,.55) 0%, transparent 52%); }
+.hero-solo__mark { position: absolute; inset-block-start: 50%; inset-inline-end: 3%; transform: translateY(-50%);
+  height: clamp(190px, 30vw, 440px); opacity: .13; filter: brightness(0) invert(1); z-index: 1; pointer-events: none; }
+.hero-solo__inner { position: relative; z-index: 2; width: 100%; }
+.hero-solo__content { max-width: 640px; }
+.hero-solo__eyebrow { display: inline-block; font-family: var(--font-en); font-weight: 700; font-size: var(--fs-small);
+  letter-spacing: .05em; color: #bfd6e8; margin-bottom: 1rem; }
+.hero-solo__title { font-size: var(--fs-display-xl); font-weight: 800; letter-spacing: -0.015em; line-height: 1.18;
+  color: #fff; text-shadow: 0 2px 26px rgba(0,0,0,.38); }
+.hero-solo__subtitle { margin-top: 1.2rem; font-size: var(--fs-body-xl); line-height: 1.75;
+  color: rgba(255,255,255,.92); max-width: 540px; text-shadow: 0 1px 14px rgba(0,0,0,.32); }
+.hero-solo__badges { display: flex; flex-wrap: wrap; gap: 1.1rem; margin-top: 2rem; }
+.hero-solo__badges li { display: inline-flex; align-items: center; gap: .6rem; font-weight: 600; font-size: var(--fs-small); color: #fff; }
+.hero-solo__badge-ic { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: var(--r-pill);
+  background: rgba(255,255,255,.16); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.28); }
+.hero-solo__badge-ic .icon { width: 1rem; height: 1rem; color: #fff; }
+.hero-solo__cta { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.3rem; }
+
+/* light outline button for use over dark imagery */
+.btn--ghost-light { background: transparent; border: 1.5px solid rgba(255,255,255,.65); color: #fff; }
+.btn--ghost-light:hover { background: rgba(255,255,255,.14); border-color: #fff; color: #fff; }
+
+@media (max-width: 640px) {
+  .hero-solo { min-height: 78vh; }
+  .hero-solo__mark { opacity: .09; inset-inline-end: -8%; }
+  .hero-solo__cta .btn { flex: 1; }
+}
