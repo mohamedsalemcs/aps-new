@@ -470,24 +470,27 @@ a.contact-card__value:hover { color: var(--aps-blue-soft); }
    industrial image; the white sticky header sits above it, separate.
    ========================================================================== */
 .hero-solo { position: relative; display: flex; align-items: center; overflow: hidden;
-  min-height: clamp(560px, 84vh, 840px);
+  min-height: clamp(640px, 92vh, 960px);
   padding-block: calc(var(--header-h) + clamp(1.5rem, 4vw, 3rem)) clamp(2rem, 5vw, 4rem); }
 .hero-solo__media { position: absolute; inset: 0; z-index: 0; }
-.hero-solo__img { width: 100%; height: 100%; object-fit: cover; object-position: center 62%; }
+.hero-solo__img { width: 100%; height: 100%; object-fit: cover; object-position: center 58%; }
+/* Arabic (RTL): mirror the image so the text (right) sits over open sky and the
+   branded building moves to the left. */
+[dir="rtl"] .hero-solo__img { transform: scaleX(-1); }
 .hero-solo__scrim { position: absolute; inset: 0; background:
-  linear-gradient(90deg, rgba(8,24,40,.86) 0%, rgba(8,24,40,.60) 36%, rgba(8,24,40,.18) 68%, rgba(8,24,40,.05) 100%),
-  linear-gradient(to top, rgba(8,24,40,.55) 0%, transparent 52%); }
+  linear-gradient(90deg, rgba(8,22,38,.60) 0%, rgba(8,22,38,.34) 30%, rgba(8,22,38,.08) 56%, rgba(8,22,38,0) 80%),
+  linear-gradient(to top, rgba(8,22,38,.30) 0%, transparent 42%); }
 [dir="rtl"] .hero-solo__scrim { background:
-  linear-gradient(270deg, rgba(8,24,40,.86) 0%, rgba(8,24,40,.60) 36%, rgba(8,24,40,.18) 68%, rgba(8,24,40,.05) 100%),
-  linear-gradient(to top, rgba(8,24,40,.55) 0%, transparent 52%); }
-.hero-solo__mark { position: absolute; inset-block-start: 50%; inset-inline-end: 3%; transform: translateY(-50%);
-  height: clamp(190px, 30vw, 440px); opacity: .13; filter: brightness(0) invert(1); z-index: 1; pointer-events: none; }
+  linear-gradient(270deg, rgba(8,22,38,.60) 0%, rgba(8,22,38,.34) 30%, rgba(8,22,38,.08) 56%, rgba(8,22,38,0) 80%),
+  linear-gradient(to top, rgba(8,22,38,.30) 0%, transparent 42%); }
+/* The branded 3D logo is baked into the image now, so hide the flat CSS motif. */
+.hero-solo__mark { display: none; }
 .hero-solo__inner { position: relative; z-index: 2; width: 100%; }
-.hero-solo__content { max-width: 640px; }
+.hero-solo__content { max-width: 700px; }
 .hero-solo__eyebrow { display: inline-block; font-family: var(--font-en); font-weight: 700; font-size: var(--fs-small);
-  letter-spacing: .05em; color: #bfd6e8; margin-bottom: 1rem; }
-.hero-solo__title { font-size: var(--fs-display-xl); font-weight: 800; letter-spacing: -0.015em; line-height: 1.18;
-  color: #fff; text-shadow: 0 2px 26px rgba(0,0,0,.38); }
+  letter-spacing: .05em; color: #dbe8f2; margin-bottom: 1rem; text-shadow: 0 1px 10px rgba(0,0,0,.3); }
+.hero-solo__title { font-size: clamp(1.85rem, 1rem + 2.4vw, 2.85rem); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15;
+  color: #fff; text-shadow: 0 2px 22px rgba(0,0,0,.4); }
 .hero-solo__subtitle { margin-top: 1.2rem; font-size: var(--fs-body-xl); line-height: 1.75;
   color: rgba(255,255,255,.92); max-width: 540px; text-shadow: 0 1px 14px rgba(0,0,0,.32); }
 .hero-solo__badges { display: flex; flex-wrap: wrap; gap: 1.1rem; margin-top: 2rem; }
@@ -506,3 +509,21 @@ a.contact-card__value:hover { color: var(--aps-blue-soft); }
   .hero-solo__mark { opacity: .09; inset-inline-end: -8%; }
   .hero-solo__cta .btn { flex: 1; }
 }
+
+/* ==========================================================================
+   Home hero: header overlays the hero image (transparent), turns solid on
+   scroll. Scoped to pages with a full-bleed hero via body.has-hero (set in JS).
+   ========================================================================== */
+body.has-hero .site-header.is-top { background: linear-gradient(to bottom, rgba(8,24,40,.58) 0%, rgba(8,24,40,0) 100%); border-block-end: none; box-shadow: none; }
+body.has-hero .site-header.is-top .brand__logo { filter: brightness(0) invert(1) drop-shadow(0 1px 4px rgba(0,0,0,.4)); }
+body.has-hero .site-header.is-top .main-nav__link { color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,.4); }
+body.has-hero .site-header.is-top .main-nav__caret { color: #fff; }
+body.has-hero .site-header.is-top .lang-switch { border-color: rgba(255,255,255,.55); color: #fff; }
+body.has-hero .site-header.is-top .menu-toggle { color: #fff; }
+/* on scroll → normal solid white header (revert overrides above) */
+body.has-hero .site-header.is-scrolled { background: #fff; box-shadow: var(--sh-soft); }
+body.has-hero .site-header.is-scrolled .brand__logo { filter: none; }
+body.has-hero .site-header.is-scrolled .main-nav__link,
+body.has-hero .site-header.is-scrolled .main-nav__caret,
+body.has-hero .site-header.is-scrolled .menu-toggle { color: var(--text); }
+body.has-hero .site-header.is-scrolled .lang-switch { border-color: var(--gray-300); color: inherit; }

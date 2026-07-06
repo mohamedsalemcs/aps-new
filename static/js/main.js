@@ -5,6 +5,8 @@
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---- Sticky header: transparent over hero, solid on scroll ---- */
+  // Pages with a full-bleed hero let the header overlay it (transparent at top).
+  if (document.querySelector(".hero-solo")) document.body.classList.add("has-hero");
   const header = document.querySelector("[data-header]");
   const onScroll = () => {
     const scrolled = window.scrollY > 40;

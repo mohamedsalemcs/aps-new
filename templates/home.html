@@ -17,7 +17,65 @@
 
 {% block content %}
 
-{# ============================ HERO (single full-bleed) ============================ #}
+{% if hero_variant == 'slider' %}
+{# ============================ HERO — classic multi-slide (alternate version) ============================ #}
+<section class="hero" data-hero>
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <div class="hero__textwrap">
+        {% for s in hero_slides %}
+          <div class="hero-text {% if forloop.first %}is-active{% endif %}" data-slide-text>
+            <span class="eyebrow">{{ s.eyebrow }}</span>
+            <h1 class="hero__title">{{ s.title }}</h1>
+            <p class="hero__subtitle">{{ s.subtitle }}</p>
+          </div>
+        {% endfor %}
+      </div>
+
+      <ul class="hero__badges">
+        {% for b in hero_badges %}
+          <li><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ b.icon }}"></use></svg>{{ b.label }}</li>
+        {% endfor %}
+      </ul>
+
+      <div class="hero__cta">
+        <a class="btn btn--primary btn--lg" href="{{ lang_prefix }}/contact/">{{ hero_cta_primary }}
+          <svg class="icon icon--flip" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg></a>
+        <a class="btn btn--outline btn--lg" href="#subsidiaries">{{ hero_cta_secondary }}</a>
+      </div>
+
+      <div class="hero__controls">
+        <div class="hero__dots" role="tablist" aria-label="{% trans 'شرائح العرض' %}">
+          {% for s in hero_slides %}
+            <button class="hero__dot {% if forloop.first %}is-active{% endif %}" data-dot="{{ forloop.counter0 }}" aria-label="{% blocktrans with n=forloop.counter %}الشريحة {{ n }}{% endblocktrans %}"></button>
+          {% endfor %}
+        </div>
+        <div class="hero__arrows">
+          <button class="hero__arrow" data-hero-prev aria-label="{% trans 'السابق' %}"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg></button>
+          <button class="hero__arrow" data-hero-next aria-label="{% trans 'التالي' %}"><svg class="icon icon--flip" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__mediawrap">
+      <img class="hero__mark hero__mark--a" src="{% static 'logos/app-icon.svg' %}" alt="" aria-hidden="true">
+      <img class="hero__mark hero__mark--b" src="{% static 'logos/app-icon.svg' %}" alt="" aria-hidden="true">
+      {% for s in hero_slides %}
+        <div class="hero-media hero-media--{{ s.layout }} {% if forloop.first %}is-active{% endif %}" data-slide-media>
+          {% for img in s.images %}
+            <div class="hero-tile hero-tile--{{ forloop.counter }}">
+              <img src="{{ img }}" alt="" {% if forloop.parentloop.first and forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %} width="600" height="600">
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% else %}
+{# ============================ HERO — single full-bleed (default) ============================ #}
 {% with s0=hero_slides.0 %}
 <section class="hero-solo">
   <div class="hero-solo__media" aria-hidden="true">
@@ -46,6 +104,7 @@
   </div>
 </section>
 {% endwith %}
+{% endif %}
 
 {# ============================ ABOUT ============================ #}
 <section class="section about" id="about">
