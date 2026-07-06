@@ -1,0 +1,82 @@
+{% extends "manage/base.html" %}
+{% block title %}هوية المجموعة{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:dashboard' %}">الرئيسية</a> / هوية المجموعة</div>
+<div class="m-top"><h1 class="m-h1">هوية المجموعة</h1></div>
+
+<form method="post" enctype="multipart/form-data" action="">
+  {% csrf_token %}
+
+  <div class="m-card">
+    <h2 class="m-card__title">الأسماء</h2>
+    <div class="f-grid">
+      {% include "manage/_field.html" with field=form.name_ar %}
+      {% include "manage/_field.html" with field=form.name_en %}
+      {% include "manage/_field.html" with field=form.short %}
+    </div>
+  </div>
+
+  <div class="m-card">
+    <h2 class="m-card__title">بيانات التواصل</h2>
+    <div class="f-grid">
+      {% include "manage/_field.html" with field=form.phone %}
+      {% include "manage/_field.html" with field=form.email %}
+      {% include "manage/_field.html" with field=form.website %}
+      {% include "manage/_field.html" with field=form.website_url %}
+      {% include "manage/_field.html" with field=form.location_ar %}
+      {% include "manage/_field.html" with field=form.location_en %}
+    </div>
+  </div>
+
+  <div class="m-card">
+    <h2 class="m-card__title">الشعارات</h2>
+    <p class="m-card__hint">شعار الهيدر ملوّن على خلفية بيضاء، وشعار الفوتر أبيض على خلفية داكنة.</p>
+    <div class="f-grid">
+      {% include "manage/_field.html" with field=form.logo %}
+      {% include "manage/_field.html" with field=form.logo_footer %}
+    </div>
+  </div>
+
+  {# ---- Live preview of the header + footer ---- #}
+  <div class="pv">
+    <span class="pv__tag">👁 معاينة كما تظهر على الموقع</span>
+    <div class="gpv-head">
+      <img id="gpv-logo" class="gpv-logo" src="{{ group.logo|default:'' }}" alt="شعار الهيدر">
+      <span class="gpv-nav">الرئيسية · من نحن · شركاتنا · الشركاء</span>
+    </div>
+    <div class="gpv-foot">
+      <img id="gpv-logof" class="gpv-logof" src="{{ group.logo_footer|default:'' }}" alt="شعار الفوتر">
+      <ul class="gpv-contact">
+        <li>📞 <span id="gpv-phone" class="num" dir="ltr">{{ form.phone.value|default:'' }}</span></li>
+        <li>✉️ <span id="gpv-email" dir="ltr">{{ form.email.value|default:'' }}</span></li>
+        <li>📍 <span id="gpv-loc">{{ form.location_ar.value|default:'' }}</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="m-actions">
+    <button class="btnm" type="submit">💾 حفظ التغييرات</button>
+    <a class="btnm btnm--ghost" href="{% url 'cms:dashboard' %}">إلغاء</a>
+  </div>
+</form>
+
+<script>
+(function () {
+  function bind(id, out) {
+    var i = document.getElementById(id), o = document.getElementById(out);
+    if (i && o) i.addEventListener('input', function () { o.textContent = i.value; });
+  }
+  bind('id_phone', 'gpv-phone');
+  bind('id_email', 'gpv-email');
+  bind('id_location_ar', 'gpv-loc');
+  function img(id, target) {
+    var i = document.getElementById(id), t = document.getElementById(target);
+    if (i && t) i.addEventListener('change', function () {
+      if (i.files && i.files[0]) t.src = URL.createObjectURL(i.files[0]);
+    });
+  }
+  img('id_logo', 'gpv-logo');
+  img('id_logo_footer', 'gpv-logof');
+})();
+</script>
+{% endblock %}

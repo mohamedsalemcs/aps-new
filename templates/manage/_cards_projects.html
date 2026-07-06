@@ -1,0 +1,56 @@
+{% comment %}Project cards (data-editor="projects"). Pass `items` = ProjectFormSet + `company`.{% endcomment %}{% load cms_extras %}
+<div data-cards data-prefix="{{ items.prefix }}">
+  {{ items.management_form }}
+  {% for e in items.non_form_errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+  <div class="pcards pcards--gallery" data-cardlist>
+    {% for form in items %}
+      <div class="pcard" data-card>
+        <div class="pcard__move"><button type="button" data-move="up" title="تحريك لأعلى"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button><button type="button" data-move="down" title="تحريك لأسفل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button></div>
+        <button type="button" class="pcard__del" data-del title="حذف">{% icon 'trash' size=15 %}</button>
+        {% for h in form.hidden_fields %}{{ h }}{% endfor %}
+        <label class="drop" data-drop>
+          {% if form.instance.image %}<img src="{{ form.instance.image.url }}" alt="">{% endif %}
+          <span class="drop__ph"><b>＋</b>اسحب صورة أو اضغط</span>
+          <span class="drop__edit"{% if not form.instance.image %} style="display:none"{% endif %}>تغيير الصورة</span>
+          {{ form.image }}
+        </label>
+        <div class="pcard__fields">
+          <div class="f-bi">
+            <div class="f-row" data-f="name"><span class="pcard__lab">الاسم (ع)</span>{{ form.name_ar }}</div>
+            <div class="f-row"><span class="pcard__lab">الاسم (EN)</span>{{ form.name_en }}</div>
+          </div>
+          <div class="f-bi">
+            <div class="f-row" data-f="sector"><span class="pcard__lab">القطاع/الجهة (ع)</span>{{ form.sector_ar }}</div>
+            <div class="f-row"><span class="pcard__lab">القطاع/الجهة (EN)</span>{{ form.sector_en }}</div>
+          </div>
+          <span style="display:none">{{ form.DELETE }}</span>
+          {% for e in form.errors.values %}<div class="f-err">{{ e|striptags }}</div>{% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <template data-empty>
+    <div class="pcard" data-card>
+      <div class="pcard__move"><button type="button" data-move="up" title="تحريك لأعلى"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button><button type="button" data-move="down" title="تحريك لأسفل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button></div>
+      <button type="button" class="pcard__del" data-del title="حذف">{% icon 'trash' size=15 %}</button>
+      {% for h in items.empty_form.hidden_fields %}{{ h }}{% endfor %}
+      <label class="drop" data-drop>
+        <span class="drop__ph"><b>＋</b>اسحب صورة أو اضغط</span>
+        <span class="drop__edit" style="display:none">تغيير الصورة</span>
+        {{ items.empty_form.image }}
+      </label>
+      <div class="pcard__fields">
+        <div class="f-bi">
+          <div class="f-row" data-f="name"><span class="pcard__lab">الاسم (ع)</span>{{ items.empty_form.name_ar }}</div>
+          <div class="f-row"><span class="pcard__lab">الاسم (EN)</span>{{ items.empty_form.name_en }}</div>
+        </div>
+        <div class="f-bi">
+          <div class="f-row" data-f="sector"><span class="pcard__lab">القطاع/الجهة (ع)</span>{{ items.empty_form.sector_ar }}</div>
+          <div class="f-row"><span class="pcard__lab">القطاع/الجهة (EN)</span>{{ items.empty_form.sector_en }}</div>
+        </div>
+        <span style="display:none">{{ items.empty_form.DELETE }}</span>
+      </div>
+    </div>
+  </template>
+</div>
+<button type="button" class="btnm btnm--ghost btnm--sm card-add" data-add>＋ أضف مشروعاً</button>

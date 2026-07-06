@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block seo_jsonld %}
+  {% include "partials/schema_org.html" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {% for cat in page.categories %}{% for qa in cat.items %}{
+        "@type": "Question",
+        "name": "{{ qa.q|escapejs }}",
+        "acceptedAnswer": { "@type": "Answer", "text": "{{ qa.a|escapejs }}" }
+      }{% if not forloop.last or not forloop.parentloop.last %},{% endif %}{% endfor %}{% endfor %}
+    ]
+  }
+  </script>
+{% endblock %}
+
+{% block content %}
+
+{# ---- Page head ---- #}
+<section class="faq-head">
+  <span class="faq-head__bg" aria-hidden="true"></span>
+  <img class="faq-head__mark" src="{% static 'logos/app-icon.svg' %}" alt="" aria-hidden="true">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="{% trans 'مسار التنقّل' %}">
+      {% for c in page.hero.breadcrumb %}
+        {% if c.href %}<a href="{{ lang_prefix }}{{ c.href }}">{{ c.label }}</a><span class="breadcrumb__sep" aria-hidden="true">/</span>
+        {% else %}<span aria-current="page">{{ c.label }}</span>{% endif %}
+      {% endfor %}
+    </nav>
+    <span class="eyebrow reveal">{{ page.hero.eyebrow }}</span>
+    <h1 class="faq-head__title reveal" data-reveal-delay="1">{{ page.hero.title }}</h1>
+    <p class="faq-head__lead reveal" data-reveal-delay="2">{{ page.hero.subtitle }}</p>
+
+    <ul class="faq-facts reveal" data-reveal-delay="3">
+      {% for f in page.hero.stats %}
+        <li class="faq-fact">
+          <span class="faq-fact__num num">{{ f.value }}{{ f.suffix }}</span>
+          <span class="faq-fact__label">{{ f.label }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{# ---- FAQ categories (accordion) ---- #}
+<section class="section faq-body">
+  <div class="container faq-body__inner">
+    {% for cat in page.categories %}
+      <div class="faq-cat reveal">
+        <div class="faq-cat__head">
+          <span class="faq-cat__ic">{% if cat.icon_image %}<img class="icon" src="{{ cat.icon_image }}" alt="" style="width:1.4em;height:1.4em;object-fit:contain">{% else %}<svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ cat.icon }}"></use></svg>{% endif %}</span>
+          <h2 class="faq-cat__title">{{ cat.title }}</h2>
+        </div>
+        <div class="accordion">
+          {% for qa in cat.items %}
+            <div class="acc-item">
+              <button class="acc-q" type="button" aria-expanded="false">
+                <span class="acc-q__text">{{ qa.q }}</span>
+                <svg class="acc-q__ic" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-chevron"></use></svg>
+              </button>
+              <div class="acc-a"><div class="acc-a__inner"><p>{{ qa.a }}</p></div></div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% include "partials/contact_cta.html" %}
+
+{% endblock %}

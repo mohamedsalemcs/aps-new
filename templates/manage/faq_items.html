@@ -1,0 +1,71 @@
+{% extends "manage/base.html" %}
+{% load static %}
+{% block title %}أسئلة: {{ category.title_ar }}{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:faq' %}">الأسئلة الشائعة</a> / <a href="{% url 'cms:faq_categories' %}">الفئات</a> / {{ category.title_ar }}</div>
+<div class="m-top"><h1 class="m-h1">أسئلة فئة: {{ category.title_ar }}</h1></div>
+
+<form method="post" action="" data-editor="steps">
+  {% csrf_token %}
+  <div class="m-card">
+    <h2 class="m-card__title">الأسئلة والأجوبة</h2>
+    <p class="m-card__hint">كل بطاقة = سؤال وجوابه، تظهر كعنصر أكورديون على الموقع.</p>
+    <div data-cards data-prefix="{{ items.prefix }}">
+      {{ items.management_form }}
+      {% for e in items.non_form_errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+      <div class="pcards" data-cardlist style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">
+        {% for form in items %}
+          <div class="pcard" data-card>
+            <span class="pcard__idx num">{{ forloop.counter }}</span>
+            <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+            {% for h in form.hidden_fields %}{{ h }}{% endfor %}
+            <div class="pcard__fields">
+              <div data-f="title"><span class="pcard__lab">السؤال</span>{{ form.question_ar }}</div>
+              <div data-f="text"><span class="pcard__lab">الجواب</span>{{ form.answer_ar }}</div>
+              <details class="pcard__en"><summary>الإنجليزية (اختياري)</summary>
+                <input type="text" placeholder="Question (EN)" class="f-in" name="{{ form.question_en.html_name }}" value="{{ form.question_en.value|default:'' }}">
+                <textarea placeholder="Answer (EN)" class="f-in" rows="2" name="{{ form.answer_en.html_name }}">{{ form.answer_en.value|default:'' }}</textarea>
+              </details>
+              <span style="display:none">{{ form.DELETE }}</span>
+              {% for e in form.errors.values %}<div class="f-err">{{ e|striptags }}</div>{% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <template data-empty>
+        <div class="pcard" data-card>
+          <span class="pcard__idx num">+</span>
+          <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+          {% for h in items.empty_form.hidden_fields %}{{ h }}{% endfor %}
+          <div class="pcard__fields">
+            <div data-f="title"><span class="pcard__lab">السؤال</span>{{ items.empty_form.question_ar }}</div>
+            <div data-f="text"><span class="pcard__lab">الجواب</span>{{ items.empty_form.answer_ar }}</div>
+            <details class="pcard__en"><summary>الإنجليزية (اختياري)</summary>
+              <input type="text" placeholder="Question (EN)" class="f-in" name="{{ items.empty_form.question_en.html_name }}">
+              <textarea placeholder="Answer (EN)" class="f-in" rows="2" name="{{ items.empty_form.answer_en.html_name }}"></textarea>
+            </details>
+            <span style="display:none">{{ items.empty_form.DELETE }}</span>
+          </div>
+        </div>
+      </template>
+    </div>
+    <div class="pcards" style="margin-top:16px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">
+      <div class="pcard pcard--add" data-add><span class="big">＋</span><span>أضف سؤالاً</span></div>
+    </div>
+  </div>
+
+  <div class="pv pv--steps">
+    <span class="pv__tag">👁 معاينة الأسئلة</span>
+    <div class="pv__stage">
+      <div class="pv-grid" data-pv-grid></div>
+      <div class="pv__empty" data-pv-empty>أضف سؤالاً لتظهر المعاينة هنا.</div>
+    </div>
+  </div>
+
+  <div class="m-actions">
+    <button class="btnm" type="submit">💾 حفظ الأسئلة</button>
+    <a class="btnm btnm--ghost" href="{% url 'cms:faq_categories' %}">رجوع للفئات</a>
+  </div>
+</form>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/manage_cards.js' %}"></script>{% endblock %}

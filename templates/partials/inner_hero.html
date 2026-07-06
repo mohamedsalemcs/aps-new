@@ -1,0 +1,25 @@
+{% load static %}
+<section class="inner-hero">
+  <span class="inner-hero__bg" aria-hidden="true"></span>
+  <img class="inner-hero__mark" src="{% static 'logos/app-icon.svg' %}" alt="" aria-hidden="true">
+  <div class="container inner-hero__inner">
+    <div class="inner-hero__text">
+      {% if hero.breadcrumb %}
+        <nav class="breadcrumb" aria-label="مسار التنقّل">
+          {% for c in hero.breadcrumb %}
+            {% if c.href %}<a href="{{ c.href }}">{{ c.label }}</a><span class="breadcrumb__sep" aria-hidden="true">/</span>
+            {% else %}<span aria-current="page">{{ c.label }}</span>{% endif %}
+          {% endfor %}
+        </nav>
+      {% endif %}
+      <span class="eyebrow reveal">{{ hero.eyebrow }}</span>
+      <h1 class="inner-hero__title reveal" data-reveal-delay="1">{{ hero.title }}</h1>
+      {% if hero.subtitle %}<p class="inner-hero__subtitle reveal" data-reveal-delay="2">{{ hero.subtitle }}</p>{% endif %}
+    </div>
+    {% if hero.image %}
+      <div class="inner-hero__media reveal" data-reveal-delay="1">
+        <div class="inner-hero__tile"><img src="{% static hero.image %}" alt="" fetchpriority="high" width="720" height="520"></div>
+      </div>
+    {% endif %}
+  </div>
+</section>

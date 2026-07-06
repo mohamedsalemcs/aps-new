@@ -1,0 +1,14 @@
+{% comment %}Bilingual pair on one line. Pass `ar`, `en` bound fields + `base` label.
+Optional `pv` sets data-pv on the Arabic cell (drives the live preview).{% endcomment %}
+<div class="f-bi">
+  <div class="f-row"{% if pv %} data-pv="{{ pv }}"{% endif %}>
+    <label class="f-lbl" for="{{ ar.id_for_label }}">{{ base }} <span class="tag">ع</span></label>
+    {{ ar }}
+    {% for e in ar.errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+  </div>
+  <div class="f-row">
+    <label class="f-lbl" for="{{ en.id_for_label }}">{{ base }} <span class="tag">EN</span></label>
+    {{ en }}
+    {% for e in en.errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+  </div>
+</div>

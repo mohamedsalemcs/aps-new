@@ -1,0 +1,126 @@
+{% extends "manage/base.html" %}
+{% load cms_extras %}
+{% block title %}صندوق الوارد{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:dashboard' %}">الرئيسية</a> / صندوق الوارد</div>
+<div class="m-top">
+  <h1 class="m-h1">صندوق الوارد {% if unread_count %}<span class="badge badge--ok" style="vertical-align:middle">{{ unread_count }} جديدة</span>{% endif %}</h1>
+</div>
+
+<div class="m-card" data-no-collapse>
+  <div class="ib-wrap">
+    <table class="m-table ib-table">
+      <thead>
+        <tr>
+          <th style="width:34px"></th>
+          <th>المُرسِل</th>
+          <th>الهاتف</th>
+          <th>الشركة</th>
+          <th>الموضوع</th>
+          <th>التاريخ</th>
+          <th style="width:78px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in rows %}
+        <tr class="ib-row {% if not m.is_read %}is-unread{% endif %}" data-ib-toggle tabindex="0" role="button" aria-expanded="false">
+          <td>{% icon 'chevron' size=16 cls='ib-caret' %}</td>
+          <td>
+            <span class="ib-name">{{ m.name }}</span>{% if not m.is_read %}<span class="ib-dot" title="غير مقروءة"></span>{% endif %}
+            <a class="ib-mail" dir="ltr" href="mailto:{{ m.email }}" data-ib-stop>{{ m.email }}</a>
+          </td>
+          <td class="ib-num {% if not m.phone %}ib-mut{% endif %}" dir="ltr" style="white-space:nowrap">{{ m.phone|default:"—" }}</td>
+          <td class="{% if not m.company %}ib-mut{% endif %}">{{ m.company|default:"—" }}</td>
+          <td>
+            {% with subs=m.subjects|split_subjects %}
+              {% if subs %}
+                <div class="ib-chips">{% for s in subs %}<span class="ib-chip">{{ s }}</span>{% endfor %}</div>
+              {% else %}
+                <span class="ib-chip">استفسار عام</span>
+              {% endif %}
+            {% endwith %}
+          </td>
+          <td class="ib-num" dir="ltr" style="white-space:nowrap">{{ m.created_at|date:"Y/m/d H:i" }}</td>
+          <td><a class="btnm btnm--ghost btnm--sm" href="{% url 'cms:inbox_detail' pk=m.pk %}" data-ib-stop>فتح</a></td>
+        </tr>
+        <tr class="ib-detail" hidden>
+          <td colspan="7">
+            <div class="ib-exp">
+              <div class="ib-exp__msg">
+                <div class="ib-exp__lbl">نص الرسالة</div>
+                <p>{{ m.message }}</p>
+              </div>
+              <div class="ib-exp__side">
+                <div class="ib-meta">
+                  <div class="ib-meta__row"><span class="ib-meta__k">البريد</span><a class="ib-meta__v" dir="ltr" href="mailto:{{ m.email }}" data-ib-stop>{{ m.email }}</a></div>
+                  <div class="ib-meta__row"><span class="ib-meta__k">الهاتف</span><span class="ib-meta__v ib-num" dir="ltr">{{ m.phone|default:"—" }}</span></div>
+                  <div class="ib-meta__row"><span class="ib-meta__k">الشركة</span><span class="ib-meta__v">{{ m.company|default:"—" }}</span></div>
+                  <div class="ib-meta__row"><span class="ib-meta__k">التاريخ</span><span class="ib-meta__v ib-num" dir="ltr">{{ m.created_at|date:"Y/m/d — H:i" }}</span></div>
+                </div>
+                <div class="ib-exp__act">
+                  <a class="btnm btnm--sm" href="mailto:{{ m.email }}?subject=رد على استفسارك — مجموعة APS" data-ib-stop>{% icon 'mail' size=15 %} الرد بالبريد</a>
+                  <a class="btnm btnm--ghost btnm--sm" href="{% url 'cms:inbox_detail' pk=m.pk %}" data-ib-stop>{% icon 'external' size=15 %} فتح كاملة</a>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="7" class="ib-empty">لا توجد رسائل بعد. رسائل نموذج «تواصل معنا» في الموقع ستظهر هنا.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% if page_obj.paginator.num_pages > 1 %}
+<nav class="ib-pager" aria-label="تنقّل الصفحات">
+  <div class="ib-pager__info">
+    عرض {{ page_obj.start_index }}–{{ page_obj.end_index }} من {{ total_count }} رسالة
+  </div>
+  <div class="ib-pager__ctrls">
+    {% if page_obj.has_previous %}
+      <a class="ib-pg" href="?page={{ page_obj.previous_page_number }}" rel="prev" aria-label="السابق">{% icon 'chevrons-right' size=16 %}</a>
+    {% else %}
+      <span class="ib-pg is-disabled">{% icon 'chevrons-right' size=16 %}</span>
+    {% endif %}
+    {% for p in page_obj.paginator.page_range %}
+      {% if p == page_obj.number %}
+        <span class="ib-pg is-active" aria-current="page">{{ p }}</span>
+      {% else %}
+        <a class="ib-pg" href="?page={{ p }}">{{ p }}</a>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <a class="ib-pg" href="?page={{ page_obj.next_page_number }}" rel="next" aria-label="التالي">{% icon 'chevrons-left' size=16 %}</a>
+    {% else %}
+      <span class="ib-pg is-disabled">{% icon 'chevrons-left' size=16 %}</span>
+    {% endif %}
+  </div>
+</nav>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+  document.querySelectorAll('.ib-row[data-ib-toggle]').forEach(function (row) {
+    function toggle() {
+      var detail = row.nextElementSibling;
+      if (!detail || !detail.classList.contains('ib-detail')) return;
+      var open = detail.hasAttribute('hidden');
+      if (open) { detail.removeAttribute('hidden'); } else { detail.setAttribute('hidden', ''); }
+      row.classList.toggle('is-open', open);
+      row.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    row.addEventListener('click', function (e) {
+      if (e.target.closest('[data-ib-stop]')) return;  // let links/buttons act normally
+      toggle();
+    });
+    row.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+})();
+</script>
+{% endblock %}

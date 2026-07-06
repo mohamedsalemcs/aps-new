@@ -1,0 +1,31 @@
+{% load cms_extras %}
+<div class="fs" data-formset data-prefix="{{ formset.prefix }}">
+  {{ formset.management_form }}
+  {% for e in formset.non_form_errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+  <div class="fs__rows">
+    {% for form in formset %}
+      <div class="fs__row">
+        <span class="fs__no num">{{ forloop.counter }}</span>
+        {% for h in form.hidden_fields %}{{ h }}{% endfor %}
+        <div class="fs__grid">
+          {% for field in form.visible_fields %}
+            {% if field.name != 'DELETE' %}{% include "manage/_field.html" with field=field %}{% endif %}
+          {% endfor %}
+        </div>
+        <label class="fs__del">{{ form.DELETE }} حذف هذا العنصر</label>
+      </div>
+    {% endfor %}
+  </div>
+  <template class="fs__empty">
+    <div class="fs__row">
+      <span class="fs__no num">+</span>
+      <div class="fs__grid">
+        {% for field in formset.empty_form.visible_fields %}
+          {% if field.name != 'DELETE' %}{% include "manage/_field.html" with field=field %}{% endif %}
+        {% endfor %}
+      </div>
+      <label class="fs__del">{{ formset.empty_form.DELETE }} حذف هذا العنصر</label>
+    </div>
+  </template>
+  <button type="button" class="btnm btnm--ghost btnm--sm" data-add-row>+ إضافة عنصر</button>
+</div>

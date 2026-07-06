@@ -1,0 +1,134 @@
+{% load static cms_extras %}
+<!doctype html>
+<html lang="ar" dir="rtl" class="m-html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>{% block title %}لوحة التحكم{% endblock %} — APS</title>
+  <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
+  <link rel="stylesheet" href="{% static 'css/manage.css' %}">
+  <script>try{if(localStorage.getItem('apsSideCollapsed')==='1')document.documentElement.classList.add('pre-collapsed');}catch(e){}</script>
+  <style>html.pre-collapsed body{--side:64px}</style>
+</head>
+<body class="m-body">
+{% block body %}
+<div class="m-shell">
+  <aside class="m-side">
+    <div class="m-side__brand">
+      <img class="logo-mini" src="{% static 'logos/app-icon.svg' %}" alt="APS">
+      <img class="logo-full" src="{% static 'logos/aps-logo-footer.png' %}" alt="APS">
+    </div>
+
+    <nav class="m-nav">
+      <a href="{% url 'cms:dashboard' %}" class="{% if active == 'dashboard' %}is-active{% endif %}" title="الرئيسية">
+        {% icon 'grid' cls='ic' %}<span class="tx">الرئيسية</span>
+      </a>
+
+      <div class="m-nav__label">الصفحات</div>
+      <a href="{% url 'cms:home' %}" class="{% if active == 'home' %}is-active{% endif %}" title="الصفحة الرئيسية">
+        {% icon 'home' cls='ic' %}<span class="tx">الصفحة الرئيسية</span>
+      </a>
+      <a href="{% url 'cms:about' %}" class="{% if active == 'about' %}is-active{% endif %}" title="من نحن">
+        {% icon 'info' cls='ic' %}<span class="tx">من نحن</span>
+      </a>
+      <a href="{% url 'cms:faq' %}" class="{% if active == 'faq' %}is-active{% endif %}" title="الأسئلة الشائعة">
+        {% icon 'help' cls='ic' %}<span class="tx">الأسئلة الشائعة</span>
+      </a>
+      <a href="{% url 'cms:contact' %}" class="{% if active == 'contact' %}is-active{% endif %}" title="تواصل معنا">
+        {% icon 'phone' cls='ic' %}<span class="tx">تواصل معنا</span>
+      </a>
+      <a href="{% url 'cms:partners_page' %}" class="{% if active == 'partners' %}is-active{% endif %}" title="الشركاء">
+        {% icon 'users' cls='ic' %}<span class="tx">الشركاء</span>
+      </a>
+
+      <div class="m-nav__label">الشركات</div>
+      <a href="{% url 'cms:companies' %}" class="{% if active == 'companies' %}is-active{% endif %}" title="الشركات التابعة">
+        {% icon 'briefcase' cls='ic' %}<span class="tx">الشركات التابعة</span>
+      </a>
+
+      <div class="m-nav__label">التواصل</div>
+      <a href="/manage/inbox/" class="{% if active == 'inbox' %}is-active{% endif %}" title="صندوق الوارد">
+        {% icon 'mail' cls='ic' %}<span class="tx">صندوق الوارد</span>
+      </a>
+
+      <div class="m-nav__label">الإعدادات</div>
+      <a href="{% url 'cms:settings' %}" class="{% if active == 'settings' %}is-active{% endif %}" title="الهوية والإعدادات">
+        {% icon 'id' cls='ic' %}<span class="tx">الهوية والإعدادات</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main class="m-main">
+    <header class="m-topbar">
+      <button class="m-tb__btn" data-side-toggle aria-label="طيّ القائمة الجانبية" data-tip="طيّ القائمة الجانبية">{% icon 'chevrons-right' size=18 %}</button>
+      <div class="m-tb__ttl">
+        <span class="m-tb__root">إدارة محتوى الموقع</span>
+        <span class="m-tb__sep">/</span>
+        <span class="m-tb__title" data-topbar-title>لوحة التحكم</span>
+      </div>
+      <div class="m-tb__sp"></div>
+      <div class="m-tb__act" data-tb-act>
+        <a href="/" target="_blank" rel="noopener" class="m-tb__view">{% icon 'external' size=17 %}<span>عرض الموقع</span></a>
+        <div class="m-menu" data-menu>
+          <div class="m-user" data-menu-btn role="button" tabindex="0" aria-haspopup="true">
+            <span class="m-user__av">{{ request.user.get_full_name|default:request.user.username|slice:':1'|upper }}</span>
+            <span class="m-user__meta">
+              <span class="m-user__n">{{ request.user.get_full_name|default:request.user.username }}</span>
+              <span class="m-user__role">{% if request.user.is_superuser %}مدير النظام{% else %}محرّر المحتوى{% endif %}</span>
+            </span>
+            {% icon 'chevron' size=15 cls='m-user__caret' %}
+          </div>
+          <div class="m-menu__pop">
+            <a href="/manage/profile/">{% icon 'user' size=16 %} ملفي الشخصي</a>
+            <hr>
+            <a href="{% url 'cms:logout' %}">{% icon 'logout' size=16 %} تسجيل الخروج</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="m-main__inner">
+      {% if messages %}
+        {% for m in messages %}
+          <div class="m-msg m-msg--{% if m.tags == 'error' %}error{% else %}success{% endif %}">{{ m }}</div>
+        {% endfor %}
+      {% endif %}
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+</div>
+{% endblock %}
+<script src="{% static 'js/manage.js' %}"></script>
+<script>
+(function () {
+  // sidebar collapse (persisted)
+  var body = document.body;
+  if (document.documentElement.classList.contains('pre-collapsed')) body.classList.add('side-collapsed');
+  document.querySelector('[data-side-toggle]')?.addEventListener('click', function () {
+    body.classList.toggle('side-collapsed');
+    try { localStorage.setItem('apsSideCollapsed', body.classList.contains('side-collapsed') ? '1' : '0'); } catch (e) {}
+  });
+  // user menu
+  var menu = document.querySelector('[data-menu]');
+  document.querySelector('[data-menu-btn]')?.addEventListener('click', function (e) { e.stopPropagation(); menu.classList.toggle('open'); });
+  document.addEventListener('click', function () { menu?.classList.remove('open'); });
+  // pull the in-content page title into the topbar ("إدارة محتوى الموقع / <title>")
+  var h1 = document.querySelector('.m-h1'), tt = document.querySelector('[data-topbar-title]');
+  if (h1 && tt) tt.textContent = h1.textContent.trim();
+  // move the page's "preview on site" action into the topbar, then hide the old header.
+  // Pages that opt out with ".m-top--keep" keep their in-body header + breadcrumb.
+  var top = document.querySelector('.m-top');
+  var keep = top && top.classList.contains('m-top--keep');
+  if (top && !keep) {
+    var act = top.querySelector('a.btnm'), tba = document.querySelector('[data-tb-act]');
+    if (act && tba) { act.classList.add('btnm--sm'); tba.insertBefore(act, tba.firstChild); }
+    top.style.display = 'none';
+  }
+  var crumb = document.querySelector('.m-crumb');
+  if (crumb && !keep) crumb.style.display = 'none';
+})();
+</script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

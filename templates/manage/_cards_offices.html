@@ -1,0 +1,65 @@
+{% comment %}Contact office cards (data-editor="office"). Pass `items` = formset.{% endcomment %}{% load cms_extras %}
+<div data-cards data-prefix="{{ items.prefix }}">
+  {{ items.management_form }}
+  {% for e in items.non_form_errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+  <div class="pcards" data-cardlist style="grid-template-columns:repeat(auto-fill,minmax(290px,1fr))">
+    {% for form in items %}
+      <div class="pcard" data-card>
+        <div class="pcard__move"><button type="button" data-move="up" title="تحريك لأعلى"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button><button type="button" data-move="down" title="تحريك لأسفل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button></div>
+        <button type="button" class="pcard__del" data-del title="حذف">{% icon 'trash' size=15 %}</button>
+        {% for h in form.hidden_fields %}{{ h }}{% endfor %}
+        <div class="pcard__fields">
+          <div class="f-bi">
+            <div class="f-row" data-f="name"><span class="pcard__lab">الاسم (ع)</span>{{ form.name_ar }}</div>
+            <div class="f-row"><span class="pcard__lab">الاسم (EN)</span>{{ form.name_en }}</div>
+          </div>
+          <div class="f-bi">
+            <div class="f-row" data-f="tag"><span class="pcard__lab">الوسم (ع)</span>{{ form.tag_ar }}</div>
+            <div class="f-row"><span class="pcard__lab">الوسم (EN)</span>{{ form.tag_en }}</div>
+          </div>
+          <div class="f-bi">
+            <div class="f-row" data-f="address"><span class="pcard__lab">العنوان (ع)</span>{{ form.address_ar }}</div>
+            <div class="f-row"><span class="pcard__lab">العنوان (EN)</span>{{ form.address_en }}</div>
+          </div>
+          <div class="f-bi" style="margin-bottom:9px">
+            <div class="f-row" data-f="phone"><span class="pcard__lab">الهاتف</span>{{ form.phone }}</div>
+            <div class="f-row"><span class="pcard__lab">البريد</span>{{ form.email }}</div>
+          </div>
+          <div class="f-row"><span class="pcard__lab">استعلام خرائط جوجل</span>{{ form.map_query }}</div>
+          <label class="f-inline-check">{{ form.is_hq }}<span>المقر الرئيسي</span></label>
+          <span style="display:none">{{ form.DELETE }}</span>
+          {% for e in form.errors.values %}<div class="f-err">{{ e|striptags }}</div>{% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <template data-empty>
+    <div class="pcard" data-card>
+      <div class="pcard__move"><button type="button" data-move="up" title="تحريك لأعلى"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button><button type="button" data-move="down" title="تحريك لأسفل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button></div>
+      <button type="button" class="pcard__del" data-del title="حذف">{% icon 'trash' size=15 %}</button>
+      {% for h in items.empty_form.hidden_fields %}{{ h }}{% endfor %}
+      <div class="pcard__fields">
+        <div class="f-bi">
+          <div class="f-row" data-f="name"><span class="pcard__lab">الاسم (ع)</span>{{ items.empty_form.name_ar }}</div>
+          <div class="f-row"><span class="pcard__lab">الاسم (EN)</span>{{ items.empty_form.name_en }}</div>
+        </div>
+        <div class="f-bi">
+          <div class="f-row" data-f="tag"><span class="pcard__lab">الوسم (ع)</span>{{ items.empty_form.tag_ar }}</div>
+          <div class="f-row"><span class="pcard__lab">الوسم (EN)</span>{{ items.empty_form.tag_en }}</div>
+        </div>
+        <div class="f-bi">
+          <div class="f-row" data-f="address"><span class="pcard__lab">العنوان (ع)</span>{{ items.empty_form.address_ar }}</div>
+          <div class="f-row"><span class="pcard__lab">العنوان (EN)</span>{{ items.empty_form.address_en }}</div>
+        </div>
+        <div class="f-bi" style="margin-bottom:9px">
+          <div class="f-row" data-f="phone"><span class="pcard__lab">الهاتف</span>{{ items.empty_form.phone }}</div>
+          <div class="f-row"><span class="pcard__lab">البريد</span>{{ items.empty_form.email }}</div>
+        </div>
+        <div class="f-row"><span class="pcard__lab">استعلام خرائط جوجل</span>{{ items.empty_form.map_query }}</div>
+        <label class="f-inline-check">{{ items.empty_form.is_hq }}<span>المقر الرئيسي</span></label>
+        <span style="display:none">{{ items.empty_form.DELETE }}</span>
+      </div>
+    </div>
+  </template>
+</div>
+<button type="button" class="btnm btnm--ghost btnm--sm card-add" data-add>＋ أضف مكتباً</button>

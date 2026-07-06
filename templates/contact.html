@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block seo_jsonld %}
+  {% include "partials/schema_org.html" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {% for c in page.breadcrumb %}{
+        "@type": "ListItem",
+        "position": {{ forloop.counter }},
+        "name": "{{ c.label }}"{% if c.href %},
+        "item": "{{ request.scheme }}://{{ request.get_host }}{{ c.href }}"{% endif %}
+      }{% if not forloop.last %},{% endif %}{% endfor %}
+    ]
+  }
+  </script>
+{% endblock %}
+
+{% block content %}
+
+{# ---- Page head (breadcrumb + eyebrow + title + lead) ---- #}
+<section class="contact-head">
+  <span class="contact-head__bg" aria-hidden="true"></span>
+  <img class="contact-head__mark" src="{% static 'logos/app-icon.svg' %}" alt="" aria-hidden="true">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="{% trans 'مسار التنقّل' %}">
+      {% for c in page.breadcrumb %}
+        {% if c.href %}<a href="{{ lang_prefix }}{{ c.href }}">{{ c.label }}</a><span class="breadcrumb__sep" aria-hidden="true">/</span>
+        {% else %}<span aria-current="page">{{ c.label }}</span>{% endif %}
+      {% endfor %}
+    </nav>
+    <span class="eyebrow reveal">{{ page.eyebrow }}</span>
+    <h1 class="contact-head__title reveal" data-reveal-delay="1">{{ page.title }}</h1>
+    <p class="contact-head__lead reveal" data-reveal-delay="2">{{ page.lead }}</p>
+  </div>
+</section>
+
+{# ---- Main: form + contact channels ---- #}
+<section class="section contact-main">
+  <div class="container contact-main__grid">
+
+    {# --- Form card --- #}
+    <div class="cform-card reveal">
+      {% if sent %}
+        <div class="cform-success" role="status">
+          <span class="cform-success__icon"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-check"></use></svg></span>
+          <h2 class="cform-success__title">{% trans "شكراً لتواصلك" %}{% if sent_name %}، {{ sent_name }}{% endif %}</h2>
+          <p class="cform-success__text">{% trans "تم استلام رسالتك بنجاح، وسيعاود فريقنا التواصل معك في أقرب وقت ممكن." %}</p>
+          <a class="btn btn--outline" href="{{ lang_prefix }}/contact/">{% trans "إرسال رسالة أخرى" %}</a>
+        </div>
+      {% else %}
+        <div class="cform-card__head">
+          <h2 class="cform-card__title">{% trans "أرسل لنا رسالة" %}</h2>
+          <span class="cform-card__hint">{% trans "الحقول المعلّمة بـ" %} <span class="req">*</span> {% trans "مطلوبة" %}</span>
+        </div>
+
+        <form class="cform" method="post" action="{{ lang_prefix }}/contact/" novalidate>
+          {% csrf_token %}
+
+          <div class="cform-row">
+            <div class="cfield">
+              <label for="f-name">{% trans "الاسم" %} <span class="req">*</span></label>
+              <input type="text" id="f-name" name="name" autocomplete="name" required
+                     value="{{ form.name|default:'' }}"
+                     class="{% if errors.name %}is-error{% endif %}">
+              {% if errors.name %}<span class="cfield__err">{{ errors.name }}</span>{% endif %}
+            </div>
+            <div class="cfield">
+              <label for="f-email">{% trans "البريد الإلكتروني" %} <span class="req">*</span></label>
+              <input type="email" id="f-email" name="email" dir="ltr" autocomplete="email" required
+                     value="{{ form.email|default:'' }}"
+                     class="{% if errors.email %}is-error{% endif %}">
+              {% if errors.email %}<span class="cfield__err">{{ errors.email }}</span>{% endif %}
+            </div>
+          </div>
+
+          <div class="cform-row">
+            <div class="cfield">
+              <label for="f-phone">{% trans "رقم الهاتف" %}</label>
+              <input type="tel" id="f-phone" name="phone" dir="ltr" autocomplete="tel"
+                     value="{{ form.phone|default:'' }}">
+            </div>
+            <div class="cfield">
+              <label for="f-company">{% trans "اسم الشركة" %}</label>
+              <input type="text" id="f-company" name="company" autocomplete="organization"
+                     value="{{ form.company|default:'' }}">
+            </div>
+          </div>
+
+          <div class="cfield">
+            <span class="cfield__legend">{% trans "موضوع الرسالة" %} <span class="cfield__legend-hint">{% trans "(يمكن اختيار أكثر من موضوع)" %}</span></span>
+            <div class="cform-chips">
+              {% for s in page.subjects %}
+                <label class="cchip">
+                  <input type="checkbox" name="subjects" value="{{ s }}"
+                         {% if s in form.subjects %}checked{% endif %}>
+                  <span class="cchip__label">{{ s }}</span>
+                </label>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="cfield">
+            <label for="f-message">{% trans "محتوى الرسالة" %} <span class="req">*</span></label>
+            <textarea id="f-message" name="message" rows="3" required
+                      class="{% if errors.message %}is-error{% endif %}"
+                      placeholder="{% trans 'اكتب تفاصيل استفسارك أو طلبك هنا...' %}">{{ form.message|default:'' }}</textarea>
+            {% if errors.message %}<span class="cfield__err">{{ errors.message }}</span>{% endif %}
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--lg cform__submit">
+            {% trans "إرسال الرسالة" %}
+            <svg class="icon icon--flip" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg>
+          </button>
+        </form>
+      {% endif %}
+    </div>
+
+    {# --- Contact channels --- #}
+    <aside class="contact-side reveal" data-reveal-delay="1">
+      <img class="contact-side__mark" src="{% static 'logos/app-icon.svg' %}" alt="" aria-hidden="true">
+      <h2 class="contact-side__title">{% trans "قنوات التواصل المباشر" %}</h2>
+      <ul class="contact-side__list">
+        {% for ch in page.channels %}
+          <li class="contact-line">
+            <span class="contact-line__icon">{% if ch.icon_image %}<img class="icon" src="{{ ch.icon_image }}" alt="" style="width:1.2em;height:1.2em;object-fit:contain">{% else %}<svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ ch.icon }}"></use></svg>{% endif %}</span>
+            <div class="contact-line__body">
+              <span class="contact-line__label">{{ ch.label }}</span>
+              {% if ch.href %}
+                <a class="contact-line__value {% if ch.ltr %}num{% endif %}" {% if ch.ltr %}dir="ltr"{% endif %} href="{{ ch.href }}">{{ ch.value }}</a>
+              {% else %}
+                <span class="contact-line__value">{{ ch.value }}</span>
+              {% endif %}
+              {% if ch.note %}<span class="contact-line__note">{{ ch.note }}</span>{% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </aside>
+  </div>
+</section>
+
+{# ---- Offices + working map ---- #}
+<section class="section contact-offices">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow reveal">{% trans "مواقعنا" %}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ page.offices_heading }}</h2>
+      <p class="section__lead reveal" data-reveal-delay="2">{{ page.offices_subtitle }}</p>
+    </div>
+
+    <div class="contact-offices__grid reveal">
+      <ul class="office-list">
+        {% for o in page.offices %}
+          <li>
+            <button type="button" class="office-card {% if o.is_hq %}is-active{% endif %}"
+                    data-map-q="{{ o.map_query|urlencode }}" data-map-label="{{ o.name }}"
+                    aria-pressed="{% if o.is_hq %}true{% else %}false{% endif %}">
+              <span class="office-card__head">
+                <span class="office-card__name">{{ o.name }}</span>
+                <span class="office-card__tag {% if o.is_hq %}office-card__tag--hq{% endif %}">{{ o.tag }}</span>
+              </span>
+              <span class="office-card__addr"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-pin"></use></svg>{{ o.address }}</span>
+              <span class="office-card__meta">
+                <a class="num" dir="ltr" href="tel:{{ o.phone|cut:' ' }}" onclick="event.stopPropagation()"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-phone"></use></svg>{{ o.phone }}</a>
+                <a dir="ltr" href="mailto:{{ o.email }}" onclick="event.stopPropagation()"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-mail"></use></svg>{{ o.email }}</a>
+              </span>
+            </button>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <div class="office-map">
+        {% with hq=page.offices.0 %}
+        <iframe
+          title="{% trans 'خريطة مكاتب مجموعة APS' %}"
+          data-office-map
+          src="https://maps.google.com/maps?q={{ hq.map_query|urlencode }}&z=14&hl={{ LANGUAGE_CODE }}&output=embed"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+        {% endwith %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

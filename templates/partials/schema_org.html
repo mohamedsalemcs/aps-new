@@ -1,0 +1,23 @@
+{% load static i18n %}
+{# Organization structured data — rendered on every page (site-wide). #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ group.name }}",
+  "alternateName": "APS",
+  "url": "{{ request.scheme }}://{{ request.get_host }}/",
+  "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'logos/aps-logo.png' %}",
+  "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'logos/aps-logo.png' %}",
+  "email": "{{ group.email }}",
+  "telephone": "{{ group.phone }}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "{% trans 'جدة' %}",
+    "addressRegion": "{% trans 'منطقة مكة المكرمة' %}",
+    "addressCountry": "SA"
+  },
+  "areaServed": { "@type": "Country", "name": "Saudi Arabia" },
+  "sameAs": ["https://aps.com.sa"]
+}
+</script>

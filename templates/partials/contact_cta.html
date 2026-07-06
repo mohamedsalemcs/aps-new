@@ -1,0 +1,37 @@
+{% load static i18n %}
+{% comment %}Reusable centered contact CTA. Pass `contact` (phone/email/website/website_url + optional offices) to override the group defaults.{% endcomment %}
+{% with c=contact|default:group %}
+<section class="contact-cta">
+  <span class="contact-cta__bg" aria-hidden="true"></span>
+  <img class="contact-cta__mark contact-cta__mark--a" src="{% static 'logos/app-icon.svg' %}" alt="" aria-hidden="true">
+  <img class="contact-cta__mark contact-cta__mark--b" src="{% static 'logos/app-icon.svg' %}" alt="" aria-hidden="true">
+  <div class="container contact-cta__inner">
+    <span class="contact-cta__badge reveal"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-phone"></use></svg></span>
+    <span class="eyebrow reveal" data-reveal-delay="1">{{ cta.eyebrow }}</span>
+    <h2 class="contact-cta__title reveal" data-reveal-delay="2">{{ cta.title }}<br><span class="contact-cta__hl">{{ cta.title_hl }}</span></h2>
+    <p class="contact-cta__subtitle reveal" data-reveal-delay="3">{{ cta.subtitle }}</p>
+
+    <div class="contact-cta__cards reveal" data-reveal-delay="2">
+      <a class="cta-card" href="tel:{{ c.phone|cut:' ' }}">
+        <span class="cta-card__value num" dir="ltr">{{ c.phone }}</span>
+        <span class="cta-card__icon"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-phone"></use></svg></span>
+      </a>
+      <a class="cta-card" href="mailto:{{ c.email }}">
+        <span class="cta-card__value" dir="ltr">{{ c.email }}</span>
+        <span class="cta-card__icon"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-mail"></use></svg></span>
+      </a>
+      <a class="cta-card" href="{{ c.website_url }}" target="_blank" rel="noopener">
+        <span class="cta-card__value" dir="ltr">{{ c.website }}</span>
+        <span class="cta-card__icon"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-globe"></use></svg></span>
+      </a>
+    </div>
+
+    {% if c.offices %}
+      <p class="contact-cta__offices"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-pin"></use></svg> {{ cta.offices_label }} {{ c.offices|join:"، " }}</p>
+    {% endif %}
+
+    <a class="btn btn--primary btn--lg contact-cta__btn reveal" data-reveal-delay="3" href="/contact/">{{ cta.button }}
+      <svg class="icon icon--flip" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg></a>
+  </div>
+</section>
+{% endwith %}

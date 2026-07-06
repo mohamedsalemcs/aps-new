@@ -1,0 +1,12 @@
+{% load static %}
+<!doctype html><html lang="ar" dir="rtl" class="m-html"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>تم الإرسال — APS</title>
+<link rel="stylesheet" href="{% static 'css/tokens.css' %}"><link rel="stylesheet" href="{% static 'css/manage.css' %}"></head>
+<body class="m-body"><div class="m-login">
+<div class="m-login__card" style="text-align:center">
+  <img class="m-login__logo" src="{% static 'logos/aps-logo.png' %}" alt="APS">
+  <div class="m-login__sub">تحقّق من بريدك</div>
+  <p>إذا كان البريد الذي أدخلته مسجَّلاً لدينا، فستصلك رسالة تحتوي على رابط لإعادة تعيين كلمة المرور خلال دقائق. تحقّق أيضاً من مجلد الرسائل غير المرغوب فيها.</p>
+  <a class="btnm" href="{% url 'cms:login' %}" style="width:100%;justify-content:center">العودة لتسجيل الدخول</a>
+</div></div></body></html>

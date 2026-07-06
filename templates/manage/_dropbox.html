@@ -1,0 +1,17 @@
+{% comment %}Clean image control: current image beside a drag-drop box.
+Pass `field` (a FileInput bound field) + optional `label`.{% endcomment %}
+{% load cms_extras %}
+<div class="f-row f-row--full">
+  <label class="f-lbl">{{ label|default:"الصورة" }}</label>
+  <div class="imgctl">
+    {% with url=field|file_url %}
+      {% if url %}<img class="imgctl__cur" src="{{ url }}" alt="">
+      {% else %}<div class="imgctl__cur imgctl__cur--empty">لا توجد صورة</div>{% endif %}
+    {% endwith %}
+    <label class="dropbox" data-dropbox{% if pv %} data-dropbox-pv="{{ pv }}"{% endif %}>
+      <span class="dropbox__t"><b>＋</b>اسحب صورة هنا أو اضغط للاختيار<small>PNG · JPG · SVG · WEBP · GIF</small></span>
+      {{ field }}
+    </label>
+  </div>
+  {% for e in field.errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+</div>

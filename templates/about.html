@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{# Title + meta description now come from ABOUT_PAGE["seo"] via base.html. #}
+{% block seo_jsonld %}
+  {% include "partials/schema_org.html" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {% for c in page.intro.breadcrumb %}{
+        "@type": "ListItem",
+        "position": {{ forloop.counter }},
+        "name": "{{ c.label }}"{% if c.href %},
+        "item": "{{ request.scheme }}://{{ request.get_host }}{{ c.href }}"{% endif %}
+      }{% if not forloop.last %},{% endif %}{% endfor %}
+    ]
+  }
+  </script>
+{% endblock %}
+
+{% block content %}
+
+{# ---- Merged intro (breadcrumb + who-we-are + one image + facts strip) ---- #}
+<section class="abt-hero">
+  <span class="abt-hero__bg" aria-hidden="true"></span>
+  <img class="abt-hero__mark" src="{% static 'logos/app-icon.svg' %}" alt="" aria-hidden="true">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="{% trans 'مسار التنقّل' %}">
+      {% for c in page.intro.breadcrumb %}
+        {% if c.href %}<a href="{{ lang_prefix }}{{ c.href }}">{{ c.label }}</a><span class="breadcrumb__sep" aria-hidden="true">/</span>
+        {% else %}<span aria-current="page">{{ c.label }}</span>{% endif %}
+      {% endfor %}
+    </nav>
+
+    <div class="abt-hero__grid">
+      <div class="abt-hero__body">
+        <span class="eyebrow reveal">{{ page.intro.eyebrow }}</span>
+        <h1 class="abt-hero__title reveal" data-reveal-delay="1">{{ page.intro.title }}</h1>
+        <p class="abt-hero__lead reveal" data-reveal-delay="2">{{ page.intro.lead }}</p>
+        <ul class="abt-list reveal" data-reveal-delay="3">
+          {% for b in page.intro.bullets %}
+            <li><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-check"></use></svg>{{ b }}</li>
+          {% endfor %}
+        </ul>
+        <a class="btn btn--primary reveal" data-reveal-delay="4" href="{{ lang_prefix }}{{ page.intro.cta_href }}">{{ page.intro.cta }}
+          <svg class="icon icon--flip" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg></a>
+      </div>
+
+      <div class="abt-hero__figure reveal" data-reveal-delay="1">
+        <div class="abt-hero__tile"><img src="{{ page.intro.image }}" alt="{% trans 'مهندس في منشأة صناعية' %}" fetchpriority="high" width="1200" height="900"></div>
+      </div>
+    </div>
+
+    <ul class="abt-facts reveal">
+      {% for f in page.intro.facts %}
+        <li class="abt-fact">
+          <span class="abt-fact__num num">{{ f.value }}{{ f.suffix }}</span>
+          <span class="abt-fact__label">{{ f.label }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{# ---- Guiding Principles (Vision / Mission / Values) ---- #}
+<section class="section abt-guiding">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow reveal">{{ page.guiding.eyebrow }}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ page.guiding.heading }}</h2>
+    </div>
+    <div class="abt-guiding__grid">
+      {% for it in page.guiding.items %}
+        <article class="guide-card reveal" data-reveal-delay="{{ forloop.counter0 }}">
+          <span class="guide-card__icon">{% if it.icon_image %}<img class="icon" src="{{ it.icon_image }}" alt="" style="width:1.4em;height:1.4em;object-fit:contain">{% else %}<svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ it.icon }}"></use></svg>{% endif %}</span>
+          <h3 class="guide-card__title">{{ it.title }}</h3>
+          <p class="guide-card__text">{{ it.text }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ---- Business Principles (6) ---- #}
+<section class="section abt-principles">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow reveal">{{ page.principles.eyebrow }}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ page.principles.heading }}</h2>
+      <p class="section__lead reveal" data-reveal-delay="2">{{ page.principles.subtitle }}</p>
+    </div>
+    <div class="abt-principles__grid">
+      {% for it in page.principles.items %}
+        <article class="principle-card reveal" data-reveal-delay="{{ forloop.counter0 }}">
+          <span class="principle-card__icon">{% if it.icon_image %}<img class="icon" src="{{ it.icon_image }}" alt="" style="width:1.4em;height:1.4em;object-fit:contain">{% else %}<svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ it.icon }}"></use></svg>{% endif %}</span>
+          <div>
+            <h3 class="principle-card__title">{{ it.title }}</h3>
+            <p class="principle-card__text">{{ it.text }}</p>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ---- HSE & Quality ---- #}
+<section class="abt-hse">
+  <div class="abt-hse__bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="section__head section__head--center section__head--light">
+      <span class="eyebrow eyebrow--light reveal">{{ page.hse.eyebrow }}</span>
+      <h2 class="section__title section__title--light reveal" data-reveal-delay="1">{{ page.hse.heading }}</h2>
+      <p class="section__lead section__lead--light reveal" data-reveal-delay="2">{{ page.hse.subtitle }}</p>
+    </div>
+    <div class="container abt-hse__grid">
+      {% for it in page.hse.items %}
+        <article class="hse-card reveal" data-reveal-delay="{{ forloop.counter0 }}">
+          <span class="hse-card__icon">{% if it.icon_image %}<img class="icon" src="{{ it.icon_image }}" alt="" style="width:1.4em;height:1.4em;object-fit:contain">{% else %}<svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ it.icon }}"></use></svg>{% endif %}</span>
+          <h3 class="hse-card__title">{{ it.title }}</h3>
+          <p class="hse-card__text">{{ it.text }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include "partials/contact_cta.html" %}
+
+{% endblock %}

@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% blocktrans with n=company.name %}{{ n }}، مجموعة APS{% endblocktrans %}{% endblock %}
+{% block meta_description %}{% blocktrans with n=company.name en=company.en sec=company.sector %}{{ n }} ({{ en }})، {{ sec }}. شركة تابعة لمجموعة APS.{% endblocktrans %}{% endblock %}
+
+{% block content %}
+
+{# ---- Merged hero / intro (identity + about + facts + one image) ---- #}
+<section class="abt-hero">
+  <span class="abt-hero__bg" aria-hidden="true"></span>
+  <img class="abt-hero__mark" src="{% static 'logos/app-icon.svg' %}" alt="" aria-hidden="true">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="{% trans 'مسار التنقّل' %}">
+      {% for c in company.breadcrumb %}
+        {% if c.href %}<a href="{{ lang_prefix }}{{ c.href }}">{{ c.label }}</a><span class="breadcrumb__sep" aria-hidden="true">/</span>
+        {% else %}<span aria-current="page">{{ c.label }}</span>{% endif %}
+      {% endfor %}
+    </nav>
+
+    <div class="abt-hero__grid">
+      <div class="abt-hero__body">
+        <div class="company-id reveal">
+          <img class="company-id__logo" src="{{ company.logo }}" alt="{{ company.name }}">
+          <span class="company-id__tag">{{ company.eyebrow }}</span>
+        </div>
+        <h1 class="abt-hero__title reveal" data-reveal-delay="1">{{ company.name }}</h1>
+        <span class="company-hero__sector reveal" data-reveal-delay="1">{{ company.sector }}</span>
+        <p class="abt-hero__lead reveal" data-reveal-delay="2">{{ company.about.paragraph }}</p>
+        {% if company.about.bullets %}
+        <ul class="abt-list reveal" data-reveal-delay="3">
+          {% for b in company.about.bullets %}
+            <li><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-check"></use></svg>{{ b }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% trans "استكشف الأنظمة والحلول" as default_hero_cta %}
+        <a class="btn btn--primary reveal" data-reveal-delay="4" href="{{ company.hero_cta_href|default:'#systems' }}">{{ company.hero_cta|default:default_hero_cta }}
+          <svg class="icon icon--flip" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg></a>
+      </div>
+
+      <div class="abt-hero__figure reveal" data-reveal-delay="1">
+        <div class="abt-hero__tile"><img src="{{ company.hero_image }}" alt="{{ company.name }}" fetchpriority="high" width="1200" height="900"></div>
+      </div>
+    </div>
+
+    {% if company.facts %}
+      <ul class="abt-facts reveal">
+        {% for f in company.facts %}
+          <li class="abt-fact">
+            <span class="abt-fact__num num">{{ f.value }}{{ f.suffix }}</span>
+            <span class="abt-fact__label">{{ f.label }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</section>
+
+{# ---- Guiding Principles (Vision / Mission) ---- #}
+{% if company.guiding %}
+<section class="section company-guiding">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow reveal">{{ company.guiding.eyebrow }}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ company.guiding.heading }}</h2>
+    </div>
+    <div class="vm-grid">
+      {% for it in company.guiding.items %}
+        <article class="guide-card reveal" data-reveal-delay="{{ forloop.counter0 }}">
+          <span class="guide-card__icon">{% if it.icon_image %}<img class="icon" src="{{ it.icon_image }}" alt="" style="width:1.4em;height:1.4em;object-fit:contain">{% else %}<svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ it.icon }}"></use></svg>{% endif %}</span>
+          <h3 class="guide-card__title">{{ it.title }}</h3>
+          <p class="guide-card__text">{{ it.text }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ---- Systems & Solutions (tabs OR plain grid) ---- #}
+{% if company.systems %}
+<section class="section company-systems" id="systems">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow reveal">{{ company.systems.eyebrow }}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ company.systems.heading }}</h2>
+      <p class="section__lead reveal" data-reveal-delay="2">{{ company.systems.subtitle }}</p>
+    </div>
+
+    {% if company.systems.tabs %}
+    <div class="tabs reveal" data-tabs data-reveal-delay="1">
+      <div class="tabs__nav" role="tablist">
+        {% for t in company.systems.tabs %}
+          <button class="tabs__tab {% if forloop.first %}is-active{% endif %}" data-tab="{{ forloop.counter0 }}" role="tab" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+            {% if t.icon_image %}<img class="icon" src="{{ t.icon_image }}" alt="" style="width:1.2em;height:1.2em;object-fit:contain">{% else %}<svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ t.icon }}"></use></svg>{% endif %}
+            <span>{{ t.title }}</span>
+          </button>
+        {% endfor %}
+      </div>
+      <div class="tabs__panels">
+        {% for t in company.systems.tabs %}
+          <div class="tabs__panel {% if forloop.first %}is-active{% endif %}" data-panel="{{ forloop.counter0 }}" role="tabpanel">
+            <div class="sys-grid">
+              {% for it in t.items %}
+                <article class="sys-item">
+                  <div class="sys-item__media"><img src="{{ it.image }}" alt="{{ it.name }}" loading="lazy" width="480" height="340"></div>
+                  <h3 class="sys-item__name">{{ it.name }}</h3>
+                </article>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <div class="sys-grid">
+      {% for it in company.systems.items %}
+        <article class="sys-item reveal" data-reveal-delay="{{ forloop.counter0 }}">
+          <div class="sys-item__media"><img src="{{ it.image }}" alt="{{ it.name }}" loading="lazy" width="480" height="340"></div>
+          <h3 class="sys-item__name">{{ it.name }}</h3>
+        </article>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+{# ---- Services (icon + title + text) ---- #}
+{% if company.services %}
+<section class="section company-services" id="services">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow reveal">{{ company.services.eyebrow }}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ company.services.heading }}</h2>
+      {% if company.services.subtitle %}<p class="section__lead reveal" data-reveal-delay="2">{{ company.services.subtitle }}</p>{% endif %}
+    </div>
+    <div class="svc-grid">
+      {% for s in company.services.items %}
+        <article class="guide-card reveal" data-reveal-delay="{{ forloop.counter0 }}">
+          <span class="guide-card__icon"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ s.icon }}"></use></svg></span>
+          <h3 class="guide-card__title">{{ s.title }}</h3>
+          <p class="guide-card__text">{{ s.text }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ---- Solar project lifecycle (phases) ---- #}
+{% if company.lifecycle %}
+<section class="section company-lifecycle" id="lifecycle">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow reveal">{{ company.lifecycle.eyebrow }}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ company.lifecycle.heading }}</h2>
+      {% if company.lifecycle.subtitle %}<p class="section__lead reveal" data-reveal-delay="2">{{ company.lifecycle.subtitle }}</p>{% endif %}
+    </div>
+    <div class="lifecycle">
+      {% for ph in company.lifecycle.phases %}
+        <div class="lc-phase reveal" data-reveal-delay="{{ forloop.counter0 }}">
+          <div class="lc-phase__head">
+            <span class="lc-phase__no num">{{ ph.no }}</span>
+            <h3 class="lc-phase__title">{{ ph.title }}</h3>
+          </div>
+          <ol class="lc-steps">
+            {% for s in ph.steps %}
+              <li class="lc-step">
+                <span class="lc-step__n num">{{ forloop.counter }}</span>
+                <div class="lc-step__body">
+                  <h4 class="lc-step__title">{{ s.title }}</h4>
+                  <p class="lc-step__text">{{ s.text }}</p>
+                </div>
+              </li>
+            {% endfor %}
+          </ol>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ---- Projects (image + name, or detailed cards) ---- #}
+{% if company.projects %}
+<section class="section company-projects" id="projects">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow reveal">{{ company.projects.eyebrow }}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ company.projects.heading }}</h2>
+      <p class="section__lead reveal" data-reveal-delay="2">{{ company.projects.subtitle }}</p>
+    </div>
+    <div class="proj-grid{% if company.projects.detailed %} proj-grid--detail{% endif %}">
+      {% for p in company.projects.items %}
+        {% if p.details %}
+          <article class="proj-dcard reveal" data-reveal-delay="{{ forloop.counter0 }}">
+            <div class="proj-dcard__media"><img src="{{ p.image }}" alt="{{ p.name }}" loading="lazy" width="640" height="460"></div>
+            <div class="proj-dcard__body">
+              <h3 class="proj-dcard__title">{{ p.name }}</h3>
+              <ul class="proj-meta">
+                {% for d in p.details %}
+                  <li class="proj-meta__row">
+                    <span class="proj-meta__ic"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ d.icon }}"></use></svg></span>
+                    <span class="proj-meta__label">{{ d.label }}</span>
+                    <span class="proj-meta__val">{{ d.value }}</span>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </article>
+        {% else %}
+          <article class="proj-card reveal" data-reveal-delay="{{ forloop.counter0 }}">
+            <img src="{{ p.image }}" alt="{{ p.name }}" loading="lazy" width="640" height="460">
+            <span class="proj-card__overlay"></span>
+            <div class="proj-card__body">
+              {% if p.sector %}<span class="proj-card__sector">{{ p.sector }}</span>{% endif %}
+              <h3 class="proj-card__name">{{ p.name }}</h3>
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ---- Partners ---- #}
+{% if company.partners %}
+<section class="section company-partners" id="partners">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow reveal">{{ company.partners.eyebrow }}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ company.partners.heading }}</h2>
+      <p class="section__lead reveal" data-reveal-delay="2">{{ company.partners.subtitle }}</p>
+    </div>
+    <div class="partners__grid reveal" data-reveal-delay="1">
+      {% for logo in company.partners.logos %}
+        <div class="partner-cell"><img src="{{ logo }}" alt="{% trans 'شعار شريك' %}" loading="lazy"></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ---- Contact ---- #}
+{% include "partials/contact_cta.html" with contact=company.contact %}
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "manage/base.html" %}
+{% load static cms_extras %}
+{% block title %}الشركات{% endblock %}
+{% block content %}
+<div class="m-top m-top--keep">
+  <h1 class="m-h1">قائمة الشركات</h1>
+  <a class="btnm" href="{% url 'cms:company_add' %}">{% icon 'plus' size=16 %} إضافة شركة</a>
+</div>
+
+<table class="m-table m-table--co">
+  <thead>
+    <tr>
+      <th style="width:76px"></th><th>الشركة</th><th>القطاع</th><th>الحالة</th><th>الصفحة</th><th style="width:1%">إجراءات</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in companies %}
+    <tr>
+      <td>{% if c.logo %}<img class="co-logo co-logo--lg" src="{{ c.logo.url }}" alt="{{ c.name_ar }}">{% else %}<span class="co-logo co-logo--lg co-logo--ph">{{ c.name_ar|slice:':1' }}</span>{% endif %}</td>
+      <td><strong>{{ c.name_ar }}</strong>{% if c.name_en %}<br><span class="f-help">{{ c.name_en }}</span>{% endif %}</td>
+      <td>{{ c.sector_ar }}</td>
+      <td>{% if c.is_published %}<span class="badge badge--ok">منشورة</span>{% else %}<span class="badge badge--off">مخفية</span>{% endif %}</td>
+      <td><a href="/companies/{{ c.slug }}/" target="_blank" class="num" dir="ltr">/{{ c.slug }} ↗</a></td>
+      <td>
+        <div class="row-acts">
+          <a class="btnm btnm--ghost btnm--sm" href="{% url 'cms:company_edit' slug=c.slug %}">{% icon 'settings' size=14 %} تعديل</a>
+          <form method="post" action="{% url 'cms:company_toggle_publish' slug=c.slug %}">{% csrf_token %}
+            <button class="btnm btnm--ghost btnm--sm" type="submit">{% icon 'eye' size=14 %} {% if c.is_published %}إخفاء{% else %}نشر{% endif %}</button>
+          </form>
+          <form method="post" action="{% url 'cms:company_delete' slug=c.slug %}">{% csrf_token %}
+            <button class="btnm btnm--danger-ghost btnm--sm" type="submit" data-confirm="حذف شركة «{{ c.name_ar }}» وكل محتواها نهائياً؟ لا يمكن التراجع.">{% icon 'trash' size=14 %} حذف</button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="6">لا توجد شركات بعد. <a href="{% url 'cms:company_add' %}">أضف واحدة</a>.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

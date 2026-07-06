@@ -1,0 +1,91 @@
+{% extends "manage/base.html" %}
+{% load static %}
+{% block title %}المكاتب{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:contact' %}">تواصل معنا</a> / المكاتب</div>
+<div class="m-top"><h1 class="m-h1">المكاتب</h1></div>
+
+<form method="post" action="" data-editor="guiding">
+  {% csrf_token %}
+  <div class="m-card">
+    <h2 class="m-card__title">المكاتب</h2>
+    <p class="m-card__hint">«استعلام الخريطة» عنوان يُفتح على خرائط Google (مثل: Gulf Center, Al Madinah Road, Jeddah). فعّل «المقر الرئيسي» لمكتب واحد.</p>
+    <div data-cards data-prefix="{{ items.prefix }}">
+      {{ items.management_form }}
+      {% for e in items.non_form_errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+      <div class="pcards" data-cardlist style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">
+        {% for form in items %}
+          <div class="pcard" data-card>
+            <span class="pcard__idx num">{{ forloop.counter }}</span>
+            <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+            {% for h in form.hidden_fields %}{{ h }}{% endfor %}
+            <div class="pcard__fields">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div data-f="title"><span class="pcard__lab">اسم المكتب</span>{{ form.name_ar }}</div>
+                <div><span class="pcard__lab">الوسم</span>{{ form.tag_ar }}</div>
+              </div>
+              <div data-f="text"><span class="pcard__lab">العنوان</span>{{ form.address_ar }}</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div><span class="pcard__lab">الهاتف</span>{{ form.phone }}</div>
+                <div><span class="pcard__lab">البريد</span>{{ form.email }}</div>
+              </div>
+              <div><span class="pcard__lab">استعلام الخريطة</span>{{ form.map_query }}</div>
+              <label style="display:flex;align-items:center;gap:8px;font-size:.84rem">{{ form.is_hq }} المقر الرئيسي</label>
+              <details class="pcard__en"><summary>الإنجليزية (اختياري)</summary>
+                <input type="text" placeholder="Name (EN)" class="f-in" name="{{ form.name_en.html_name }}" value="{{ form.name_en.value|default:'' }}">
+                <input type="text" placeholder="Tag (EN)" class="f-in" name="{{ form.tag_en.html_name }}" value="{{ form.tag_en.value|default:'' }}">
+                <textarea placeholder="Address (EN)" class="f-in" rows="2" name="{{ form.address_en.html_name }}">{{ form.address_en.value|default:'' }}</textarea>
+              </details>
+              <span style="display:none">{{ form.DELETE }}</span>
+              {% for e in form.errors.values %}<div class="f-err">{{ e|striptags }}</div>{% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <template data-empty>
+        <div class="pcard" data-card>
+          <span class="pcard__idx num">+</span>
+          <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+          {% for h in items.empty_form.hidden_fields %}{{ h }}{% endfor %}
+          <div class="pcard__fields">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <div data-f="title"><span class="pcard__lab">اسم المكتب</span>{{ items.empty_form.name_ar }}</div>
+              <div><span class="pcard__lab">الوسم</span>{{ items.empty_form.tag_ar }}</div>
+            </div>
+            <div data-f="text"><span class="pcard__lab">العنوان</span>{{ items.empty_form.address_ar }}</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <div><span class="pcard__lab">الهاتف</span>{{ items.empty_form.phone }}</div>
+              <div><span class="pcard__lab">البريد</span>{{ items.empty_form.email }}</div>
+            </div>
+            <div><span class="pcard__lab">استعلام الخريطة</span>{{ items.empty_form.map_query }}</div>
+            <label style="display:flex;align-items:center;gap:8px;font-size:.84rem">{{ items.empty_form.is_hq }} المقر الرئيسي</label>
+            <details class="pcard__en"><summary>الإنجليزية (اختياري)</summary>
+              <input type="text" placeholder="Name (EN)" class="f-in" name="{{ items.empty_form.name_en.html_name }}">
+              <input type="text" placeholder="Tag (EN)" class="f-in" name="{{ items.empty_form.tag_en.html_name }}">
+              <textarea placeholder="Address (EN)" class="f-in" rows="2" name="{{ items.empty_form.address_en.html_name }}"></textarea>
+            </details>
+            <span style="display:none">{{ items.empty_form.DELETE }}</span>
+          </div>
+        </div>
+      </template>
+    </div>
+    <div class="pcards" style="margin-top:16px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">
+      <div class="pcard pcard--add" data-add><span class="big">＋</span><span>أضف مكتباً</span></div>
+    </div>
+  </div>
+
+  <div class="pv pv--guiding">
+    <span class="pv__tag">👁 معاينة المكاتب</span>
+    <div class="pv__stage">
+      <div class="pv-grid" data-pv-grid></div>
+      <div class="pv__empty" data-pv-empty>أضف مكتباً لتظهر المعاينة هنا.</div>
+    </div>
+  </div>
+
+  <div class="m-actions">
+    <button class="btnm" type="submit">💾 حفظ المكاتب</button>
+    <a class="btnm btnm--ghost" href="{% url 'cms:contact' %}">رجوع</a>
+  </div>
+</form>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/manage_cards.js' %}"></script>{% endblock %}

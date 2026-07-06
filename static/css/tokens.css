@@ -1,0 +1,141 @@
+/* ==========================================================================
+   APS Group — Design Tokens & Foundations
+   Single source of truth for colors, typography, spacing, radii, shadows.
+   All fonts are stored locally (no CDN, no Google Fonts) per the design system.
+   ========================================================================== */
+
+/* ---- Local Fonts -------------------------------------------------------- */
+/* Cairo — Arabic (primary) */
+@font-face { font-family: "Cairo"; font-style: normal; font-weight: 400; font-display: swap; src: url("/static/fonts/cairo-arabic-400.woff2") format("woff2"); }
+@font-face { font-family: "Cairo"; font-style: normal; font-weight: 500; font-display: swap; src: url("/static/fonts/cairo-arabic-500.woff2") format("woff2"); }
+@font-face { font-family: "Cairo"; font-style: normal; font-weight: 600; font-display: swap; src: url("/static/fonts/cairo-arabic-600.woff2") format("woff2"); }
+@font-face { font-family: "Cairo"; font-style: normal; font-weight: 700; font-display: swap; src: url("/static/fonts/cairo-arabic-700.woff2") format("woff2"); }
+@font-face { font-family: "Cairo"; font-style: normal; font-weight: 800; font-display: swap; src: url("/static/fonts/cairo-arabic-800.woff2") format("woff2"); }
+
+/* Inter — Latin, numbers, statistics (always used for digits, even inside Arabic) */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap; src: url("/static/fonts/inter-latin-400.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 500; font-display: swap; src: url("/static/fonts/inter-latin-500.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 600; font-display: swap; src: url("/static/fonts/inter-latin-600.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 700; font-display: swap; src: url("/static/fonts/inter-latin-700.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 800; font-display: swap; src: url("/static/fonts/inter-latin-800.woff2") format("woff2"); }
+
+:root {
+  /* ---- Brand color (exact APS logo blue + derived scale) ---- */
+  --aps-blue:        #2B6EA1;   /* primary — from logo */
+  --aps-blue-light:  #558BAD;   /* app-icon medium */
+  --aps-blue-soft:   #7CAAC6;   /* app-icon light */
+  --aps-blue-600:    #235C86;
+  --aps-blue-700:    #1C4A6E;
+  --aps-navy:        #0E2A40;   /* deep navy for dark premium sections */
+  --aps-navy-800:    #0A2033;
+
+  /* ---- Neutrals ---- */
+  --gray-900: #16191D;
+  --gray-800: #232830;
+  --gray-700: #444444;   /* logo wordmark gray */
+  --gray-500: #6B7280;
+  --gray-400: #98A1AD;
+  --gray-300: #D6DCE3;
+  --gray-200: #E7ECF1;
+  --gray-100: #F2F5F8;
+  --white:    #FFFFFF;
+
+  /* ---- Semantic surfaces ---- */
+  --bg:            var(--white);
+  --bg-off:        #F7F9FB;   /* off white */
+  --bg-soft:       var(--gray-100);
+  --bg-blue-soft:  #EAF2F8;   /* very light blue */
+  --surface:       var(--white);
+  --border:        var(--gray-200);
+  --text:          var(--gray-900);
+  --text-muted:    var(--gray-500);
+  --text-invert:   var(--white);
+
+  --accent:        #E08A2B;   /* warm accent, used very sparingly */
+
+  /* ---- Typography ---- */
+  --font-ar: "Cairo", system-ui, sans-serif;
+  --font-en: "Inter", system-ui, sans-serif;
+  --font-num: "Inter", "Cairo", sans-serif; /* digits use Inter first */
+
+  /* Fluid type scale */
+  --fs-display-xxl: clamp(2.6rem, 1.4rem + 4.4vw, 5rem);
+  --fs-display-xl:  clamp(2.2rem, 1.4rem + 3vw, 3.75rem);
+  --fs-display-l:   clamp(1.9rem, 1.3rem + 2.2vw, 3rem);
+  --fs-h1:          clamp(1.7rem, 1.2rem + 1.8vw, 2.5rem);
+  --fs-h2:          clamp(1.45rem, 1.1rem + 1.3vw, 2.05rem);
+  --fs-h3:          clamp(1.2rem, 1rem + 0.7vw, 1.5rem);
+  --fs-h4:          1.15rem;
+  --fs-body-xl:     1.2rem;
+  --fs-body-l:      1.075rem;
+  --fs-body:        1rem;
+  --fs-small:       0.9rem;
+  --fs-caption:     0.8rem;
+  --fs-overline:    0.75rem;
+
+  --lh-tight: 1.15;
+  --lh-snug:  1.35;
+  --lh-body:  1.75;
+
+  /* ---- Spacing scale ---- */
+  --sp-1: 0.25rem;  --sp-2: 0.5rem;  --sp-3: 0.75rem; --sp-4: 1rem;
+  --sp-5: 1.5rem;   --sp-6: 2rem;    --sp-7: 3rem;    --sp-8: 4rem;
+  --sp-9: 6rem;     --sp-10: 8rem;
+
+  /* Section rhythm */
+  --section-y: clamp(3.5rem, 2rem + 6vw, 7rem);
+  --container: 1200px;
+  --container-wide: 1360px;
+  --gutter: clamp(1.1rem, 0.5rem + 2.5vw, 2.5rem);
+
+  /* ---- Radii ---- */
+  --r-sm: 8px;  --r-md: 12px;  --r-lg: 18px;  --r-xl: 26px;  --r-pill: 999px;
+
+  /* ---- Shadows (subtle, luxury) ---- */
+  --sh-xs:  0 1px 2px rgba(16, 42, 64, 0.05);
+  --sh-soft: 0 6px 20px rgba(16, 42, 64, 0.06);
+  --sh-md:  0 14px 40px rgba(16, 42, 64, 0.09);
+  --sh-float: 0 26px 60px rgba(16, 42, 64, 0.14);
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 0.55s;
+  --dur-fast: 0.28s;
+
+  --header-h: 80px;
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+body {
+  font-family: var(--font-ar);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+ul { list-style: none; }
+h1, h2, h3, h4, h5, h6 { line-height: var(--lh-tight); font-weight: 700; }
+
+/* English (LTR): route the primary UI font token to Inter so every element
+   that uses var(--font-ar) — body, buttons, tabs — renders in Inter. */
+html[lang="en"] { --font-ar: "Inter", system-ui, sans-serif; }
+
+/* Digits render in Inter even inside Arabic text */
+.num, .stat__num, time, [data-num] { font-family: var(--font-num); font-feature-settings: "tnum" 1; }
+
+:focus-visible { outline: 3px solid var(--aps-blue-soft); outline-offset: 3px; border-radius: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

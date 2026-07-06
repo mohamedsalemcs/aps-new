@@ -1,0 +1,12 @@
+{% load static %}
+<!doctype html><html lang="ar" dir="rtl" class="m-html"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>تم التغيير — APS</title>
+<link rel="stylesheet" href="{% static 'css/tokens.css' %}"><link rel="stylesheet" href="{% static 'css/manage.css' %}"></head>
+<body class="m-body"><div class="m-login">
+<div class="m-login__card" style="text-align:center">
+  <img class="m-login__logo" src="{% static 'logos/aps-logo.png' %}" alt="APS">
+  <div class="m-login__sub">تم تغيير كلمة المرور ✓</div>
+  <p>تم تعيين كلمة المرور الجديدة بنجاح. يمكنك الآن تسجيل الدخول بها.</p>
+  <a class="btnm" href="{% url 'cms:login' %}" style="width:100%;justify-content:center">تسجيل الدخول</a>
+</div></div></body></html>

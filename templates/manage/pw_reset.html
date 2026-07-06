@@ -1,0 +1,17 @@
+{% load static %}
+<!doctype html><html lang="ar" dir="rtl" class="m-html"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>استعادة كلمة المرور — APS</title>
+<link rel="stylesheet" href="{% static 'css/tokens.css' %}"><link rel="stylesheet" href="{% static 'css/manage.css' %}"></head>
+<body class="m-body"><div class="m-login">
+<form class="m-login__card" method="post" action="">
+  {% csrf_token %}
+  <img class="m-login__logo" src="{% static 'logos/aps-logo.png' %}" alt="APS">
+  <div class="m-login__sub">استعادة كلمة المرور</div>
+  <p>أدخل بريدك الإلكتروني المسجَّل وسنرسل لك رابطاً لإعادة تعيين كلمة المرور.</p>
+  <label for="id_email">البريد الإلكتروني</label>
+  {{ form.email }}
+  {{ form.email.errors }}
+  <button class="btnm" type="submit" style="width:100%;justify-content:center">إرسال رابط الاستعادة</button>
+  <div style="text-align:center;margin-top:16px"><a href="{% url 'cms:login' %}" style="font-size:.85rem">‹ العودة لتسجيل الدخول</a></div>
+</form></div></body></html>

@@ -1,0 +1,19 @@
+{% load cms_extras %}
+{% if field|is_checkbox %}
+  <div class="f-row f-row--check" style="flex-direction:row;align-items:center;gap:9px">
+    {{ field }}
+    <label class="f-lbl" for="{{ field.id_for_label }}" style="margin:0">{{ field.label }}</label>
+  </div>
+{% else %}
+  <div class="f-row {% if full %}f-row--full{% endif %}">
+    <label class="f-lbl" for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} <span class="req">*</span>{% endif %}</label>
+    {% if field|is_file %}
+      {% with url=field|file_url %}
+        {% if url %}<div class="f-thumb"><img src="{{ url }}" alt=""></div>{% endif %}
+      {% endwith %}
+    {% endif %}
+    {{ field }}
+    {% if field.help_text %}<div class="f-help">{{ field.help_text }}</div>{% endif %}
+    {% for e in field.errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+  </div>
+{% endif %}

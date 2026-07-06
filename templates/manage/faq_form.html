@@ -1,0 +1,114 @@
+{% extends "manage/base.html" %}
+{% load static cms_extras %}
+{% block title %}صفحة الأسئلة الشائعة{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:dashboard' %}">الرئيسية</a> / الأسئلة الشائعة</div>
+<div class="m-top">
+  <h1 class="m-h1">الأسئلة الشائعة</h1>
+  <a class="btnm btnm--ghost btnm--sm" href="/faq/" target="_blank">معاينة على الموقع {% icon 'external' size=14 %}</a>
+</div>
+
+<form method="post" action="" data-tabroot>
+  {% csrf_token %}
+  <nav class="a-tabs" data-tabs>
+    <button type="button" data-tab="content" class="is-active">محتوى الصفحة</button>
+    <button type="button" data-tab="seo">SEO (اختياري)</button>
+  </nav>
+
+  <div class="a-tabpanel is-active" data-tabpanel="content">
+  {# ===== Hero ===== #}
+  <section class="ed-sec">
+    <h2 class="ed-sec__title">رأس الصفحة</h2>
+    <div class="ed-sec__grid" id="faq-hero">
+      <div class="ed-sec__form"><div class="m-card">
+        <h3 class="m-card__title">المقدمة</h3>
+        {% include "manage/_bi.html" with ar=form.hero_eyebrow_ar en=form.hero_eyebrow_en base="سطر علوي" pv="eyebrow" %}
+        {% include "manage/_bi.html" with ar=form.hero_title_ar en=form.hero_title_en base="العنوان" pv="title" %}
+        {% include "manage/_bi.html" with ar=form.hero_subtitle_ar en=form.hero_subtitle_en base="الوصف" pv="lead" %}
+      </div></div>
+      <div class="ed-sec__pv"><div class="pv">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage"><div class="hpv hpv--center"><div>
+          <div class="hpv__eyebrow" data-pv-out="eyebrow">{{ form.hero_eyebrow_ar.value|default:'' }}</div>
+          <h3 class="hpv__title" data-pv-out="title">{{ form.hero_title_ar.value|default:'' }}</h3>
+          <p class="hpv__lead" data-pv-out="lead" style="margin:0 auto;max-width:560px">{{ form.hero_subtitle_ar.value|default:'' }}</p>
+        </div></div></div>
+      </div></div>
+    </div>
+  </section>
+
+  {# ===== Stats ===== #}
+  <section class="ed-sec" data-editor="facts">
+    <h2 class="ed-sec__title">الأرقام (شريط أعلى الصفحة) <span class="cnt">{{ stats.total_form_count }}</span></h2>
+    <div class="ed-sec__grid">
+      <div class="ed-sec__form"><div class="m-card">
+        <h3 class="m-card__title">الأرقام</h3>
+        {% include "manage/_cards_facts.html" with items=stats %}
+      </div></div>
+      <div class="ed-sec__pv"><div class="pv pv--facts">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage"><div class="pv-grid" data-pv-grid></div>
+          <div class="pv__empty" data-pv-empty>أضف رقماً لتظهر المعاينة.</div></div>
+      </div></div>
+    </div>
+  </section>
+
+  {# ===== Categories + their questions (each category holds its own Q&A) ===== #}
+  <section class="ed-sec" data-faq-cats>
+    <h2 class="ed-sec__title">الفئات والأسئلة <span class="cnt">{{ cats.total_form_count }}</span></h2>
+    <p class="m-card__hint">كل فئة تحتوي أسئلتها. لإضافة فئة جديدة: اكتب اسمها وأضف أسئلتها في بلوك «فئة جديدة» بالأسفل ثم احفظ.</p>
+    {{ cats.management_form }}
+    {% for e in cats.non_form_errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+    <div class="faq-cats">
+      {% for catform, qset, isnew in cat_blocks %}
+        {% include "manage/_faq_catblock.html" with catform=catform qset=qset isnew=isnew %}
+      {% endfor %}
+    </div>
+  </section>
+  </div>{# /content #}
+
+  <div class="a-tabpanel" data-tabpanel="seo">
+    <div class="m-card">
+      <h3 class="m-card__title">إعدادات SEO</h3>
+      {% include "manage/_bi.html" with ar=form.seo_title_ar en=form.seo_title_en base="عنوان SEO" %}
+      {% include "manage/_bi.html" with ar=form.seo_description_ar en=form.seo_description_en base="وصف SEO" %}
+    </div>
+  </div>
+
+  <div class="m-savebar">
+    <span class="m-savebar__note">كل التعديلات في الصفحة تُحفظ معاً</span>
+    <a class="btnm btnm--ghost" href="{{ request.path }}" data-confirm="تجاهل كل التعديلات غير المحفوظة على هذه الصفحة؟">{% icon 'discard' size=16 %} تجاهل التغييرات</a>
+    <button class="btnm" type="submit">{% icon 'save' size=16 %} حفظ كل التغييرات</button>
+  </div>
+</form>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/manage_cards.js' %}"></script>
+<script>
+(function(){var h=document.getElementById('faq-hero');if(h){
+[['hero_eyebrow_ar','eyebrow'],['hero_title_ar','title'],['hero_subtitle_ar','lead']].forEach(function(p){
+var i=h.querySelector('[name="'+p[0]+'"]'),o=h.querySelector('[data-pv-out="'+p[1]+'"]');
+if(i&&o)i.addEventListener('input',function(){o.textContent=i.value;});});}
+
+// FAQ category blocks: delete a whole category, and renumber category order by
+// block position on submit. (Each category's Q&A add/reorder is handled by the
+// generic card editor.)
+document.querySelectorAll('[data-faq-cat-del]').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var block = btn.closest('[data-faq-cat]');
+    var del = block.querySelector('input[name^="cat-"][name$="-DELETE"]');
+    if (del) del.checked = true;
+    block.classList.add('is-deleted');
+    block.style.display = 'none';
+  });
+});
+var faqForm = document.querySelector('[data-faq-cats]') && document.querySelector('[data-faq-cats]').closest('form');
+if (faqForm) faqForm.addEventListener('submit', function(){
+  var n = 0;
+  document.querySelectorAll('[data-faq-cat]').forEach(function(block){
+    if (block.classList.contains('is-deleted')) return;
+    var ord = block.querySelector('input[name^="cat-"][name$="-order"]');
+    if (ord) ord.value = n++;
+  });
+});
+})();
+</script>{% endblock %}

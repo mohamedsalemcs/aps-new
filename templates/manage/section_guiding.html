@@ -1,0 +1,94 @@
+{% extends "manage/base.html" %}
+{% load static %}
+{% block title %}المبادئ التوجيهية — {{ company.name_ar }}{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:companies' %}">الشركات</a> / <a href="{% url 'cms:company_edit' slug=company.slug %}">{{ company.name_ar }}</a> / المبادئ التوجيهية</div>
+<div class="m-top"><h1 class="m-h1">المبادئ التوجيهية (الرؤية / الرسالة)</h1></div>
+
+<form method="post" action="" data-editor="guiding">
+  {% csrf_token %}
+
+  <div class="m-card">
+    <h2 class="m-card__title">عنوان القسم</h2>
+    <div class="f-grid">
+      <div class="f-row" data-pv="eyebrow"><label class="f-lbl">سطر علوي</label>{{ form.eyebrow_ar }}</div>
+      <div class="f-row" data-pv="title"><label class="f-lbl">العنوان</label>{{ form.heading_ar }}</div>
+      <div class="f-row f-row--full">
+        <details class="pcard__en"><summary>الإنجليزية</summary>
+          <div class="f-grid" style="margin-top:10px">
+            {% include "manage/_field.html" with field=form.eyebrow_en %}
+            {% include "manage/_field.html" with field=form.heading_en %}
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-card">
+    <h2 class="m-card__title">العناصر</h2>
+    <p class="m-card__hint">الأيقونة: اكتب معرّفاً جاهزاً مثل eye (رؤية)، target (رسالة)، handshake (قيم)، shield، star.</p>
+    <div data-cards data-prefix="{{ items.prefix }}">
+      {{ items.management_form }}
+      {% for e in items.non_form_errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+      <div class="pcards" data-cardlist style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+        {% for form in items %}
+          <div class="pcard" data-card>
+            <span class="pcard__idx num">{{ forloop.counter }}</span>
+            <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+            {% for h in form.hidden_fields %}{{ h }}{% endfor %}
+            <div class="pcard__fields">
+              <div data-f="icon"><span class="pcard__lab">الأيقونة</span>{{ form.icon }}</div>
+              <div data-f="title"><span class="pcard__lab">العنوان</span>{{ form.title_ar }}</div>
+              <div data-f="text"><span class="pcard__lab">النص</span>{{ form.text_ar }}</div>
+              <details class="pcard__en"><summary>الإنجليزية (اختياري)</summary>
+                <input type="text" placeholder="Title (EN)" class="f-in" name="{{ form.title_en.html_name }}" value="{{ form.title_en.value|default:'' }}">
+                <textarea placeholder="Text (EN)" class="f-in" rows="2" name="{{ form.text_en.html_name }}">{{ form.text_en.value|default:'' }}</textarea>
+              </details>
+              <span style="display:none">{{ form.DELETE }}</span>
+              {% for e in form.errors.values %}<div class="f-err">{{ e|striptags }}</div>{% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <template data-empty>
+        <div class="pcard" data-card>
+          <span class="pcard__idx num">+</span>
+          <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+          {% for h in items.empty_form.hidden_fields %}{{ h }}{% endfor %}
+          <div class="pcard__fields">
+            <div data-f="icon"><span class="pcard__lab">الأيقونة</span>{{ items.empty_form.icon }}</div>
+            <div data-f="title"><span class="pcard__lab">العنوان</span>{{ items.empty_form.title_ar }}</div>
+            <div data-f="text"><span class="pcard__lab">النص</span>{{ items.empty_form.text_ar }}</div>
+            <details class="pcard__en"><summary>الإنجليزية (اختياري)</summary>
+              <input type="text" placeholder="Title (EN)" class="f-in" name="{{ items.empty_form.title_en.html_name }}">
+              <textarea placeholder="Text (EN)" class="f-in" rows="2" name="{{ items.empty_form.text_en.html_name }}"></textarea>
+            </details>
+            <span style="display:none">{{ items.empty_form.DELETE }}</span>
+          </div>
+        </div>
+      </template>
+    </div>
+    <div class="pcards" style="margin-top:16px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+      <div class="pcard pcard--add" data-add><span class="big">＋</span><span>أضف عنصراً</span></div>
+    </div>
+  </div>
+
+  <div class="pv pv--guiding">
+    <span class="pv__tag">👁 معاينة كما ستظهر على الموقع</span>
+    <div class="pv__stage">
+      <div class="pv__head">
+        <div class="pv__eyebrow" data-pv-out="eyebrow"></div>
+        <h3 class="pv__title" data-pv-out="title"></h3>
+      </div>
+      <div class="pv-grid" data-pv-grid></div>
+      <div class="pv__empty" data-pv-empty>أضف عنصراً لتظهر المعاينة هنا.</div>
+    </div>
+  </div>
+
+  <div class="m-actions">
+    <button class="btnm" type="submit">💾 حفظ القسم</button>
+    <a class="btnm btnm--ghost" href="{% url 'cms:company_edit' slug=company.slug %}">رجوع للشركة</a>
+  </div>
+</form>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/manage_cards.js' %}"></script>{% endblock %}

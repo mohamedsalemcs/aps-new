@@ -1,0 +1,56 @@
+{% extends "manage/base.html" %}
+{% block title %}إعدادات الموقع{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:dashboard' %}">الرئيسية</a> / إعدادات الموقع</div>
+<div class="m-top"><h1 class="m-h1">إعدادات الموقع</h1></div>
+
+<form method="post" action="">
+  {% csrf_token %}
+
+  <div class="m-card">
+    <h2 class="m-card__title">قسم «تواصل معنا» (يظهر أسفل كل الصفحات)</h2>
+    <p class="m-card__hint">النصوص هنا مشتركة وتظهر بنفس الشكل على كل صفحات الشركات. تعدّلها مرة واحدة.</p>
+    <div class="f-grid">
+      {% include "manage/_field.html" with field=form.cta_eyebrow_ar %}
+      {% include "manage/_field.html" with field=form.cta_eyebrow_en %}
+      {% include "manage/_field.html" with field=form.cta_title_ar %}
+      {% include "manage/_field.html" with field=form.cta_title_en %}
+      {% include "manage/_field.html" with field=form.cta_title_hl_ar %}
+      {% include "manage/_field.html" with field=form.cta_title_hl_en %}
+      {% include "manage/_field.html" with field=form.cta_subtitle_ar full=1 %}
+      {% include "manage/_field.html" with field=form.cta_subtitle_en full=1 %}
+      {% include "manage/_field.html" with field=form.cta_button_ar %}
+      {% include "manage/_field.html" with field=form.cta_button_en %}
+      {% include "manage/_field.html" with field=form.cta_offices_label_ar %}
+      {% include "manage/_field.html" with field=form.cta_offices_label_en %}
+    </div>
+  </div>
+
+  {# ---- Live preview of the CTA band ---- #}
+  <div class="pv">
+    <span class="pv__tag">👁 معاينة قسم تواصل معنا</span>
+    <div class="pv__stage" style="text-align:center">
+      <div class="pv__eyebrow" data-cta-eyebrow>{{ form.cta_eyebrow_ar.value }}</div>
+      <h3 class="pv__title" style="margin:8px 0"><span data-cta-title>{{ form.cta_title_ar.value }}</span>
+        <span style="color:#7CAAC6"> <span data-cta-hl>{{ form.cta_title_hl_ar.value }}</span></span></h3>
+      <p class="pv__sub" style="margin:0 auto 16px" data-cta-sub>{{ form.cta_subtitle_ar.value }}</p>
+      <span class="btnm" style="pointer-events:none" data-cta-btn>{{ form.cta_button_ar.value }}</span>
+    </div>
+  </div>
+
+  <div class="m-actions">
+    <button class="btnm" type="submit">حفظ الإعدادات</button>
+    <a class="btnm btnm--ghost" href="{% url 'cms:dashboard' %}">إلغاء</a>
+  </div>
+</form>
+
+<script>
+(function(){
+  var map={cta_eyebrow_ar:'[data-cta-eyebrow]',cta_title_ar:'[data-cta-title]',cta_title_hl_ar:'[data-cta-hl]',cta_subtitle_ar:'[data-cta-sub]',cta_button_ar:'[data-cta-btn]'};
+  Object.keys(map).forEach(function(name){
+    var inp=document.getElementById('id_'+name), out=document.querySelector(map[name]);
+    if(inp&&out){inp.addEventListener('input',function(){out.textContent=inp.value;});}
+  });
+})();
+</script>
+{% endblock %}

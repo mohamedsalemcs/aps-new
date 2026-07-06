@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block seo_jsonld %}
+  {% include "partials/schema_org.html" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {% for c in page.intro.breadcrumb %}{
+        "@type": "ListItem",
+        "position": {{ forloop.counter }},
+        "name": "{{ c.label }}"{% if c.href %},
+        "item": "{{ request.scheme }}://{{ request.get_host }}{{ c.href }}"{% endif %}
+      }{% if not forloop.last %},{% endif %}{% endfor %}
+    ]
+  }
+  </script>
+{% endblock %}
+
+{% block content %}
+
+{# ---- Centered intro (breadcrumb + title + lead + facts) ---- #}
+<section class="prt-hero">
+  <span class="prt-hero__bg" aria-hidden="true"></span>
+  <img class="prt-hero__mark" src="{% static 'logos/app-icon.svg' %}" alt="" aria-hidden="true">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="{% trans 'مسار التنقّل' %}">
+      {% for c in page.intro.breadcrumb %}
+        {% if c.href %}<a href="{{ lang_prefix }}{{ c.href }}">{{ c.label }}</a><span class="breadcrumb__sep" aria-hidden="true">/</span>
+        {% else %}<span aria-current="page">{{ c.label }}</span>{% endif %}
+      {% endfor %}
+    </nav>
+
+    <div class="prt-hero__head">
+      <span class="eyebrow reveal">{{ page.intro.eyebrow }}</span>
+      <h1 class="prt-hero__title reveal" data-reveal-delay="1">{{ page.intro.title }}</h1>
+      <p class="prt-hero__lead reveal" data-reveal-delay="2">{{ page.intro.lead }}</p>
+    </div>
+
+    <ul class="abt-facts reveal" data-reveal-delay="3">
+      {% for f in facts %}
+        <li class="abt-fact">
+          <span class="abt-fact__num num">{{ f.value }}{{ f.suffix }}</span>
+          <span class="abt-fact__label">{{ f.label }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{# ---- One partner wall per company (parent first, then subsidiaries) ---- #}
+{% for g in groups %}
+<section class="section prt-group {% cycle '' 'prt-group--alt' %}">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow reveal">{{ g.eyebrow }}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ g.name }}</h2>
+      {% if g.sub %}<p class="section__lead reveal" data-reveal-delay="2">{{ g.sub }}</p>{% endif %}
+    </div>
+    <div class="partners__grid reveal" data-reveal-delay="1">
+      {% for logo in g.logos %}
+        <div class="partner-cell"><img src="{{ logo }}" alt="{% trans 'شعار شريك' %}" loading="lazy"></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endfor %}
+
+{% include "partials/contact_cta.html" %}
+
+{% endblock %}

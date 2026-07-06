@@ -1,0 +1,133 @@
+{% extends "manage/base.html" %}
+{% load static cms_extras %}
+{% block title %}صفحة تواصل معنا{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:dashboard' %}">الرئيسية</a> / صفحة تواصل معنا</div>
+<div class="m-top">
+  <h1 class="m-h1">تواصل معنا</h1>
+  <a class="btnm btnm--ghost btnm--sm" href="/contact/" target="_blank">معاينة على الموقع {% icon 'external' size=14 %}</a>
+</div>
+
+<form method="post" action="" data-tabroot>
+  {% csrf_token %}
+  <nav class="a-tabs" data-tabs>
+    <button type="button" data-tab="content" class="is-active">محتوى الصفحة</button>
+    <button type="button" data-tab="seo">SEO (اختياري)</button>
+  </nav>
+
+  <div class="a-tabpanel is-active" data-tabpanel="content">
+  {# ===== Header ===== #}
+  <section class="ed-sec">
+    <h2 class="ed-sec__title">ترويسة الصفحة</h2>
+    <div class="ed-sec__grid" id="ct-head">
+      <div class="ed-sec__form"><div class="m-card">
+        <h3 class="m-card__title">المقدمة</h3>
+        {% include "manage/_bi.html" with ar=form.eyebrow_ar en=form.eyebrow_en base="سطر علوي" pv="eyebrow" %}
+        {% include "manage/_bi.html" with ar=form.title_ar en=form.title_en base="العنوان" pv="title" %}
+        {% include "manage/_bi.html" with ar=form.lead_ar en=form.lead_en base="الوصف" pv="lead" %}
+      </div></div>
+      <div class="ed-sec__pv"><div class="pv">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage"><div class="hpv hpv--center"><div>
+          <div class="hpv__eyebrow" data-pv-out="eyebrow">{{ form.eyebrow_ar.value|default:'' }}</div>
+          <h3 class="hpv__title" data-pv-out="title">{{ form.title_ar.value|default:'' }}</h3>
+          <p class="hpv__lead" data-pv-out="lead" style="margin:0 auto;max-width:560px">{{ form.lead_ar.value|default:'' }}</p>
+        </div></div></div>
+      </div></div>
+    </div>
+  </section>
+
+  {# ===== Message subjects ===== #}
+  <section class="ed-sec">
+    <h2 class="ed-sec__title">مواضيع رسالة التواصل</h2>
+    <div class="ed-sec__grid" id="ct-subj">
+      <div class="ed-sec__form"><div class="m-card">
+        <h3 class="m-card__title">قائمة المواضيع</h3>
+        <p class="m-card__hint">سطر لكل موضوع — تظهر كقائمة اختيار في نموذج المراسلة.</p>
+        {% include "manage/_bi.html" with ar=form.subjects_ar en=form.subjects_en base="المواضيع (سطر لكل موضوع)" %}
+      </div></div>
+      <div class="ed-sec__pv"><div class="pv">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage">
+          <div style="font-weight:700;color:var(--navy);margin-bottom:10px;font-size:.9rem">موضوع الرسالة</div>
+          <div class="pv-chips" id="ct-subj-chips"></div>
+          <div class="pv__empty" id="ct-subj-empty">أضف موضوعاً ليظهر في المعاينة.</div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  {# ===== Channels ===== #}
+  <section class="ed-sec" data-editor="channels">
+    <h2 class="ed-sec__title">قنوات التواصل <span class="cnt">{{ channels.total_form_count }}</span></h2>
+    <div class="ed-sec__grid">
+      <div class="ed-sec__form"><div class="m-card">
+        <h3 class="m-card__title">القنوات</h3>
+        <p class="m-card__hint">الأيقونة: phone، mail، pin، clock، whatsapp، globe. «الرابط» مثل <code>tel:+20…</code> أو <code>mailto:…</code></p>
+        {% include "manage/_cards_channels.html" with items=channels %}
+      </div></div>
+      <div class="ed-sec__pv"><div class="pv pv--guiding">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage"><div class="pv-grid" data-pv-grid></div>
+          <div class="pv__empty" data-pv-empty>أضف قناة لتظهر المعاينة.</div></div>
+      </div></div>
+    </div>
+  </section>
+
+  {# ===== Offices ===== #}
+  <section class="ed-sec" data-editor="office">
+    <h2 class="ed-sec__title">المكاتب <span class="cnt">{{ offices.total_form_count }}</span></h2>
+    <div class="ed-sec__grid">
+      <div class="ed-sec__form">
+        <div class="m-card">
+          <h3 class="m-card__title">عنوان القسم</h3>
+          {% include "manage/_bi.html" with ar=form.offices_heading_ar en=form.offices_heading_en base="العنوان" pv="title" %}
+          {% include "manage/_bi.html" with ar=form.offices_subtitle_ar en=form.offices_subtitle_en base="الوصف" pv="sub" %}
+        </div>
+        <div class="m-card">
+          <h3 class="m-card__title">المكاتب</h3>
+          {% include "manage/_cards_offices.html" with items=offices %}
+        </div>
+      </div>
+      <div class="ed-sec__pv"><div class="pv pv--offices">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage">
+          <div class="pv__head"><h3 class="pv__title" data-pv-out="title"></h3><p class="pv__sub" data-pv-out="sub"></p></div>
+          <div class="pv-grid" data-pv-grid></div>
+          <div class="pv__empty" data-pv-empty>أضف مكتباً لتظهر المعاينة.</div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+  </div>{# /content #}
+
+  <div class="a-tabpanel" data-tabpanel="seo">
+    <div class="m-card">
+      <h3 class="m-card__title">إعدادات SEO</h3>
+      {% include "manage/_bi.html" with ar=form.seo_title_ar en=form.seo_title_en base="عنوان SEO" %}
+      {% include "manage/_bi.html" with ar=form.seo_description_ar en=form.seo_description_en base="وصف SEO" %}
+    </div>
+  </div>
+
+  <div class="m-savebar">
+    <span class="m-savebar__note">كل التعديلات في الصفحة تُحفظ معاً</span>
+    <a class="btnm btnm--ghost" href="{{ request.path }}" data-confirm="تجاهل كل التعديلات غير المحفوظة على هذه الصفحة؟">{% icon 'discard' size=16 %} تجاهل التغييرات</a>
+    <button class="btnm" type="submit">{% icon 'save' size=16 %} حفظ كل التغييرات</button>
+  </div>
+</form>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/manage_cards.js' %}"></script>
+<script>
+(function(){
+  var h=document.getElementById('ct-head');
+  if(h){[['eyebrow_ar','eyebrow'],['title_ar','title'],['lead_ar','lead']].forEach(function(p){
+    var i=h.querySelector('[name="'+p[0]+'"]'),o=h.querySelector('[data-pv-out="'+p[1]+'"]');
+    if(i&&o)i.addEventListener('input',function(){o.textContent=i.value;});});}
+  var s=document.getElementById('ct-subj');
+  if(s){var t=s.querySelector('[name="subjects_ar"]'),box=document.getElementById('ct-subj-chips'),em=document.getElementById('ct-subj-empty');
+    function chips(){box.innerHTML='';var arr=t.value.split('\n').map(function(x){return x.trim();}).filter(Boolean);
+      arr.forEach(function(x){var c=document.createElement('span');c.className='pv-chip';c.textContent=x;box.appendChild(c);});
+      em.style.display=arr.length?'none':'';}
+    if(t){t.addEventListener('input',chips);chips();}}
+})();
+</script>{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "manage/base.html" %}
+{% load static %}
+{% block title %}الشركاء — {{ company.name_ar }}{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:companies' %}">الشركات</a> / <a href="{% url 'cms:company_edit' slug=company.slug %}">{{ company.name_ar }}</a> / الشركاء</div>
+<div class="m-top">
+  <h1 class="m-h1">الشركاء</h1>
+  <a class="btnm btnm--ghost btnm--sm" href="/companies/{{ company.slug }}/#partners" target="_blank">معاينة على الموقع ↗</a>
+</div>
+
+<form method="post" enctype="multipart/form-data" action="" data-editor="partners">
+  {% csrf_token %}
+
+  <div class="m-card">
+    <h2 class="m-card__title">عنوان القسم</h2>
+    <div class="f-grid">
+      <div class="f-row" data-pv="eyebrow"><label class="f-lbl">سطر علوي</label>{{ form.eyebrow_ar }}</div>
+      <div class="f-row" data-pv="title"><label class="f-lbl">العنوان</label>{{ form.heading_ar }}</div>
+      <div class="f-row f-row--full" data-pv="subtitle"><label class="f-lbl">الوصف</label>{{ form.subtitle_ar }}</div>
+      <div class="f-row f-row--full">
+        <details class="pcard__en"><summary>الإنجليزية</summary>
+          <div class="f-grid" style="margin-top:10px">
+            {% include "manage/_field.html" with field=form.eyebrow_en %}
+            {% include "manage/_field.html" with field=form.heading_en %}
+            {% include "manage/_field.html" with field=form.subtitle_en %}
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-card">
+    <h2 class="m-card__title">شعارات الشركاء</h2>
+    <p class="m-card__hint">ارفع شعار كل شريك (يُفضّل PNG بخلفية شفافة). الاسم اختياري (يظهر كـ alt).</p>
+    <div data-cards data-prefix="{{ logos.prefix }}">
+      {{ logos.management_form }}
+      {% for e in logos.non_form_errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+      <div class="pcards" data-cardlist>
+        {% for form in logos %}
+          <div class="pcard" data-card>
+            <span class="pcard__idx num">{{ forloop.counter }}</span>
+            <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+            {% for h in form.hidden_fields %}{{ h }}{% endfor %}
+            <label class="drop drop--logo" data-drop>
+              {% if form.instance.image %}<img src="{{ form.instance.image.url }}" alt="">{% endif %}
+              <span class="drop__ph"><b>＋</b>شعار الشريك</span>
+              <span class="drop__edit"{% if not form.instance.image %} style="display:none"{% endif %}>تغيير</span>
+              {{ form.image }}
+            </label>
+            <div class="pcard__fields">
+              <div data-f="name"><span class="pcard__lab">اسم الشريك (اختياري)</span>{{ form.name }}</div>
+              <span style="display:none">{{ form.DELETE }}</span>
+              {% for e in form.errors.values %}<div class="f-err">{{ e|striptags }}</div>{% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <template data-empty>
+        <div class="pcard" data-card>
+          <span class="pcard__idx num">+</span>
+          <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+          {% for h in logos.empty_form.hidden_fields %}{{ h }}{% endfor %}
+          <label class="drop" data-drop>
+            <span class="drop__ph"><b>＋</b>شعار الشريك</span>
+            <span class="drop__edit" style="display:none">تغيير</span>
+            {{ logos.empty_form.image }}
+          </label>
+          <div class="pcard__fields">
+            <div data-f="name"><span class="pcard__lab">اسم الشريك (اختياري)</span>{{ logos.empty_form.name }}</div>
+            <span style="display:none">{{ logos.empty_form.DELETE }}</span>
+          </div>
+        </div>
+      </template>
+    </div>
+    <div class="pcards" style="margin-top:16px">
+      <div class="pcard pcard--add" data-add><span class="big">＋</span><span>أضف شريكاً</span></div>
+    </div>
+  </div>
+
+  <div class="pv pv--partners">
+    <span class="pv__tag">👁 معاينة كما ستظهر على الموقع</span>
+    <div class="pv__stage">
+      <div class="pv__head">
+        <div class="pv__eyebrow" data-pv-out="eyebrow"></div>
+        <h3 class="pv__title" data-pv-out="title"></h3>
+        <p class="pv__sub" data-pv-out="subtitle"></p>
+      </div>
+      <div class="pv-grid" data-pv-grid></div>
+      <div class="pv__empty" data-pv-empty>ارفع شعار شريك لتظهر المعاينة هنا.</div>
+    </div>
+  </div>
+
+  <div class="m-actions">
+    <button class="btnm" type="submit">💾 حفظ القسم</button>
+    <a class="btnm btnm--ghost" href="{% url 'cms:company_edit' slug=company.slug %}">رجوع للشركة</a>
+  </div>
+</form>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/manage_cards.js' %}"></script>{% endblock %}

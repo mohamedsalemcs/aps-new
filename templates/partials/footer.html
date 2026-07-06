@@ -1,0 +1,41 @@
+{% load static i18n %}
+<footer class="site-footer">
+  <div class="container-wide site-footer__grid">
+    <div class="site-footer__brand">
+      <img src="{{ group.logo_footer|default:'/static/logos/aps-logo-footer.png' }}" alt="{% trans 'مجموعة APS' %}" width="220" height="147" class="site-footer__logo">
+      <p class="site-footer__about">
+        {% trans "شركة التجهيزات والمشاريع العربية، مجموعة صناعية متنوّعة تقدّم التجارة والتوريد المتميّز والحلول الكهروميكانيكية عبر شركاتٍ متخصصة وشراكاتٍ عالمية." %}
+      </p>
+    </div>
+
+    <div class="site-footer__col">
+      <h4 class="site-footer__title">{% trans "روابط سريعة" %}</h4>
+      <ul>
+        {% for item in nav %}<li><a href="{{ lang_prefix }}{{ item.href }}">{{ item.label }}</a></li>{% endfor %}
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h4 class="site-footer__title">{% trans "شركات المجموعة" %}</h4>
+      <ul>
+        {% for s in subsidiaries %}<li><a href="{{ lang_prefix }}/companies/{{ s.slug }}/">{{ s.name }}</a></li>{% endfor %}
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h4 class="site-footer__title">{% trans "تواصل معنا" %}</h4>
+      <ul class="site-footer__contact">
+        <li><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-phone"></use></svg><a class="num" dir="ltr" href="tel:{{ group.phone|cut:' ' }}">{{ group.phone }}</a></li>
+        <li><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-mail"></use></svg><a href="mailto:{{ group.email }}">{{ group.email }}</a></li>
+        <li><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-pin"></use></svg><span>{{ group.location_ar }}</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="site-footer__bar">
+    <div class="container-wide site-footer__bar-inner">
+      <p>© <span class="num">2026</span> {% trans "مجموعة APS. جميع الحقوق محفوظة." %}</p>
+      <p class="site-footer__made">{% trans "شركة التجهيزات والمشاريع العربية" %}</p>
+    </div>
+  </div>
+</footer>

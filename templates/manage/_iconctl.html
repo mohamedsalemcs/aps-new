@@ -1,0 +1,15 @@
+{% comment %}About-style icon control: shows the current icon (uploaded image OR sprite),
+with an upload drop-box. Pass `ficon` (icon name field), `fimage` (icon_image field),
+`inst` (form.instance). The sprite-name stays hidden but submitted.{% endcomment %}{% load static %}
+<div>
+  <span class="pcard__lab">الأيقونة</span>
+  <div class="iconctl" data-icon data-icon-name="{{ ficon.value|default:'' }}">
+    <span class="iconctl__cur">
+      {% if inst.icon_image %}<img src="{{ inst.icon_image.url }}" alt="">
+      {% elif ficon.value %}<svg><use href="{% static 'icons/sprite.svg' %}#i-{{ ficon.value }}"></use></svg>
+      {% else %}<svg><use href="{% static 'icons/sprite.svg' %}#i-star"></use></svg>{% endif %}
+    </span>
+    <label class="dropbox" data-dropbox style="min-height:56px"><span class="dropbox__t"><b>＋</b>ارفع أيقونة<small>PNG · SVG · JPG · WEBP</small></span>{{ fimage }}</label>
+  </div>
+  <span data-f="icon" style="display:none">{{ ficon }}</span>
+</div>

@@ -1,0 +1,74 @@
+{% extends "manage/base.html" %}
+{% load static %}
+{% block title %}أرقام الشركاء{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:partners_page' %}">صفحة الشركاء</a> / الأرقام</div>
+<div class="m-top"><h1 class="m-h1">أرقام الشركاء</h1></div>
+
+<form method="post" action="" data-editor="facts">
+  {% csrf_token %}
+  <div class="m-card">
+    <h2 class="m-card__title">الأرقام</h2>
+    <div data-cards data-prefix="{{ items.prefix }}">
+      {{ items.management_form }}
+      {% for e in items.non_form_errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+      <div class="pcards" data-cardlist style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
+        {% for form in items %}
+          <div class="pcard" data-card>
+            <span class="pcard__idx num">{{ forloop.counter }}</span>
+            <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+            {% for h in form.hidden_fields %}{{ h }}{% endfor %}
+            <div class="pcard__fields">
+              <div style="display:grid;grid-template-columns:2fr 1fr;gap:8px">
+                <div data-f="value"><span class="pcard__lab">القيمة</span>{{ form.value }}</div>
+                <div data-f="suffix"><span class="pcard__lab">لاحقة</span>{{ form.suffix }}</div>
+              </div>
+              <div data-f="label"><span class="pcard__lab">الوصف</span>{{ form.label_ar }}</div>
+              <details class="pcard__en"><summary>الإنجليزية (اختياري)</summary>
+                <input type="text" placeholder="Label (EN)" class="f-in" name="{{ form.label_en.html_name }}" value="{{ form.label_en.value|default:'' }}">
+              </details>
+              <span style="display:none">{{ form.DELETE }}</span>
+              {% for e in form.errors.values %}<div class="f-err">{{ e|striptags }}</div>{% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <template data-empty>
+        <div class="pcard" data-card>
+          <span class="pcard__idx num">+</span>
+          <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+          {% for h in items.empty_form.hidden_fields %}{{ h }}{% endfor %}
+          <div class="pcard__fields">
+            <div style="display:grid;grid-template-columns:2fr 1fr;gap:8px">
+              <div data-f="value"><span class="pcard__lab">القيمة</span>{{ items.empty_form.value }}</div>
+              <div data-f="suffix"><span class="pcard__lab">لاحقة</span>{{ items.empty_form.suffix }}</div>
+            </div>
+            <div data-f="label"><span class="pcard__lab">الوصف</span>{{ items.empty_form.label_ar }}</div>
+            <details class="pcard__en"><summary>الإنجليزية (اختياري)</summary>
+              <input type="text" placeholder="Label (EN)" class="f-in" name="{{ items.empty_form.label_en.html_name }}">
+            </details>
+            <span style="display:none">{{ items.empty_form.DELETE }}</span>
+          </div>
+        </div>
+      </template>
+    </div>
+    <div class="pcards" style="margin-top:16px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
+      <div class="pcard pcard--add" data-add><span class="big">＋</span><span>أضف رقماً</span></div>
+    </div>
+  </div>
+
+  <div class="pv pv--facts">
+    <span class="pv__tag">👁 معاينة كما ستظهر على الموقع</span>
+    <div class="pv__stage">
+      <div class="pv-grid" data-pv-grid></div>
+      <div class="pv__empty" data-pv-empty>أضف رقماً لتظهر المعاينة هنا.</div>
+    </div>
+  </div>
+
+  <div class="m-actions">
+    <button class="btnm" type="submit">💾 حفظ الأرقام</button>
+    <a class="btnm btnm--ghost" href="{% url 'cms:partners_page' %}">رجوع</a>
+  </div>
+</form>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/manage_cards.js' %}"></script>{% endblock %}

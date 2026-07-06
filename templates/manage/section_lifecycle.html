@@ -1,0 +1,98 @@
+{% extends "manage/base.html" %}
+{% load static %}
+{% block title %}دورة الحياة — {{ company.name_ar }}{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:companies' %}">الشركات</a> / <a href="{% url 'cms:company_edit' slug=company.slug %}">{{ company.name_ar }}</a> / دورة الحياة</div>
+<div class="m-top">
+  <h1 class="m-h1">دورة حياة المشروع</h1>
+  <a class="btnm btnm--ghost btnm--sm" href="/companies/{{ company.slug }}/#lifecycle" target="_blank">معاينة على الموقع ↗</a>
+</div>
+
+<form method="post" action="" data-editor="lifecycle">
+  {% csrf_token %}
+
+  <div class="m-card">
+    <h2 class="m-card__title">عنوان القسم</h2>
+    <div class="f-grid">
+      <div class="f-row" data-pv="eyebrow"><label class="f-lbl">سطر علوي</label>{{ form.eyebrow_ar }}</div>
+      <div class="f-row" data-pv="title"><label class="f-lbl">العنوان</label>{{ form.heading_ar }}</div>
+      <div class="f-row f-row--full" data-pv="subtitle"><label class="f-lbl">الوصف</label>{{ form.subtitle_ar }}</div>
+      <div class="f-row f-row--full">
+        <details class="pcard__en"><summary>الإنجليزية</summary>
+          <div class="f-grid" style="margin-top:10px">
+            {% include "manage/_field.html" with field=form.eyebrow_en %}
+            {% include "manage/_field.html" with field=form.heading_en %}
+            {% include "manage/_field.html" with field=form.subtitle_en %}
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-card">
+    <h2 class="m-card__title">المراحل</h2>
+    <p class="m-card__hint">كل بطاقة = مرحلة (لها رقم وعنوان). أضِف خطوات كل مرحلة من زرّها بعد الحفظ.</p>
+    <div data-cards data-prefix="{{ phases.prefix }}">
+      {{ phases.management_form }}
+      {% for e in phases.non_form_errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+      <div class="pcards" data-cardlist style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+        {% for form in phases %}
+          <div class="pcard" data-card>
+            <span class="pcard__idx num">{{ forloop.counter }}</span>
+            <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+            {% for h in form.hidden_fields %}{{ h }}{% endfor %}
+            <div class="pcard__fields">
+              <div data-f="no"><span class="pcard__lab">رقم المرحلة</span>{{ form.no }}</div>
+              <div data-f="title"><span class="pcard__lab">عنوان المرحلة</span>{{ form.title_ar }}</div>
+              <details class="pcard__en"><summary>الإنجليزية (اختياري)</summary>
+                <input type="text" placeholder="Title (EN)" class="f-in" name="{{ form.title_en.html_name }}" value="{{ form.title_en.value|default:'' }}">
+              </details>
+              <span style="display:none">{{ form.DELETE }}</span>
+              {% if form.instance.pk %}<a class="btnm btnm--ghost btnm--sm" href="{% url 'cms:phase_steps_edit' slug=company.slug pk=form.instance.pk %}">خطوات المرحلة ({{ form.instance.steps.count }})</a>{% else %}<span class="f-help">احفظ أولاً لإضافة الخطوات</span>{% endif %}
+              {% for e in form.errors.values %}<div class="f-err">{{ e|striptags }}</div>{% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <template data-empty>
+        <div class="pcard" data-card>
+          <span class="pcard__idx num">+</span>
+          <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+          {% for h in phases.empty_form.hidden_fields %}{{ h }}{% endfor %}
+          <div class="pcard__fields">
+            <div data-f="no"><span class="pcard__lab">رقم المرحلة</span>{{ phases.empty_form.no }}</div>
+            <div data-f="title"><span class="pcard__lab">عنوان المرحلة</span>{{ phases.empty_form.title_ar }}</div>
+            <details class="pcard__en"><summary>الإنجليزية (اختياري)</summary>
+              <input type="text" placeholder="Title (EN)" class="f-in" name="{{ phases.empty_form.title_en.html_name }}">
+            </details>
+            <span style="display:none">{{ phases.empty_form.DELETE }}</span>
+            <span class="f-help">احفظ أولاً لإضافة الخطوات</span>
+          </div>
+        </div>
+      </template>
+    </div>
+    <div class="pcards" style="margin-top:16px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+      <div class="pcard pcard--add" data-add><span class="big">＋</span><span>أضف مرحلة</span></div>
+    </div>
+  </div>
+
+  <div class="pv pv--lifecycle">
+    <span class="pv__tag">👁 معاينة المراحل كما ستظهر على الموقع</span>
+    <div class="pv__stage">
+      <div class="pv__head">
+        <div class="pv__eyebrow" data-pv-out="eyebrow"></div>
+        <h3 class="pv__title" data-pv-out="title"></h3>
+        <p class="pv__sub" data-pv-out="subtitle"></p>
+      </div>
+      <div class="pv-grid" data-pv-grid></div>
+      <div class="pv__empty" data-pv-empty>أضف مرحلة لتظهر المعاينة هنا.</div>
+    </div>
+  </div>
+
+  <div class="m-actions">
+    <button class="btnm" type="submit">💾 حفظ القسم</button>
+    <a class="btnm btnm--ghost" href="{% url 'cms:company_edit' slug=company.slug %}">رجوع للشركة</a>
+  </div>
+</form>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/manage_cards.js' %}"></script>{% endblock %}

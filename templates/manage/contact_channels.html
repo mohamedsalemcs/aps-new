@@ -1,0 +1,81 @@
+{% extends "manage/base.html" %}
+{% load static %}
+{% block title %}قنوات التواصل{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:contact' %}">تواصل معنا</a> / القنوات</div>
+<div class="m-top"><h1 class="m-h1">قنوات التواصل المباشر</h1></div>
+
+<form method="post" action="" data-editor="guiding">
+  {% csrf_token %}
+  <div class="m-card">
+    <h2 class="m-card__title">القنوات</h2>
+    <p class="m-card__hint">الأيقونة: phone، mail، pin. الرابط مثل tel:+96692001451 أو mailto:info@aps.com.sa (اتركه فارغاً للموقع). فعّل LTR للأرقام والبريد.</p>
+    <div data-cards data-prefix="{{ items.prefix }}">
+      {{ items.management_form }}
+      {% for e in items.non_form_errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+      <div class="pcards" data-cardlist style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
+        {% for form in items %}
+          <div class="pcard" data-card>
+            <span class="pcard__idx num">{{ forloop.counter }}</span>
+            <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+            {% for h in form.hidden_fields %}{{ h }}{% endfor %}
+            <div class="pcard__fields">
+              <div data-f="icon"><span class="pcard__lab">الأيقونة</span>{{ form.icon }}</div>
+              <div data-f="title"><span class="pcard__lab">التسمية</span>{{ form.label_ar }}</div>
+              <div data-f="text"><span class="pcard__lab">القيمة</span>{{ form.value_ar }}</div>
+              <div><span class="pcard__lab">الرابط</span>{{ form.href }}</div>
+              <div><span class="pcard__lab">ملاحظة</span>{{ form.note_ar }}</div>
+              <label style="display:flex;align-items:center;gap:8px;font-size:.84rem">{{ form.ltr }} اتجاه LTR (أرقام/بريد)</label>
+              <details class="pcard__en"><summary>الإنجليزية (اختياري)</summary>
+                <input type="text" placeholder="Label (EN)" class="f-in" name="{{ form.label_en.html_name }}" value="{{ form.label_en.value|default:'' }}">
+                <input type="text" placeholder="Value (EN)" class="f-in" name="{{ form.value_en.html_name }}" value="{{ form.value_en.value|default:'' }}">
+                <input type="text" placeholder="Note (EN)" class="f-in" name="{{ form.note_en.html_name }}" value="{{ form.note_en.value|default:'' }}">
+              </details>
+              <span style="display:none">{{ form.DELETE }}</span>
+              {% for e in form.errors.values %}<div class="f-err">{{ e|striptags }}</div>{% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <template data-empty>
+        <div class="pcard" data-card>
+          <span class="pcard__idx num">+</span>
+          <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+          {% for h in items.empty_form.hidden_fields %}{{ h }}{% endfor %}
+          <div class="pcard__fields">
+            <div data-f="icon"><span class="pcard__lab">الأيقونة</span>{{ items.empty_form.icon }}</div>
+            <div data-f="title"><span class="pcard__lab">التسمية</span>{{ items.empty_form.label_ar }}</div>
+            <div data-f="text"><span class="pcard__lab">القيمة</span>{{ items.empty_form.value_ar }}</div>
+            <div><span class="pcard__lab">الرابط</span>{{ items.empty_form.href }}</div>
+            <div><span class="pcard__lab">ملاحظة</span>{{ items.empty_form.note_ar }}</div>
+            <label style="display:flex;align-items:center;gap:8px;font-size:.84rem">{{ items.empty_form.ltr }} اتجاه LTR</label>
+            <details class="pcard__en"><summary>الإنجليزية (اختياري)</summary>
+              <input type="text" placeholder="Label (EN)" class="f-in" name="{{ items.empty_form.label_en.html_name }}">
+              <input type="text" placeholder="Value (EN)" class="f-in" name="{{ items.empty_form.value_en.html_name }}">
+              <input type="text" placeholder="Note (EN)" class="f-in" name="{{ items.empty_form.note_en.html_name }}">
+            </details>
+            <span style="display:none">{{ items.empty_form.DELETE }}</span>
+          </div>
+        </div>
+      </template>
+    </div>
+    <div class="pcards" style="margin-top:16px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
+      <div class="pcard pcard--add" data-add><span class="big">＋</span><span>أضف قناة</span></div>
+    </div>
+  </div>
+
+  <div class="pv pv--guiding">
+    <span class="pv__tag">👁 معاينة القنوات</span>
+    <div class="pv__stage">
+      <div class="pv-grid" data-pv-grid></div>
+      <div class="pv__empty" data-pv-empty>أضف قناة لتظهر المعاينة هنا.</div>
+    </div>
+  </div>
+
+  <div class="m-actions">
+    <button class="btnm" type="submit">💾 حفظ القنوات</button>
+    <a class="btnm btnm--ghost" href="{% url 'cms:contact' %}">رجوع</a>
+  </div>
+</form>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/manage_cards.js' %}"></script>{% endblock %}

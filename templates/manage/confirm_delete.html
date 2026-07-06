@@ -1,0 +1,13 @@
+{% extends "manage/base.html" %}
+{% block title %}تأكيد الحذف{% endblock %}
+{% block content %}
+<div class="m-top"><h1 class="m-h1">تأكيد الحذف</h1></div>
+<div class="m-card">
+  <p>هل أنت متأكد من حذف <strong>{{ obj_name }}</strong>؟ لا يمكن التراجع عن هذا الإجراء، وسيُحذف كل المحتوى المرتبط بها.</p>
+  <form method="post" action="" class="m-actions">
+    {% csrf_token %}
+    <button class="btnm btnm--danger" type="submit">نعم، احذف</button>
+    <a class="btnm btnm--ghost" href="{% url back slug=slug %}">إلغاء</a>
+  </form>
+</div>
+{% endblock %}

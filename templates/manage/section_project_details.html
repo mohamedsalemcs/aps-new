@@ -1,0 +1,18 @@
+{% extends "manage/base.html" %}
+{% block title %}تفاصيل: {{ project.name_ar }}{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:companies' %}">الشركات</a> / <a href="{% url 'cms:company_edit' slug=company.slug %}">{{ company.name_ar }}</a> / <a href="{% url 'cms:projects_edit' slug=company.slug %}">المشاريع</a> / التفاصيل</div>
+<div class="m-top"><h1 class="m-h1">تفاصيل المشروع: {{ project.name_ar }}</h1></div>
+
+<form method="post" action="">
+  {% csrf_token %}
+  <div class="m-card">
+    <p class="m-card__hint">الأيقونة: أحد المعرّفات مثل pin (الموقع)، sun (النوع)، bolt (القدرة)، doc (العقد).</p>
+    {% include "manage/_formset.html" with formset=details %}
+  </div>
+  <div class="m-actions">
+    <button class="btnm" type="submit">حفظ التفاصيل</button>
+    <a class="btnm btnm--ghost" href="{% url 'cms:projects_edit' slug=company.slug %}">رجوع للمشاريع</a>
+  </div>
+</form>
+{% endblock %}

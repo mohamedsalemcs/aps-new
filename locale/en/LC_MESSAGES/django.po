@@ -1,0 +1,1877 @@
+# APS Group corporate website — English (en) translations.
+# Copyright (C) 2026 Arabian Projects & Supplies.
+# This file is distributed under the same license as the PACKAGE package.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: APS Group 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-03 01:12+0300\n"
+"PO-Revision-Date: 2026-07-02 19:00+0300\n"
+"Last-Translator: APS Web <info@aps.com.sa>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "العربية"
+msgstr "Arabic"
+
+msgid "English"
+msgstr "English"
+
+msgid "مسار التنقّل"
+msgstr "Breadcrumb"
+
+msgid "مهندس في منشأة صناعية"
+msgstr "Engineer at an industrial facility"
+
+msgid "تخطَّ إلى المحتوى"
+msgstr "Skip to content"
+
+#, python-format
+msgid "%(n)s، مجموعة APS"
+msgstr "%(n)s, APS Group"
+
+#, python-format
+msgid "%(n)s (%(en)s)، %(sec)s. شركة تابعة لمجموعة APS."
+msgstr "%(n)s (%(en)s), %(sec)s. An APS Group company."
+
+msgid "استكشف الأنظمة والحلول"
+msgstr "Explore Systems & Solutions"
+
+msgid "شعار شريك"
+msgstr "Partner logo"
+
+msgid "شكراً لتواصلك"
+msgstr "Thank you for reaching out"
+
+msgid "تم استلام رسالتك بنجاح، وسيعاود فريقنا التواصل معك في أقرب وقت ممكن."
+msgstr "Your message was received successfully, and our team will get back to you as soon as possible."
+
+msgid "إرسال رسالة أخرى"
+msgstr "Send another message"
+
+msgid "أرسل لنا رسالة"
+msgstr "Send Us a Message"
+
+msgid "الحقول المعلّمة بـ"
+msgstr "Fields marked with"
+
+msgid "مطلوبة"
+msgstr "are required"
+
+msgid "الاسم"
+msgstr "Name"
+
+msgid "البريد الإلكتروني"
+msgstr "Email"
+
+msgid "رقم الهاتف"
+msgstr "Phone Number"
+
+msgid "اسم الشركة"
+msgstr "Company Name"
+
+msgid "موضوع الرسالة"
+msgstr "Message Subject"
+
+msgid "(يمكن اختيار أكثر من موضوع)"
+msgstr "(you may select more than one)"
+
+msgid "محتوى الرسالة"
+msgstr "Message"
+
+msgid "اكتب تفاصيل استفسارك أو طلبك هنا..."
+msgstr "Write the details of your inquiry or request here..."
+
+msgid "إرسال الرسالة"
+msgstr "Send Message"
+
+msgid "قنوات التواصل المباشر"
+msgstr "Direct Contact Channels"
+
+msgid "مواقعنا"
+msgstr "Our Locations"
+
+msgid "خريطة مكاتب مجموعة APS"
+msgstr "APS Group offices map"
+
+msgid "شرائح العرض"
+msgstr "Slides"
+
+#, python-format
+msgid "الشريحة %(n)s"
+msgstr "Slide %(n)s"
+
+msgid "السابق"
+msgstr "Previous"
+
+msgid "التالي"
+msgstr "Next"
+
+msgid "عمليات APS الصناعية"
+msgstr "APS industrial operations"
+
+msgid "غرفة تحكم وتشغيل"
+msgstr "Control and operations room"
+
+msgid "عاماً من الخبرة الصناعية"
+msgstr "years of industrial experience"
+
+msgid "شركات المجموعة"
+msgstr "Group Companies"
+
+msgid "استكشف"
+msgstr "Explore"
+
+msgid "لماذا APS"
+msgstr "Why APS"
+
+msgid "تمرير لليسار"
+msgstr "Scroll left"
+
+msgid "تمرير لليمين"
+msgstr "Scroll right"
+
+msgid "اطلب عرض سعر"
+msgstr "Request a Quote"
+
+msgid "ابقَ على تواصل"
+msgstr "Stay in Touch"
+
+msgid "تواصل مع فريقنا للاستفسارات"
+msgstr "Reach our team for inquiries"
+
+msgid "والدعم"
+msgstr "and support"
+
+msgid "يستجيب فريقنا بسرعة بحلولٍ احترافية مصمّمة خصيصاً لتلبية احتياجاتك الكهروميكانيكية والصناعية."
+msgstr "Our team responds quickly with professional solutions tailored to your electromechanical and industrial needs."
+
+msgid "مكاتبنا:"
+msgstr "Our offices:"
+
+msgid "تواصل معنا"
+msgstr "Contact Us"
+
+msgid "مجموعة APS"
+msgstr "APS Group"
+
+msgid "شركة التجهيزات والمشاريع العربية، مجموعة صناعية متنوّعة تقدّم التجارة والتوريد المتميّز والحلول الكهروميكانيكية عبر شركاتٍ متخصصة وشراكاتٍ عالمية."
+msgstr "Arabian Projects & Supplies, a diversified industrial group delivering trading, premium supply, and electromechanical solutions through specialized companies and global partnerships."
+
+msgid "روابط سريعة"
+msgstr "Quick Links"
+
+msgid "مجموعة APS. جميع الحقوق محفوظة."
+msgstr "APS Group. All rights reserved."
+
+msgid "شركة التجهيزات والمشاريع العربية"
+msgstr "Arabian Projects & Supplies Company"
+
+msgid "مجموعة APS، الصفحة الرئيسية"
+msgstr "APS Group, home page"
+
+msgid "القائمة الرئيسية"
+msgstr "Main menu"
+
+msgid "تبديل اللغة"
+msgstr "Switch language"
+
+msgid "فتح القائمة"
+msgstr "Open menu"
+
+msgid "إغلاق القائمة"
+msgstr "Close menu"
+
+msgid "قائمة الجوال"
+msgstr "Mobile menu"
+
+msgid "جدة"
+msgstr "Jeddah"
+
+msgid "منطقة مكة المكرمة"
+msgstr "Makkah Region"
+
+msgid "جدة، المملكة العربية السعودية"
+msgstr "Jeddah, Saudi Arabia"
+
+msgid "استكشف شركات المجموعة"
+msgstr "Explore Group Companies"
+
+msgid "مبني على الثقة"
+msgstr "Built on Trust"
+
+msgid "شركاء عالميون"
+msgstr "Global Partners"
+
+msgid "في كل أنحاء المملكة"
+msgstr "Across the Kingdom"
+
+msgid "مجموعة APS الصناعية"
+msgstr "APS Industrial Group"
+
+msgid "نُمكّن الصناعة بتوريداتٍ متميّزة وتركيبٍ احترافي"
+msgstr "Empowering Industry with Premium Supply and Professional Installation"
+
+msgid "شركة التجهيزات والمشاريع العربية شريكك الاستراتيجي في التجارة الصناعية والتوريد المتميّز والحلول الكهروميكانيكية الاحترافية."
+msgstr "Arabian Projects & Supplies is your strategic partner in industrial trading, premium supply, and professional electromechanical solutions."
+
+msgid "التجهيزات والمشاريع السعودية"
+msgstr "Saudi Projects & Supplies"
+
+msgid "أنظمة أمنٍ وسلامةٍ وتحكّمٍ متكاملة"
+msgstr "Integrated Security, Safety and Control Systems"
+
+msgid "تكامل أنظمة الأمن والسلامة والتحكم للمنشآت الصناعية والحكومية والتجارية، من التصميم إلى التركيب والدعم."
+msgstr "Integrating security, safety and control systems for industrial, government and commercial facilities, from design to installation and support."
+
+msgid "حلول بيتا الصناعية"
+msgstr "Beta Machinery"
+
+msgid "آلاتٌ صناعية عالية التقنية وتركيبٌ خبير"
+msgstr "High-Tech Industrial Machinery and Expert Installation"
+
+msgid "توريد وتركيب الآلات الصناعية ومعدات التصنيع، مع الدعم الفني الكامل بعد البيع في مختلف أنحاء المملكة."
+msgstr "Supplying and installing industrial machinery and manufacturing equipment, with full after-sales technical support across the Kingdom."
+
+msgid "الأنظمة الحديثة لتقنيات البيئة"
+msgstr "Envirosystems"
+
+msgid "حلول المياه والصرف والتهوية المتكاملة"
+msgstr "Integrated Water, Wastewater and Ventilation Solutions"
+
+msgid "حلول معالجة المياه والصرف الصحي والتهوية للتطبيقات البلدية والصناعية، مع الدعم الهندسي وتسليم المشاريع المتكاملة."
+msgstr "Water, wastewater and ventilation treatment solutions for municipal and industrial applications, with engineering support and integrated project delivery."
+
+msgid "أزوليس الشرق الأوسط"
+msgstr "AZOLIS Middle East"
+
+msgid "طاقةٌ شمسية متكاملة للقطاع التجاري والصناعي"
+msgstr "Commercial"
+
+msgid "منتجٌ مستقل للطاقة الشمسية يطوّر ويموّل ويهندس ويبني ويشغّل محطات الطاقة الشمسية للقطاع التجاري والصناعي، بأكثر من 200 مشروع عبر ثلاث قارات."
+msgstr "Commercial"
+
+msgid "APS بالأرقام"
+msgstr "APS in Numbers"
+
+msgid "كل رقم يعكس أداءً حقيقياً والتزاماً راسخاً وأثراً ملموساً."
+msgstr "Every number reflects real performance, firm commitment, and tangible impact."
+
+msgid "سنة خبرة صناعية"
+msgstr "Years of Industrial Experience"
+
+msgid "مشروع منجَز"
+msgstr "Completed Projects"
+
+msgid "شريك ومورّد"
+msgstr "Partners and Suppliers"
+
+msgid "سوق عالمي"
+msgstr "Global Markets"
+
+msgid "قطاع نخدمه"
+msgstr "Sectors Served"
+
+msgid "مكاتب في المملكة"
+msgstr "Offices in the Kingdom"
+
+msgid "لمحة عن المجموعة"
+msgstr "About the Group"
+
+msgid "لمحة عن مجموعة APS"
+msgstr "APS Group at a Glance"
+
+msgid "شركة التجهيزات والمشاريع العربية (APS) مجموعة صناعية متنوّعة تقدّم خدمات التجارة والتوريد المتميّز والتركيبات الكهروميكانيكية في مختلف أنحاء المملكة العربية السعودية، من خلال شركاتٍ متخصصة وشراكاتٍ عالمية قوية."
+msgstr "Arabian Projects & Supplies (APS) is a diversified industrial group providing trading, premium supply, and electromechanical installations across Saudi Arabia, through specialized companies and strong global partnerships."
+
+msgid "عمليات قائمة على النزاهة"
+msgstr "Operations built on integrity"
+
+msgid "تحالفات دولية قوية مع الشركاء"
+msgstr "Strong international partner alliances"
+
+msgid "تغطية على مستوى المملكة، المقر الرئيسي في جدة"
+msgstr "Kingdom-wide coverage, headquartered in Jeddah"
+
+msgid "اعرف المزيد"
+msgstr "Learn More"
+
+msgid "ما الذي يميّز APS"
+msgstr "What Sets APS Apart"
+
+msgid "نقدّم حلولاً هندسية متكاملة مدعومة بعقودٍ من الخبرة، وشراكاتٍ عالمية، وأداءٍ مثبت على المدى الطويل."
+msgstr "We deliver integrated engineering solutions backed by decades of experience, global partnerships, and proven long-term performance."
+
+msgid "خبرة صناعية مثبتة"
+msgstr "Proven Industrial Experience"
+
+msgid "أكثر من عقدين من العمل الميداني في قطاعات الأمن والصناعة والبيئة."
+msgstr "More than two decades of field work across the security, industrial and environmental sectors."
+
+msgid "شراكات تقنية عالمية"
+msgstr "Global Technology Partnerships"
+
+msgid "نمثّل كبرى العلامات والمصنّعين العالميين لضمان الوصول إلى أحدث التقنيات."
+msgstr "We represent leading global brands and manufacturers to ensure access to the latest technologies."
+
+msgid "قدرات متكاملة عبر شركات المجموعة"
+msgstr "Integrated Capabilities Across Group Companies"
+
+msgid "حلول تمتد من التصميم والتوريد إلى التركيب والتشغيل والدعم."
+msgstr "Solutions spanning design and supply through installation, operation and support."
+
+msgid "دعم ما بعد البيع"
+msgstr "After-Sales Support"
+
+msgid "تدريب وصيانة وخدمات دعم سريعة الاستجابة بعد تسليم كل مشروع."
+msgstr "Training, maintenance and responsive support services after every project handover."
+
+msgid "الجودة والسلامة"
+msgstr "Quality and Safety"
+
+msgid "التزام بالصحة والسلامة والبيئة وضمان الجودة في كل مرحلة من مراحل العمل."
+msgstr "A commitment to health, safety, environment and quality assurance at every stage of work."
+
+msgid "تسليم موثوق"
+msgstr "Reliable Delivery"
+
+msgid "تخطيط منظّم وفرق هندسية خبيرة تضمن التسليم في الوقت المحدد."
+msgstr "Structured planning and expert engineering teams that ensure on-time delivery."
+
+msgid "الجودة والتميّز"
+msgstr "Quality and Excellence"
+
+msgid "منتجات موثوقة ومعايير خدمة متفوّقة في كل مشروع وتعامل."
+msgstr "Reliable products and superior service standards in every project and interaction."
+
+msgid "التزام تجاه العميل"
+msgstr "Client Commitment"
+
+msgid "شراكات طويلة الأمد مبنيّة على الثقة والشفافية والأداء المتّسق."
+msgstr "Long-term partnerships built on trust, transparency and consistent performance."
+
+msgid "شركات متخصصة، تحت سقفٍ واحد"
+msgstr "Specialized Companies, Under One Roof"
+
+msgid "استكشف شركات APS في قطاعات أنظمة الأمن، والآلات الصناعية، والحلول البيئية، والتقنيات المتقدمة."
+msgstr "Explore APS companies across security systems, industrial machinery, environmental solutions, and advanced technologies."
+
+msgid "أنظمة الأمن والسلامة"
+msgstr "Security & Safety Systems"
+
+msgid "تكامل أنظمة الأمن والسلامة والتحكم للمنشآت الصناعية والحكومية والتجارية."
+msgstr "Integrating security, safety and control systems for industrial, government and commercial facilities."
+
+msgid "الآلات الصناعية"
+msgstr "Industrial Machinery"
+
+msgid "توريد وتركيب الآلات الصناعية عالية التقنية، والدعم الفني بعد البيع في المملكة."
+msgstr "Supplying and installing high-tech industrial machinery, with after-sales technical support across the Kingdom."
+
+msgid "حلول المياه والبيئة"
+msgstr "Water & Environmental Solutions"
+
+msgid "حلول معالجة المياه والصرف الصحي والتهوية، مع الدعم الهندسي وتسليم المشاريع المتكاملة."
+msgstr "Water, wastewater and ventilation treatment solutions, with engineering support and integrated project delivery."
+
+msgid "الحلول الخضراء المتقدمة"
+msgstr "Advanced Green Solutions"
+
+msgid "الحلول الزراعية المستدامة"
+msgstr "Sustainable Agricultural Solutions"
+
+msgid "حلول زراعية مستدامة وصديقة للبيئة تدعم المشاريع الخضراء والتنمية المستدامة."
+msgstr "Sustainable, eco-friendly agricultural solutions that support green projects and sustainable development."
+
+msgid "الطاقة الشمسية"
+msgstr "Solar Energy"
+
+msgid "منتجٌ مستقل للطاقة الشمسية يطوّر وينفّذ ويشغّل محطات الطاقة الشمسية للقطاع التجاري والصناعي عبر ثلاث قارات."
+msgstr "Commercial"
+
+msgid "شركاؤنا"
+msgstr "Our Partners"
+
+msgid "شركاء النجاح العالميون"
+msgstr "Global Success Partners"
+
+msgid "نتعاون مع كبرى المصنّعين ومزوّدي التقنية العالميين لتقديم حلول صناعية موثوقة في مختلف أنحاء المملكة."
+msgstr "We collaborate with the world's leading manufacturers and technology providers to deliver reliable industrial solutions across the Kingdom."
+
+msgid "عرض كل الشركاء"
+msgstr "View All Partners"
+
+msgid "القطاعات"
+msgstr "Sectors"
+
+msgid "الصناعات التي نُشغّلها"
+msgstr "Industries We Power"
+
+msgid "حلول هندسية متكاملة مصمّمة لتشغيل البنية التحتية الحيوية، والنمو الصناعي، والبيئات الآمنة في مختلف أنحاء المملكة."
+msgstr "Integrated engineering solutions designed to power critical infrastructure, industrial growth, and safe environments across the Kingdom."
+
+msgid "التصنيع"
+msgstr "Manufacturing"
+
+msgid "خطوط إنتاج وأنظمة أتمتة وتحكم صناعي ترفع الكفاءة وتضمن جودة التشغيل."
+msgstr "Production lines, automation and industrial control systems that raise efficiency and ensure operational quality."
+
+msgid "المياه والصرف الصحي"
+msgstr "Water & Wastewater"
+
+msgid "حلول معالجة وضخ ومراقبة لشبكات المياه ومحطات الصرف الصحي بموثوقية عالية."
+msgstr "Treatment, pumping and monitoring solutions for water networks and wastewater plants with high reliability."
+
+msgid "الطاقة والكهرباء"
+msgstr "Energy & Power"
+
+msgid "أنظمة توزيع ولوحات كهربائية وحلول طاقة شمسية تدعم استمرارية الإمداد والكفاءة."
+msgstr "Distribution systems, electrical panels and solar power solutions that support supply continuity and efficiency."
+
+msgid "النفط والغاز"
+msgstr "Oil & Gas"
+
+msgid "تجهيزات ومعدات متخصصة للبيئات القاسية وفق أعلى معايير السلامة الصناعية."
+msgstr "Specialized equipment and gear for harsh environments, meeting the highest industrial safety standards."
+
+msgid "البنية التحتية والإنشاءات"
+msgstr "Infrastructure & Construction"
+
+msgid "دعم متكامل لمشاريع البنية التحتية الكبرى بتوريدات وحلول هندسية موثوقة."
+msgstr "Integrated support for major infrastructure projects with reliable supplies and engineering solutions."
+
+msgid "الرعاية الصحية"
+msgstr "Healthcare"
+
+msgid "بيئات نظيفة وأنظمة تكييف وترشيح هواء متوافقة مع اشتراطات المنشآت الصحية."
+msgstr "Clean environments and HVAC and air-filtration systems compliant with healthcare-facility requirements."
+
+msgid "المنشآت الحكومية والأمنية"
+msgstr "Government & Security Facilities"
+
+msgid "أنظمة أمنية ومراقبة وتحكم متكاملة تلبّي متطلبات المنشآت الحساسة."
+msgstr "Integrated security, surveillance and control systems that meet the requirements of sensitive facilities."
+
+msgid "المباني التجارية والضيافة"
+msgstr "Commercial Buildings & Hospitality"
+
+msgid "حلول كهروميكانيكية وأنظمة مباني ذكية ترفع الراحة وكفاءة التشغيل."
+msgstr "Electromechanical solutions and smart-building systems that enhance comfort and operational efficiency."
+
+msgid "الزراعة والاستدامة"
+msgstr "Agriculture & Sustainability"
+
+msgid "حلول زراعية مستدامة ومنتجات حماية ومغذّيات نباتية ترفع الإنتاجية وتحافظ على البيئة."
+msgstr "Sustainable agricultural solutions, crop-protection products and plant nutrients that raise productivity and protect the environment."
+
+msgid "فريقنا في خدمتك"
+msgstr "Our Team at Your Service"
+
+msgid "يستجيب فريقنا بدعمٍ سريعٍ وموثوق، مصمَّم خصيصاً لاحتياجاتك الصناعية والكهروميكانيكية."
+msgstr "Our team responds with fast, reliable support tailored specifically to your industrial and electromechanical needs."
+
+msgid "اتصل بنا"
+msgstr "Call Us"
+
+msgid "راسلنا"
+msgstr "Email Us"
+
+msgid "موقعنا"
+msgstr "Our Location"
+
+msgid "الرئيسية"
+msgstr "Home"
+
+msgid "من نحن"
+msgstr "About Us"
+
+msgid "الشركاء"
+msgstr "Partners"
+
+msgid "الأسئلة الشائعة"
+msgstr "FAQ"
+
+msgid "مجموعة APS | شركة التجهيزات والمشاريع العربية"
+msgstr "APS Group | Arabian Projects & Supplies Company"
+
+msgid "مجموعة APS الصناعية: التجارة والتوريد المتميّز والحلول الكهروميكانيكية المتخصصة عبر شركاتٍ متخصصة وشراكاتٍ عالمية في مختلف أنحاء المملكة العربية السعودية."
+msgstr "APS Industrial Group: trading, premium supply, and specialized electromechanical solutions through specialized companies and global partnerships across Saudi Arabia."
+
+msgid "مجموعة APS | حلول صناعية وكهروميكانيكية وتوريدات متميّزة في السعودية"
+msgstr "APS Group | Industrial and Electromechanical Solutions and Premium Supply in Saudi Arabia"
+
+msgid "شركة التجهيزات والمشاريع العربية (APS): مجموعة صناعية سعودية تقدّم التوريد المتميّز والحلول الكهروميكانيكية وأنظمة الأمن والمياه عبر شركاتٍ متخصصة وشراكاتٍ عالمية في مختلف أنحاء المملكة."
+msgstr "Arabian Projects & Supplies (APS): a Saudi industrial group delivering premium supply, electromechanical solutions, and security and water systems through specialized companies and global partnerships across the Kingdom."
+
+msgid "من نحن | مجموعة APS للتجهيزات والمشاريع العربية"
+msgstr "About Us | APS Group, Arabian Projects & Supplies"
+
+msgid "تعرّف على مجموعة APS: مجموعة سعودية متنوّعة تقدّم حلولاً كهروميكانيكية وصناعية وبيئية متكاملة عبر شركاتٍ متخصصة وشراكاتٍ عالمية، من التصميم حتى الدعم بعد البيع، مع تركيزٍ على الجودة والسلامة والأداء."
+msgstr "Learn about APS Group: a diversified Saudi group delivering integrated electromechanical, industrial and environmental solutions through specialized companies and global partnerships, from design to after-sales support, with a focus on quality, safety and performance."
+
+msgid "تعرّف على APS"
+msgstr "Get to Know APS"
+
+msgid "APS مجموعة سعودية متنوّعة تقدّم حلولاً متكاملة في المجالات الكهروميكانيكية والصناعية والبيئية في مختلف أنحاء المملكة. من خلال شركاتٍ متخصصة وشراكاتٍ عالمية، نوفّر أنظمة موثوقة للبنية التحتية والصناعة والبيئات الآمنة، تغطي دورة حياة المشروع كاملة من التصميم إلى الدعم بعد البيع، مع تركيزٍ على الجودة والسلامة والأداء."
+msgstr "APS is a diversified Saudi group delivering integrated solutions across the electromechanical, industrial and environmental fields throughout the Kingdom. Through specialized companies and global partnerships, we provide reliable systems for infrastructure, industry and safe environments, covering the full project lifecycle from design to after-sales support, with a focus on quality, safety and performance."
+
+msgid "خبرة هندسية متعددة الشركات"
+msgstr "Multi-company engineering expertise"
+
+msgid "تنفيذ المشاريع على مستوى المملكة"
+msgstr "Kingdom-wide project execution"
+
+msgid "شركات متخصصة"
+msgstr "Specialized Companies"
+
+msgid "قطاعاً نخدمه"
+msgstr "Sectors Served"
+
+msgid "مبادئنا التوجيهية"
+msgstr "Our Guiding Principles"
+
+msgid "الرؤية والرسالة والقيم"
+msgstr "Vision, Mission & Values"
+
+msgid "الرؤية"
+msgstr "Vision"
+
+msgid "أن نكون مزوّداً رائداً وموثوقاً للحلول الكهروميكانيكية والصناعية المتكاملة في المملكة العربية السعودية، بما يدعم البنية التحتية الوطنية والتنمية المستدامة."
+msgstr "To be a leading and trusted provider of integrated electromechanical and industrial solutions in Saudi Arabia, supporting national infrastructure and sustainable development."
+
+msgid "الرسالة"
+msgstr "Mission"
+
+msgid "تقديم أنظمة عالية الأداء وموثوقة من خلال الخبرة الفنية والشراكات العالمية والنزاهة، بما يخلق قيمة دائمة لعملائنا."
+msgstr "To deliver high-performance, reliable systems through technical expertise, global partnerships and integrity, creating lasting value for our clients."
+
+msgid "قيمنا الأساسية"
+msgstr "Our Core Values"
+
+msgid "نلتزم بالنزاهة والاحترافية والمساءلة، ونضع السلامة والجودة والشراكات طويلة الأمد في مقدمة أولوياتنا في كل مشروع."
+msgstr "We are committed to integrity, professionalism and accountability, placing safety, quality and long-term partnerships at the forefront of every project."
+
+msgid "مبادئ العمل"
+msgstr "Business Principles"
+
+msgid "إطارٌ قائم على الحوكمة"
+msgstr "A Governance-Based Framework"
+
+msgid "إطارٌ قائم على الحوكمة يوجّه كيفية عمل APS وتسليمها ونموّها."
+msgstr "A governance-based framework that guides how APS operates, delivers and grows."
+
+msgid "تقديم منتجات موثوقة ومعايير خدمة متفوّقة في كل مشروع وتعامل."
+msgstr "Delivering reliable products and superior service standards in every project and interaction."
+
+msgid "الالتزام تجاه العميل"
+msgstr "Client Commitment"
+
+msgid "بناء شراكات طويلة الأمد قائمة على الثقة والشفافية والأداء المتّسق."
+msgstr "Building long-term partnerships based on trust, transparency and consistent performance."
+
+msgid "الإدارة الاحترافية"
+msgstr "Professional Management"
+
+msgid "حوكمة منظّمة تدعم النمو المستدام والتنفيذ المنضبط."
+msgstr "Structured governance that supports sustainable growth and disciplined execution."
+
+msgid "ريادة السوق"
+msgstr "Market Leadership"
+
+msgid "التقدّم عبر التحسين المستمر والابتكار للحفاظ على موقعٍ تنافسي في القطاعات السعودية."
+msgstr "Advancing through continuous improvement and innovation to maintain a competitive position in Saudi sectors."
+
+msgid "محفظة متنوّعة"
+msgstr "Diversified Portfolio"
+
+msgid "عمليات متوازنة عبر أقسام التجارة والخدمات الاحترافية والمقاولات."
+msgstr "Balanced operations across the trading, professional services and contracting divisions."
+
+msgid "تنظيمٌ مُحكم"
+msgstr "Well-Structured Organization"
+
+msgid "خطوط مسؤولية واضحة، ومساءلة محدّدة، ووظائف دعم مؤسسية مركزية."
+msgstr "Clear lines of responsibility, defined accountability, and centralized corporate support functions."
+
+msgid "الصحة والسلامة والبيئة"
+msgstr "Health, Safety & Environment"
+
+msgid "التزام HSE والجودة"
+msgstr "HSE and Quality Commitment"
+
+msgid "نُدمج الصحة والسلامة والمسؤولية البيئية وضمان الجودة في كل عملياتنا، بما يضمن الامتثال وتقليل المخاطر والتنفيذ المنضبط في كل مرحلة."
+msgstr "We integrate health, safety, environmental responsibility and quality assurance across all our operations, ensuring compliance, risk reduction and disciplined execution at every stage."
+
+msgid "الصحة والسلامة"
+msgstr "Health & Safety"
+
+msgid "إدارة استباقية للمخاطر، وبروتوكولات سلامة الموقع، ومعايير حماية القوى العاملة، مع أولويةٍ لأداءٍ خالٍ من الحوادث."
+msgstr "Proactive risk management, site-safety protocols and workforce-protection standards, prioritizing incident-free performance."
+
+msgid "المسؤولية البيئية"
+msgstr "Environmental Responsibility"
+
+msgid "كفاءة الموارد، وتقليل الأثر، والامتثال الكامل للأنظمة البيئية عبر كل عمليات APS."
+msgstr "Resource efficiency, impact reduction and full compliance with environmental regulations across all APS operations."
+
+msgid "ضمان الجودة"
+msgstr "Quality Assurance"
+
+msgid "عمليات تدقيق منظّمة، ومراقبة الأداء، وأُطر تحسين مستمر تضمن معايير تسليم متّسقة."
+msgstr "Structured audits, performance monitoring and continuous-improvement frameworks that ensure consistent delivery standards."
+
+msgid "شركة تابعة لمجموعة APS"
+msgstr "An APS Group company"
+
+msgid "أنظمة الأمن والسلامة والتحكم"
+msgstr "Security, Safety & Control Systems"
+
+msgid "شركة التجهيزات والمشاريع السعودية (SPS) مزوّدٌ رائد لأنظمة الأمن والسلامة والتحكم المتكاملة، تخدم المنشآت الصناعية والحكومية والسكنية والصحية والتعليمية في مختلف أنحاء المملكة، وتقدّم حلولاً متكاملة من تصميم الأنظمة وتركيبها إلى التدريب والدعم بعد البيع عبر مكاتبها."
+msgstr "Saudi Projects & Supplies (SPS) is a leading provider of integrated security, safety and control systems, serving industrial, government, residential, healthcare and educational facilities across the Kingdom, delivering complete solutions from system design and installation to training and after-sales support through its offices."
+
+msgid "سنة التأسيس"
+msgstr "Year Founded"
+
+msgid "مجالات أنظمة"
+msgstr "System Domains"
+
+msgid "سنة خبرة"
+msgstr "Years of Experience"
+
+msgid "عن الشركة"
+msgstr "About the Company"
+
+msgid "خبرةٌ تمتد منذ عام 2001"
+msgstr "Experience Dating Back to 2001"
+
+msgid "تأسّست SPS عام 2001 كمزوّدٍ لأنظمة الأمن والسلامة والتحكم المتكاملة عبر المملكة، وتخدم القطاعات الصناعية والحكومية والسكنية والصحية والتعليمية بحلولٍ متقدّمة مصمّمة وفق الاحتياجات التشغيلية المتنوّعة. تعمل الشركة على مستوى المملكة بسمعةٍ قوية في الجودة والموثوقية، ويُنفَّذ كل مشروع بدقةٍ واحترافية لضمان أداءٍ طويل الأمد. ويُمكّن الاستثمار المستمر في الكفاءات والتقنيات SPS من أن تبقى شريكاً استشرافياً قائماً على الحلول."
+msgstr "Security, Safety & Control Systems"
+
+msgid "الأنظمة والحلول"
+msgstr "Systems & Solutions"
+
+msgid "أنظمة السلامة والأمن والتحكم"
+msgstr "Safety, Security & Control Systems"
+
+msgid "محفظةٌ متكاملة من الأنظمة موزّعة على خمس فئات رئيسية، مصمّمة لتعزيز السلامة والكفاءة التشغيلية وإدارة المنشآت."
+msgstr "An integrated portfolio of systems across five main categories, designed to enhance safety, operational efficiency and facility management."
+
+msgid "أنظمة السلامة الحياتية"
+msgstr "Life Safety Systems"
+
+msgid "نظام كشف الحرائق والإنذار"
+msgstr "Fire Detection & Alarm System"
+
+msgid "نظام الإخلاء الصوتي"
+msgstr "Voice Evacuation System"
+
+msgid "نظام الشفط للإنذار المبكر"
+msgstr "Aspirating Early-Warning System"
+
+msgid "أنظمة الأمن"
+msgstr "Security Systems"
+
+msgid "أنظمة المراقبة بالكاميرات (CCTV)"
+msgstr "CCTV Surveillance Systems"
+
+msgid "أنظمة التحكم في الدخول"
+msgstr "Access Control Systems"
+
+msgid "أنظمة إنذار التسلل"
+msgstr "Intrusion Alarm Systems"
+
+msgid "أنظمة أقفال الأبواب"
+msgstr "Door Locking Systems"
+
+msgid "أنظمة التحكم"
+msgstr "Control Systems"
+
+msgid "نظام إدارة المباني (BMS)"
+msgstr "Building Management System (BMS)"
+
+msgid "أنظمة التحكم بالإضاءة"
+msgstr "Lighting Control Systems"
+
+msgid "أنظمة غرف العزل"
+msgstr "Isolation Room Systems"
+
+msgid "حلول الطاقة غير المنقطعة (UPS)"
+msgstr "Uninterruptible Power Solutions (UPS)"
+
+msgid "نظام إدارة مواقف السيارات"
+msgstr "Car Parking Management System"
+
+msgid "أنظمة الضيافة والشبكات والإدارة"
+msgstr "Hospitality, Networking & Management Systems"
+
+msgid "نظام النداء الصوتي العام"
+msgstr "Public Address System"
+
+msgid "نظام الساعة المركزية"
+msgstr "Master Clock System"
+
+msgid "نظام استدعاء الممرّضات"
+msgstr "Nurse Call System"
+
+msgid "أنظمة MATV و IPTV و GPON"
+msgstr "MATV, IPTV & GPON Systems"
+
+msgid "حلول شبكات البيانات"
+msgstr "Data Network Solutions"
+
+msgid "نظام الهاتف عبر الإنترنت (VOIP)"
+msgstr "Voice over IP (VoIP) System"
+
+msgid "نظام الاتصال الداخلي"
+msgstr "Intercom System"
+
+msgid "نظام إدارة غرف الضيوف (GRMS)"
+msgstr "Guest Room Management System (GRMS)"
+
+msgid "أنظمة إدارة الطوابير الرقمية"
+msgstr "Digital Queue Management Systems"
+
+msgid "الأنظمة السمعية والبصرية"
+msgstr "Audio-Visual Systems"
+
+msgid "أنظمة الصوت والفيديو"
+msgstr "Audio & Video Systems"
+
+msgid "نظام الموسيقى الخلفية"
+msgstr "Background Music System"
+
+msgid "نظام اللافتات الرقمية"
+msgstr "Digital Signage System"
+
+msgid "أنظمة إضاءة المسرح"
+msgstr "Stage Lighting Systems"
+
+msgid "مشاريعنا"
+msgstr "Our Projects"
+
+msgid "مشاريع نفّذتها SPS"
+msgstr "Projects Delivered by SPS"
+
+msgid "مجموعة مختارة من المشاريع التي نفّذتها الشركة في مختلف أنحاء المملكة."
+msgstr "A selection of projects the company has delivered across the Kingdom."
+
+msgid "مركز الملك عبدالله المالي (كافد)"
+msgstr "King Abdullah Financial District (KAFD)"
+
+msgid "حكومي"
+msgstr "Government"
+
+msgid "جامعة الملك عبدالله للعلوم والتقنية"
+msgstr "King Abdullah University of Science and Technology"
+
+msgid "تعليمي"
+msgstr "Education"
+
+msgid "جامعة الملك سعود"
+msgstr "King Saud University"
+
+msgid "مستشفى الملك فهد"
+msgstr "King Fahad Hospital"
+
+msgid "صحي"
+msgstr "Healthcare"
+
+msgid "الهيئة العامة للغذاء والدواء"
+msgstr "Saudi Food & Drug Authority"
+
+msgid "واجهة أجدان البحرية"
+msgstr "Ajdan Waterfront"
+
+msgid "تجاري"
+msgstr "Commercial"
+
+msgid "مبنى الغرفة التجارية"
+msgstr "Chamber of Commerce Building"
+
+msgid "نورث بيتش، الجبيل"
+msgstr "North Beach, Jubail"
+
+msgid "ضيافة"
+msgstr "Hospitality"
+
+msgid "شركاء التقنية العالميون"
+msgstr "Global Technology Partners"
+
+msgid "نمثّل نخبةً من كبرى المصنّعين العالميين لأنظمة الأمن والسلامة والتحكم والأنظمة السمعية والبصرية."
+msgstr "We represent a select group of the world's leading manufacturers of security, safety, control and audio-visual systems."
+
+msgid "جدة (المقر الرئيسي)"
+msgstr "Jeddah (Head Office)"
+
+msgid "الرياض"
+msgstr "Riyadh"
+
+msgid "الخبر"
+msgstr "Al Khobar"
+
+msgid "الآلات الصناعية والمعدات"
+msgstr "Industrial Machinery & Equipment"
+
+msgid "استكشف الآلات"
+msgstr "Explore Machines"
+
+msgid "حلول بيتا الصناعية، التي تأسّست عام 1996، شركة متخصصة تابعة لمجموعة APS تُعنى بتوفير حلول الآلات الصناعية عالية التقنية في مختلف أنحاء المملكة. ندعم العمليات الصناعية بحلولٍ متكاملة، من توريد المعدات وتركيبها إلى التشغيل، مصمّمة وفق المتطلبات التشغيلية لضمان أداءٍ طويل الأمد. ويقدّم فريقنا الهندسي تركيبات خطوط إنتاج كاملة مدعومة بالتدريب والخبرة الفنية المستمرة."
+msgstr "Beta Industrial Solutions, founded in 1996, is a specialized APS Group company providing high-tech industrial machinery solutions across the Kingdom. We support industrial operations with integrated solutions, from equipment supply and installation to commissioning, engineered to operational requirements to ensure long-term performance. Our engineering team delivers complete production-line installations backed by ongoing training and technical expertise."
+
+msgid "تأسّست عام 1996"
+msgstr "Founded in 1996"
+
+msgid "دعم صناعي على مستوى المملكة"
+msgstr "Kingdom-wide industrial support"
+
+msgid "حلول آلات متقدمة وتدريب فني"
+msgstr "Advanced machinery solutions and technical training"
+
+msgid "آلة ومعدة"
+msgstr "Machines & Equipment"
+
+msgid "فئة منتجات"
+msgstr "Product Categories"
+
+msgid "الآلات والمعدات"
+msgstr "Machines & Equipment"
+
+msgid "فئات الآلات والأدوات الصناعية"
+msgstr "Industrial Machine & Tool Categories"
+
+msgid "تشكيلة واسعة من الآلات الصناعية عالية التقنية والأدوات والمستهلكات لدعم عمليات التصنيع في مختلف القطاعات."
+msgstr "A wide range of high-tech industrial machines, tools and consumables to support manufacturing operations across various sectors."
+
+msgid "الآلات"
+msgstr "Machines"
+
+msgid "معالجة البروفايل الألمنيوم"
+msgstr "Aluminum Profile Processing"
+
+msgid "المناشير الشريطية"
+msgstr "Band Saws"
+
+msgid "آلات معالجة قضبان التوصيل"
+msgstr "Busbar Processing Machines"
+
+msgid "آلات التخريم CNC"
+msgstr "CNC Punching Machines"
+
+msgid "ليزر CO2"
+msgstr "CO2 Laser"
+
+msgid "قص وتخديد الألواح المركبة"
+msgstr "Composite Panel Cutting & Grooving"
+
+msgid "القص بليزر الفايبر"
+msgstr "Fiber Laser Cutting"
+
+msgid "آلات حقن الفوم"
+msgstr "Foam Injection Machines"
+
+msgid "آلات الطي"
+msgstr "Folding Machines"
+
+msgid "المكابس الساخنة والباردة"
+msgstr "Hot & Cold Presses"
+
+msgid "آلة تشكيل الحديد"
+msgstr "Iron Worker"
+
+msgid "اللحام بالليزر"
+msgstr "Laser Welding"
+
+msgid "القص بالبلازما"
+msgstr "Plasma Cutting"
+
+msgid "آلات ثني الألواح والبروفايل"
+msgstr "Plate & Profile Bending Machines"
+
+msgid "مكابس الثني"
+msgstr "Press Brakes"
+
+msgid "الحلول الروبوتية"
+msgstr "Robotic Solutions"
+
+msgid "آلة التخديد V"
+msgstr "V-Grooving Machine"
+
+msgid "آلات الأخشاب"
+msgstr "Woodworking Machines"
+
+msgid "الأدوات والمستهلكات"
+msgstr "Tools & Consumables"
+
+msgid "أقراص الجلخ"
+msgstr "Grinding Discs"
+
+msgid "مستهلكات الليزر والبلازما"
+msgstr "Laser & Plasma Consumables"
+
+msgid "أدوات الخراطة والتفريز"
+msgstr "Turning & Milling Tools"
+
+msgid "أدوات مكابس الثني"
+msgstr "Press Brake Tooling"
+
+msgid "أدوات التخريم"
+msgstr "Punching Tools"
+
+msgid "مستهلكات اللحام"
+msgstr "Welding Consumables"
+
+msgid "علاماتٌ عالمية نمثّلها"
+msgstr "Global Brands We Represent"
+
+msgid "نمثّل نخبةً من كبرى مصنّعي الآلات والمعدات الصناعية حول العالم."
+msgstr "We represent a select group of the world's leading industrial machinery and equipment manufacturers."
+
+msgid "حلول المياه والصرف الصحي والتهوية"
+msgstr "Water, Wastewater & Ventilation Solutions"
+
+msgid "استكشف الحلول"
+msgstr "Explore Solutions"
+
+msgid "تأسّست شركة الأنظمة الحديثة لتقنيات البيئة عام 2000، وهي مزوّدٌ ومقدّم خدمات رائد لقطاعات المياه والصرف الصحي والتهوية في المملكة. من خلال شراكاتٍ مع كبرى المصنّعين العالميين، توفّر الشركة حلولاً متقدمة وفعّالة من حيث التكلفة للتطبيقات البلدية والصناعية، وتدعم المشاريع من التقييم الأولي إلى التنفيذ المتكامل، بقدراتٍ هندسية قوية تشمل التصميم والهندسة الميكانيكية والكهربائية."
+msgstr "Founded in 2000, Envirosystems is a leading supplier and service provider for the water, wastewater and ventilation sectors in the Kingdom. Through partnerships with the world's leading manufacturers, the company delivers advanced, cost-effective solutions for municipal and industrial applications, supporting projects from initial assessment to integrated delivery, with strong engineering capabilities spanning design and mechanical and electrical engineering."
+
+msgid "تأسّست عام 2000"
+msgstr "Founded in 2000"
+
+msgid "شراكات مع مصنّعين عالميين"
+msgstr "Partnerships with global manufacturers"
+
+msgid "حلول للتطبيقات البلدية والصناعية"
+msgstr "Solutions for municipal and industrial applications"
+
+msgid "حلول رئيسية"
+msgstr "Core Solutions"
+
+msgid "المنتجات والحلول"
+msgstr "Products & Solutions"
+
+msgid "مجموعة متكاملة من حلول ومنتجات معالجة المياه والصرف الصحي والتهوية للتطبيقات البلدية والصناعية."
+msgstr "An integrated range of water, wastewater and ventilation treatment solutions and products for municipal and industrial applications."
+
+msgid "تعقيم المياه"
+msgstr "Water Disinfection"
+
+msgid "ترشيح المياه"
+msgstr "Water Filtration"
+
+msgid "ضخ المياه"
+msgstr "Water Pumping"
+
+msgid "الجرعات الكيميائية"
+msgstr "Chemical Dosing"
+
+msgid "التحكم في الروائح"
+msgstr "Odor Control"
+
+msgid "التهوية"
+msgstr "Ventilation"
+
+msgid "مشاريع نفّذتها الشركة"
+msgstr "Projects Delivered by the Company"
+
+msgid "مجموعة من كبرى مشاريع المياه والبنية التحتية البيئية في مختلف أنحاء المملكة."
+msgstr "A selection of major water and environmental infrastructure projects across the Kingdom."
+
+msgid "نظام التوليد الموقعي للكلور (OSEC)"
+msgstr "Location"
+
+#, fuzzy
+#| msgid "نظام الموسيقى الخلفية"
+msgid "نظام ثاني أكسيد الكلور"
+msgstr "Background Music System"
+
+#, fuzzy
+#| msgid "أنظمة التحكم في الدخول"
+msgid "أنظمة الترشيح الحيوي للتحكم في الروائح"
+msgstr "Access Control Systems"
+
+msgid "الخزان الاستراتيجي بمكة المكرمة"
+msgstr "Strategic Reservoir in Makkah"
+
+msgid "مدينة جازان الاقتصادية"
+msgstr "Jazan Economic City"
+
+msgid "الخزان الاستراتيجي (مليون م³) بالرياض"
+msgstr "Strategic Reservoir (1 million m³) in Riyadh"
+
+msgid "محطات رفع جازان (عقد 1 و2)"
+msgstr "Jazan Lift Stations (Contracts 1 & 2)"
+
+msgid "محطات رفع ينبع"
+msgstr "Yanbu Lift Stations"
+
+msgid "محطة معالجة الحاير"
+msgstr "Al-Hair Treatment Plant"
+
+msgid "الخزانات الاستراتيجية (1.5 مليون م³) بجدة"
+msgstr "Strategic Reservoirs (1.5 million m³) in Jeddah"
+
+msgid "خط نقل مياه الشعيبة"
+msgstr "Shoaiba Water Transmission Line"
+
+msgid "محطة معالجة الجبيل EPC"
+msgstr "Jubail Treatment Plant EPC"
+
+msgid "الموردون الدوليون"
+msgstr "International Suppliers"
+
+msgid "شركاؤنا من المصنّعين العالميين"
+msgstr "Our Global Manufacturing Partners"
+
+msgid "نمثّل نخبةً من كبرى المصنّعين العالميين في تقنيات المياه والبيئة."
+msgstr "We represent a select group of the world's leading water and environmental technology manufacturers."
+
+msgid "استكشف المنتجات"
+msgstr "Explore Products"
+
+msgid "الحلول الخضراء المتقدمة شركة مقرها دبي تقدّم حلولاً عملية ومستدامة للزراعة والعناية بالمسطحات الخضراء. مبنيّةً على خبرةٍ في المجال، نعمل عن قربٍ مع عملائنا لمعالجة تحديات الحقل الحقيقية، بما يعزّز أداء المحاصيل ويحسّن صحة النبات ويدعم الإنتاجية طويلة الأمد من خلال حلولٍ ومنتجاتٍ وإرشادٍ فني مصمّم وفق الاحتياجات."
+msgstr "Advanced Green Solutions is a Dubai-based company offering practical, sustainable solutions for agriculture and green-space care. Built on field expertise, we work closely with our clients to address real field challenges, enhancing crop performance, improving plant health and supporting long-term productivity through tailored solutions, products and technical guidance."
+
+msgid "مقرها دبي، الإمارات العربية المتحدة"
+msgstr "Based in Dubai, United Arab Emirates"
+
+msgid "منتجات صديقة للبيئة"
+msgstr "Eco-friendly products"
+
+msgid "خبرة في علم الزراعة والعناية بالنبات"
+msgstr "Expertise in agronomy and plant care"
+
+msgid "فئات منتجات"
+msgstr "Product Categories"
+
+msgid "نوع منتج"
+msgstr "Product Types"
+
+msgid "قطاعان نخدمهما"
+msgstr "Sectors Served"
+
+msgid "حلول مستدامة"
+msgstr "Sustainable Solutions"
+
+msgid "الرؤية والرسالة"
+msgstr "Vision & Mission"
+
+msgid "أن نكون مزوّداً رائداً لحلول علم الزراعة ومساهماً رئيسياً في منتجات صحة النبات الصديقة للبيئة، بما يدفع الزراعة المستدامة في المنطقة وخارجها."
+msgstr "To be a leading provider of agronomy solutions and a key contributor to eco-friendly plant-health products, driving sustainable agriculture in the region and beyond."
+
+msgid "تقديم حلولٍ زراعية فعّالة تعزّز صحة المحاصيل وتحسّن الإنتاجية وتدعم الاستدامة طويلة الأمد، محقّقةً نتائج ملموسة لكل عملية زراعية."
+msgstr "To deliver effective agricultural solutions that enhance crop health, improve productivity and support long-term sustainability, achieving tangible results for every farming operation."
+
+msgid "منتجاتنا"
+msgstr "Our Products"
+
+msgid "مجموعة المنتجات"
+msgstr "Product Range"
+
+msgid "تشكيلة واسعة من منتجات علم الزراعة عالية الجودة لتلبية احتياجات المحاصيل عبر الموسم."
+msgstr "A wide range of high-quality agronomy products to meet crop needs throughout the season."
+
+msgid "الأسمدة المفردة"
+msgstr "Straight Fertilizers"
+
+msgid "الأسمدة الذائبة في الماء"
+msgstr "Water-Soluble Fertilizers"
+
+msgid "الأسمدة الحبيبية"
+msgstr "Granular Fertilizers"
+
+msgid "المبيدات"
+msgstr "Pesticides"
+
+msgid "المنشّطات الحيوية والأسمدة السائلة"
+msgstr "Bio-stimulants & Liquid Fertilizers"
+
+msgid "محسّنات التربة"
+msgstr "Soil Conditioners"
+
+msgid "مساعدات الرش والمنتجات المتخصصة"
+msgstr "Spray Adjuvants & Specialty Products"
+
+msgid "البذور"
+msgstr "Seeds"
+
+msgid "دبي، الإمارات العربية المتحدة"
+msgstr "Dubai, United Arab Emirates"
+
+msgid "حلول الطاقة الشمسية"
+msgstr "Solar Energy Solutions"
+
+msgid "استكشف المشاريع"
+msgstr "Explore Projects"
+
+msgid "أزوليس منتِجٌ مستقل للطاقة الشمسية، متخصص في تطوير وتمويل وهندسة وإنشاء وصيانة محطات الطاقة الكهروضوئية لقطاع الشركات والصناعة (C&I). أنجزت الشركة أكثر من 200 مشروع عبر ثلاث قارات، ولها مكاتب في فرنسا والمغرب، بخبرةٍ تمتد إلى المشاريع متوسطة الحجم حتى 5 ميجاوات."
+msgstr "AZOLIS is an independent solar power producer specializing in developing, financing, engineering, building and maintaining photovoltaic power plants for the commercial and industrial (C&I) sector. The company has delivered more than 200 projects across three continents, with offices in France and Morocco, and experience spanning mid-scale projects up to 5 MW."
+
+msgid "منتِج مستقل للطاقة الشمسية"
+msgstr "Independent solar power producer"
+
+msgid "تطوير وتمويل وهندسة وإنشاء وصيانة"
+msgstr "Development, financing, engineering, construction and maintenance"
+
+msgid "مكاتب في فرنسا والمغرب"
+msgstr "Offices in France and Morocco"
+
+msgid "قارات"
+msgstr "Continents"
+
+msgid "مكاتب دولية"
+msgstr "International Offices"
+
+msgid "دورة حياة المشروع"
+msgstr "Project Lifecycle"
+
+msgid "دورة حياة مشروع الطاقة الشمسية"
+msgstr "Solar Project Lifecycle"
+
+msgid "نُدير كل مرحلة من مراحل مشروع الطاقة الشمسية بدقةٍ وخبرة، من التطوير المبكّر إلى التشغيل والصيانة طويلة الأمد."
+msgstr "We manage every phase of a solar project with precision and expertise, from early development to long-term operation and maintenance."
+
+msgid "تطوير المشروع"
+msgstr "Project Development"
+
+msgid "ما قبل التطوير"
+msgstr "Pre-development"
+
+msgid "تقييم الموقع ودراسات الجدوى وتقييم الموارد والفحص الفني الأولي."
+msgstr "Site assessment, feasibility studies, resource evaluation and initial technical screening."
+
+msgid "التصاريح الإدارية"
+msgstr "Administrative Permits"
+
+msgid "التصاريح وتقييمات الأثر البيئي وحقوق الأرض والموافقات التنظيمية."
+msgstr "Permits, environmental impact assessments, land rights and regulatory approvals."
+
+msgid "عقد ربط الشبكة"
+msgstr "Grid Connection Contract"
+
+msgid "الدراسات الفنية والاتفاقيات الرسمية مع مشغّل الشبكة للربط الكهربائي."
+msgstr "Technical studies and formal agreements with the grid operator for electrical connection."
+
+msgid "التعاقد مع العميل"
+msgstr "Client Contracting"
+
+msgid "اتفاقيات شراء الطاقة واتفاقيات الشراء والتفاوض على الشروط التجارية."
+msgstr "Power purchase agreements, procurement agreements and negotiation of commercial terms."
+
+msgid "التمويل"
+msgstr "Financing"
+
+msgid "تأمين تمويل المشروع وهيكلة رأس المال وتنسيق الإغلاق المالي."
+msgstr "Securing project financing, capital structuring and coordinating financial close."
+
+msgid "الإنشاء والتشغيل والصيانة"
+msgstr "Construction, Operation & Maintenance"
+
+msgid "هندسة المشروع"
+msgstr "Project Engineering"
+
+msgid "التصميم الكهربائي والمدني والإنشائي التفصيلي وتحسين التخطيط."
+msgstr "Detailed electrical, civil and structural design and layout optimization."
+
+msgid "مسح الموقع"
+msgstr "Site Survey"
+
+msgid "المسوحات الطبوغرافية والتحقيقات الجيوتقنية وتقييم الموقع الميداني."
+msgstr "Topographic surveys, geotechnical investigations and on-site field assessment."
+
+msgid "الإنشاء"
+msgstr "Construction"
+
+msgid "الأعمال المدنية وأنظمة التركيب وتركيب الألواح والكابلات وبناء المحطة الفرعية."
+msgstr "Civil works, mounting systems, panel and cable installation and substation construction."
+
+msgid "التشغيل التجريبي"
+msgstr "Commissioning"
+
+msgid "الاختبار والتحقق من الأداء ومزامنة الشبكة والتسليم للتشغيل."
+msgstr "Testing, performance verification, grid synchronization and handover to operation."
+
+msgid "التشغيل والصيانة"
+msgstr "Operation & Maintenance"
+
+msgid "إدارة الأصول طويلة الأمد ومراقبة الأداء والصيانة الوقائية والتصحيحية."
+msgstr "Long-term asset management, performance monitoring and preventive and corrective maintenance."
+
+msgid "مشاريع نفّذتها أزوليس"
+msgstr "Projects Delivered by AZOLIS"
+
+msgid "مجموعة مختارة من مشاريع الطاقة الشمسية المنفّذة في المغرب وفرنسا."
+msgstr "A selection of solar energy projects delivered in Morocco and France."
+
+msgid "رويال منصور المضيق"
+msgstr "Royal Mansour M'diq"
+
+msgid "الموقع"
+msgstr "Location"
+
+msgid "المغرب"
+msgstr "Morocco"
+
+msgid "النوع"
+msgstr "Type"
+
+msgid "مظلّة وقوف كهروضوئية"
+msgstr "Photovoltaic Parking Canopy"
+
+msgid "العقد"
+msgstr "Contract"
+
+msgid "EPC للإنتاج الذاتي"
+msgstr "Self-consumption EPC"
+
+msgid "مشروع صناعي (سرّي)"
+msgstr "Industrial Project (Confidential)"
+
+msgid "PV على الأسطح"
+msgstr "Rooftop PV"
+
+msgid "القدرة المركبة"
+msgstr "Installed Capacity"
+
+msgid "مرجان المنارة"
+msgstr "Marjane Menara"
+
+msgid "توتال إنرجي"
+msgstr "TotalEnergies"
+
+msgid "PV على الأسطح (مواقع متعددة)"
+msgstr "Rooftop PV (multiple sites)"
+
+msgid "فيرتيكال جرين"
+msgstr "Vertical Green"
+
+msgid "الضخّ بالطاقة الشمسية"
+msgstr "Solar Pumping"
+
+msgid "لصفار غاز"
+msgstr "Lasfar Gaz"
+
+msgid "محطة شمسية أرضية"
+msgstr "Ground-mounted Solar Plant"
+
+msgid "سيتروين"
+msgstr "Citroën"
+
+msgid "فرنسا"
+msgstr "France"
+
+msgid "تعرفة تغذية 20 سنة"
+msgstr "20-year Feed-in Tariff"
+
+msgid "الأراضي الزراعية"
+msgstr "Agricultural Estates"
+
+msgid "فونتينبلو، فرنسا"
+msgstr "Fontainebleau, France"
+
+msgid "الدار البيضاء، المغرب"
+msgstr "Casablanca, Morocco"
+
+msgid "تواصل معنا | مجموعة APS للتجهيزات والمشاريع"
+msgstr "Contact Us | APS Group, Arabian Projects & Supplies"
+
+msgid "تواصل مع مجموعة APS: أرسل استفسارك أو طلب عرض السعر عبر النموذج، أو تواصل مباشرةً عبر الهاتف والبريد الإلكتروني، وزُر مكاتبنا في جدة والرياض والخبر."
+msgstr "Contact APS Group: send your inquiry or quote request through the form, or reach us directly by phone and email, and visit our offices in Jeddah, Riyadh and Al Khobar."
+
+msgid "لنبدأ الحديث حول مشروعك"
+msgstr "Let's Talk About Your Project"
+
+msgid "فريقنا جاهز للإجابة عن استفساراتك وتقديم الدعم وإعداد عروض الأسعار. املأ النموذج وسنعاود التواصل معك في أقرب وقت، أو تواصل معنا مباشرةً عبر القنوات أدناه."
+msgstr "Our team is ready to answer your questions, provide support and prepare quotations. Fill out the form and we will get back to you shortly, or reach us directly through the channels below."
+
+msgid "خطنا الموحّد لجميع فروع المملكة"
+msgstr "Our unified line for all branches across the Kingdom"
+
+msgid "نردّ على رسائلك خلال يوم عمل واحد"
+msgstr "We reply to your messages within one business day"
+
+msgid "المقر الرئيسي"
+msgstr "Head Office"
+
+msgid "مركز الخليج، طريق المدينة"
+msgstr "Gulf Center, Al Madina Road"
+
+msgid "طلب عرض سعر"
+msgstr "Request a Quote"
+
+msgid "استفسار عن المنتجات والحلول"
+msgstr "Products and solutions inquiry"
+
+msgid "الدعم الفني وما بعد البيع"
+msgstr "Technical and after-sales support"
+
+msgid "التوريد والشراكات"
+msgstr "Supply and partnerships"
+
+msgid "استفسار عام"
+msgstr "General inquiry"
+
+msgid "مكاتبنا"
+msgstr "Our Offices"
+
+msgid "نخدم المملكة بالكامل من ثلاثة مكاتب، المقر الرئيسي في جدة ومكتبان إقليميان في الرياض والخبر."
+msgstr "We serve the entire Kingdom from three offices, our head office in Jeddah and two regional offices in Riyadh and Al Khobar."
+
+msgid "الطابق السابع، مكتب 303، مركز الخليج، طريق المدينة، ص.ب 110281، جدة 21477"
+msgstr "Gulf Center, Al Madina Road"
+
+msgid "مكتب إقليمي"
+msgstr "Regional office"
+
+msgid "الرياض، المملكة العربية السعودية"
+msgstr "Riyadh, Saudi Arabia"
+
+msgid "الخبر، المنطقة الشرقية، المملكة العربية السعودية"
+msgstr "Al Khobar, Eastern Province, Saudi Arabia"
+
+msgid "الأسئلة الشائعة | مجموعة APS للتجهيزات والمشاريع العربية"
+msgstr "FAQ | APS Group, Arabian Projects & Supplies"
+
+msgid "إجابات عن الأسئلة الشائعة حول خدمات مجموعة APS وشركاتها وقدراتها في المشاريع الصناعية والكهروميكانيكية والبيئية والطاقة الشمسية."
+msgstr "Answers to frequently asked questions about APS Group's services, companies and capabilities in industrial, electromechanical, environmental and solar energy projects."
+
+msgid "كل ما تحتاج معرفته عن APS"
+msgstr "Everything You Need to Know About APS"
+
+msgid "إجاباتٌ عن الأسئلة الأكثر شيوعاً حول خدمات المجموعة وشركاتها وقدراتها في تنفيذ المشاريع عبر المملكة والمنطقة."
+msgstr "Answers to the most common questions about the group's services, companies and capabilities in delivering projects across the Kingdom and the region."
+
+msgid "سنة من الخبرة"
+msgstr "Years of Experience"
+
+msgid "شركات متخصّصة"
+msgstr "Specialized Companies"
+
+msgid "مشروع طاقة شمسية"
+msgstr "Solar Energy Projects"
+
+msgid "قطاعات مخدومة"
+msgstr "Sectors Served"
+
+msgid "أسئلة عامة"
+msgstr "General Questions"
+
+msgid "في ماذا تتخصّص APS؟"
+msgstr "What does APS specialize in?"
+
+msgid "تقدّم APS حلولاً هندسية متكاملة عبر أنظمة الأمن والسلامة، والآلات الصناعية، والحلول البيئية للمياه، والطاقة الشمسية في المملكة والمنطقة. ومن خلال شركاتها المتخصصة، توفّر المجموعة خدماتٍ متكاملة من التوريد والتصميم إلى الشراء والتنفيذ، بما يضمن تسليماً فعّالاً وموثوقاً."
+msgstr "APS delivers integrated engineering solutions across security and safety systems, industrial machinery, environmental water solutions and solar energy in the Kingdom and the region. Through its specialized companies, the group provides end-to-end services from supply and design to procurement and execution, ensuring efficient, reliable delivery."
+
+msgid "ما القطاعات التي تخدمها APS؟"
+msgstr "Which sectors does APS serve?"
+
+msgid "تخدم المجموعة قطاعاتٍ متنوّعة تشمل الصناعة والتصنيع، والمياه والبيئة، والطاقة، والرعاية الصحية، والجهات الحكومية، والتعليم، والمنشآت التجارية والضيافة، والزراعة المستدامة."
+msgstr "The group serves diverse sectors including industry and manufacturing, water and environment, energy, healthcare, government, education, commercial and hospitality facilities, and sustainable agriculture."
+
+msgid "أين يقع المقر الرئيسي لـ APS وأين تعمل؟"
+msgstr "Where is APS headquartered and where does it operate?"
+
+msgid "يقع المقر الرئيسي في جدة، مع مكاتب في الرياض والخبر، إضافةً إلى حضور شركات المجموعة في الإمارات (دبي) وفرنسا والمغرب، لخدمة المملكة والمنطقة."
+msgstr "The head office is in Jeddah, with offices in Riyadh and Al Khobar, in addition to the presence of group companies in the UAE (Dubai), France and Morocco, serving the Kingdom and the region."
+
+msgid "منذ متى وAPS تعمل؟"
+msgstr "How long has APS been operating?"
+
+msgid "تمتد خبرة شركات المجموعة لأكثر من عقدين؛ فقد تأسّست حلول بيتا الصناعية عام 1996، والأنظمة الحديثة لتقنيات البيئة عام 2000، والتجهيزات والمشاريع السعودية عام 2001، بخبرةٍ تراكمية تتجاوز 25 عاماً."
+msgstr "The group's companies have more than two decades of experience; Beta Industrial Solutions was founded in 1996, Envirosystems in 2000, and Saudi Projects & Supplies in 2001, with cumulative experience exceeding 25 years."
+
+msgid "الخدمات والقدرات"
+msgstr "Services & Capabilities"
+
+msgid "هل تقدّم APS خدمات التركيب؟"
+msgstr "Does APS provide installation services?"
+
+msgid "نعم، تقدّم المجموعة خدمات التركيب الكهروميكانيكي الكاملة، من توريد المعدات وتركيبها إلى التشغيل والتشغيل التجريبي."
+msgstr "Yes, the group provides complete electromechanical installation services, from equipment supply and installation to commissioning and trial operation."
+
+msgid "ما التخصّصات الهندسية التي تغطّيها APS؟"
+msgstr "Which engineering disciplines does APS cover?"
+
+msgid "تغطّي المجموعة التخصّصات الميكانيكية والكهربائية والمدنية والإنشائية وهندسة العمليات، عبر فرقٍ هندسية متعددة الاختصاصات."
+msgstr "The group covers mechanical, electrical, civil, structural and process engineering disciplines through multidisciplinary engineering teams."
+
+msgid "هل تقدّم APS خدمات EPC المتكاملة (تسليم مفتاح)؟"
+msgstr "Does APS offer integrated EPC (turnkey) services?"
+
+msgid "نعم، توفّر المجموعة حلول EPC المتكاملة من التصميم والتوريد إلى الإنشاء والتشغيل، بما في ذلك تسليم المشاريع جاهزةً للتشغيل."
+msgstr "Yes, the group provides integrated EPC solutions from design and supply to construction and operation, including turnkey project delivery."
+
+msgid "هل توفّر APS الدعم والصيانة بعد البيع؟"
+msgstr "Does APS provide after-sales support and maintenance?"
+
+msgid "نعم، تمتد علاقتنا بالعميل إلى ما بعد التسليم عبر التدريب والصيانة وخدمات الدعم الفني سريعة الاستجابة."
+msgstr "Yes, our client relationship extends beyond handover through training, maintenance and responsive technical support services."
+
+msgid "المشاريع والحلول"
+msgstr "Projects & Solutions"
+
+msgid "هل تستطيع APS تنفيذ المشاريع واسعة النطاق؟"
+msgstr "Can APS deliver large-scale projects?"
+
+msgid "نعم، نفّذت شركات المجموعة مشاريع كبرى في المملكة، من مركز الملك عبدالله المالي (كافد) والجامعات والمستشفيات إلى الخزانات الاستراتيجية ومحطات معالجة المياه."
+msgstr "Yes, the group's companies have delivered major projects in the Kingdom, from the King Abdullah Financial District (KAFD), universities and hospitals to strategic reservoirs and water treatment plants."
+
+msgid "ما مشاريع الطاقة الشمسية والمتجددة التي نفّذتها APS؟"
+msgstr "What solar and renewable energy projects has APS delivered?"
+
+msgid "عبر شركة أزوليس، أنجزت المجموعة أكثر من 200 مشروع طاقة شمسية عبر ثلاث قارات، تشمل الأنظمة الكهروضوئية على الأسطح والمظلات والمحطات الأرضية."
+msgstr "Through AZOLIS, the group has delivered more than 200 solar energy projects across three continents, including rooftop, canopy and ground-mounted photovoltaic systems."
+
+msgid "كيف تدير APS الجودة عبر مشاريعها؟"
+msgstr "How does APS manage quality across its projects?"
+
+msgid "نطبّق أُطر ضمان جودة منظّمة تشمل التدقيق ومراقبة الأداء والتحسين المستمر، مع دمج معايير الصحة والسلامة والبيئة في كل مرحلة."
+msgstr "We apply structured quality-assurance frameworks including auditing, performance monitoring and continuous improvement, integrating health, safety and environment standards at every stage."
+
+msgid "كيف أقدّم استفساراً عن مشروع أو طلب عرض (RFP)؟"
+msgstr "How do I submit a project inquiry or a request for proposal (RFP)?"
+
+msgid "يمكنك التواصل مع فريقنا عبر صفحة تواصل معنا أو عبر البريد الإلكتروني info@aps.com.sa، وسنعاود التواصل معك بسرعة."
+msgstr "You can reach our team through the Contact page or by email at info@aps.com.sa, and we will get back to you quickly."
+
+msgid "الشراكات والتعاون"
+msgstr "Partnerships & Collaboration"
+
+msgid "هل تعمل APS مع شركاء دوليين؟"
+msgstr "Does APS work with international partners?"
+
+msgid "نعم، نمثّل نخبةً من كبرى المصنّعين العالميين مثل هانيويل وسيمنس وسيسكو وغروندفوس وغيرها، لضمان الوصول إلى أحدث التقنيات."
+msgstr "Yes, we represent a select group of the world's leading manufacturers such as Honeywell, Siemens, Cisco, Grundfos and others, ensuring access to the latest technologies."
+
+msgid "كيف تتعامل APS مع الشراكات الاستراتيجية؟"
+msgstr "How does APS approach strategic partnerships?"
+
+msgid "نبني تحالفاتٍ طويلة الأمد مع المصنّعين ومزوّدي التقنية العالميين، قائمةً على الثقة والجودة والأداء المتّسق."
+msgstr "We build long-term alliances with global manufacturers and technology providers, based on trust, quality and consistent performance."
+
+msgid "هل تدخل APS في مقاولات الباطن أو المشاريع المشتركة؟"
+msgstr "Does APS engage in subcontracting or joint ventures?"
+
+msgid "نعم، ندرس فرص التعاون والمشاريع المشتركة ومقاولات الباطن وفق طبيعة كل مشروع ومتطلباته."
+msgstr "Yes, we evaluate opportunities for collaboration, joint ventures and subcontracting according to the nature and requirements of each project."
+
+msgid "ما معايير الجودة والامتثال التي تلتزم بها APS؟"
+msgstr "What quality and compliance standards does APS adhere to?"
+
+msgid "تلتزم المجموعة بمعايير الجودة والسلامة والمسؤولية البيئية، وتتبع أفضل الممارسات العالمية والمتطلبات التنظيمية المعمول بها في المملكة."
+msgstr "The group adheres to quality, safety and environmental-responsibility standards, and follows international best practices and the applicable regulatory requirements in the Kingdom."
+
+msgid "شركاؤنا | مجموعة APS — شركاء ومورّدون عالميون"
+msgstr "Our Partners | APS Group, Global Partners & Suppliers"
+
+msgid "شركاء مجموعة APS وشركاتها المتخصصة: نتعاون مع كبرى المصنّعين ومزوّدي التقنية العالميين عبر قطاعات الأمن والصناعة والمياه والبيئة والتقنيات المتقدمة في مختلف أنحاء المملكة."
+msgstr "The partners of APS Group and its specialized companies: we collaborate with the world's leading manufacturers and technology providers across the security, industrial, water, environmental and advanced-technology sectors throughout the Kingdom."
+
+msgid "شبكة شركاء عالمية عبر المجموعة"
+msgstr "A global partner network across the group"
+
+msgid "نجمع في مكانٍ واحد شركاء ومورّدي مجموعة APS وشركاتها المتخصصة — كبرى العلامات والمصنّعين العالميين الذين نعتمد عليهم لتقديم حلولٍ موثوقة في الأمن والصناعة والمياه والبيئة والتقنيات المتقدمة."
+msgstr "In one place, we bring together the partners and suppliers of APS Group and its specialized companies: the world's leading brands and manufacturers we rely on to deliver reliable solutions in security, industry, water, environment and advanced technologies."
+
+msgid "الشركة القابضة"
+msgstr "The Holding Company"
+
+msgid "شركة تابعة"
+msgstr "Subsidiary"
+
+msgid "شريك ومورّد عالمي"
+msgstr "Global Partners & Suppliers"
+
+msgid "عاماً من الشراكات"
+msgstr "Years of Partnerships"
+
+#, fuzzy
+#| msgid "لمحة عن المجموعة"
+msgid "اسم المجموعة (عربي)"
+msgstr "About the Group"
+
+msgid "اسم المجموعة (إنجليزي)"
+msgstr ""
+
+msgid "الاختصار"
+msgstr ""
+
+#, fuzzy
+#| msgid "رقم الهاتف"
+msgid "الهاتف"
+msgstr "Phone Number"
+
+msgid "الموقع (نص)"
+msgstr "Location"
+
+msgid "رابط الموقع"
+msgstr "Location"
+
+msgid "الموقع الجغرافي (عربي)"
+msgstr "Location"
+
+msgid "الموقع الجغرافي (إنجليزي)"
+msgstr "Location"
+
+msgid "الشعار (الهيدر)"
+msgstr ""
+
+msgid "الشعار (الفوتر - أبيض)"
+msgstr ""
+
+#, fuzzy
+#| msgid "لمحة عن المجموعة"
+msgid "هوية المجموعة"
+msgstr "About the Group"
+
+msgid "المُعرّف (slug)"
+msgstr ""
+
+msgid "الترتيب"
+msgstr ""
+
+msgid "منشورة"
+msgstr ""
+
+msgid "الاسم (عربي)"
+msgstr "Name"
+
+msgid "الاسم (إنجليزي)"
+msgstr "Name"
+
+#, fuzzy
+#| msgid "مشروع صناعي (سرّي)"
+msgid "العنوان الفرعي (عربي)"
+msgstr "Industrial Project (Confidential)"
+
+msgid "العنوان الفرعي (إنجليزي)"
+msgstr ""
+
+#, fuzzy
+#| msgid "القطاعات"
+msgid "القطاع (عربي)"
+msgstr "Sectors"
+
+#, fuzzy
+#| msgid "القطاعات"
+msgid "القطاع (إنجليزي)"
+msgstr "Sectors"
+
+#, fuzzy
+#| msgid "اسم الشركة"
+msgid "شعار الشركة"
+msgstr "Company Name"
+
+#, fuzzy
+#| msgid "الشركة القابضة"
+msgid "صورة الواجهة"
+msgstr "The Holding Company"
+
+msgid "زر الواجهة (عربي)"
+msgstr ""
+
+msgid "زر الواجهة (إنجليزي)"
+msgstr ""
+
+#, fuzzy
+#| msgid "روابط سريعة"
+msgid "رابط زر الواجهة"
+msgstr "Quick Links"
+
+msgid "نبذة (عربي)"
+msgstr ""
+
+msgid "نبذة (إنجليزي)"
+msgstr ""
+
+msgid "نقاط النبذة (عربي، سطر لكل نقطة)"
+msgstr ""
+
+msgid "نقاط النبذة (إنجليزي، سطر لكل نقطة)"
+msgstr ""
+
+#, fuzzy
+#| msgid "ابقَ على تواصل"
+msgid "هاتف التواصل"
+msgstr "Stay in Touch"
+
+#, fuzzy
+#| msgid "شكراً لتواصلك"
+msgid "بريد التواصل"
+msgstr "Thank you for reaching out"
+
+msgid "المكاتب (عربي، سطر لكل مكتب)"
+msgstr ""
+
+msgid "المكاتب (إنجليزي، سطر لكل مكتب)"
+msgstr ""
+
+#, fuzzy
+#| msgid "عن الشركة"
+msgid "شركة"
+msgstr "About the Company"
+
+#, fuzzy
+#| msgid "الشركاء"
+msgid "الشركات"
+msgstr "Partners"
+
+msgid "القيمة"
+msgstr ""
+
+msgid "اللاحقة"
+msgstr ""
+
+#, fuzzy
+#| msgid "العربية"
+msgid "الوصف (عربي)"
+msgstr "Arabic"
+
+msgid "الوصف (إنجليزي)"
+msgstr ""
+
+msgid "رقم/حقيقة"
+msgstr ""
+
+#, fuzzy
+#| msgid "الأنظمة والحلول"
+msgid "الأرقام والحقائق"
+msgstr "Systems & Solutions"
+
+msgid "تبويبات"
+msgstr ""
+
+msgid "شبكة"
+msgstr ""
+
+#, fuzzy
+#| msgid "العربية"
+msgid "العرض"
+msgstr "Arabic"
+
+#, fuzzy
+#| msgid "العربية"
+msgid "العنوان (عربي)"
+msgstr "Arabic"
+
+msgid "العنوان (إنجليزي)"
+msgstr ""
+
+msgid "قسم الأنظمة والحلول"
+msgstr "Systems & Solutions"
+
+msgid "أقسام الأنظمة والحلول"
+msgstr "Systems & Solutions"
+
+msgid "الأيقونة"
+msgstr ""
+
+#, fuzzy
+#| msgid "مجالات أنظمة"
+msgid "تبويب أنظمة"
+msgstr "System Domains"
+
+#, fuzzy
+#| msgid "مجالات أنظمة"
+msgid "تبويبات الأنظمة"
+msgstr "System Domains"
+
+msgid "الصورة"
+msgstr ""
+
+msgid "عنصر نظام"
+msgstr ""
+
+#, fuzzy
+#| msgid "مجالات أنظمة"
+msgid "عناصر الأنظمة"
+msgstr "System Domains"
+
+#, fuzzy
+#| msgid "شراكات تقنية عالمية"
+msgid "بطاقات تفصيلية"
+msgstr "Global Technology Partnerships"
+
+#, fuzzy
+#| msgid "استكشف المشاريع"
+msgid "قسم المشاريع"
+msgstr "Explore Projects"
+
+#, fuzzy
+#| msgid "استكشف المشاريع"
+msgid "أقسام المشاريع"
+msgstr "Explore Projects"
+
+#, fuzzy
+#| msgid "القطاعات"
+msgid "القطاع/الجهة (عربي)"
+msgstr "Sectors"
+
+msgid "القطاع/الجهة (إنجليزي)"
+msgstr ""
+
+#, fuzzy
+#| msgid "مشروع منجَز"
+msgid "مشروع"
+msgstr "Completed Projects"
+
+#, fuzzy
+#| msgid "مشاريعنا"
+msgid "المشاريع"
+msgstr "Our Projects"
+
+#, fuzzy
+#| msgid "العربية"
+msgid "التسمية (عربي)"
+msgstr "Arabic"
+
+msgid "التسمية (إنجليزي)"
+msgstr ""
+
+#, fuzzy
+#| msgid "العربية"
+msgid "القيمة (عربي)"
+msgstr "Arabic"
+
+msgid "القيمة (إنجليزي)"
+msgstr ""
+
+#, fuzzy
+#| msgid "تطوير المشروع"
+msgid "تفصيل مشروع"
+msgstr "Project Development"
+
+#, fuzzy
+#| msgid "استكشف المشاريع"
+msgid "تفاصيل المشاريع"
+msgstr "Explore Projects"
+
+#, fuzzy
+#| msgid "اسم الشركة"
+msgid "قسم الشركاء"
+msgstr "Company Name"
+
+#, fuzzy
+#| msgid "اسم الشركة"
+msgid "أقسام الشركاء"
+msgstr "Company Name"
+
+#, fuzzy
+#| msgid "اسم الشركة"
+msgid "اسم الشريك"
+msgstr "Company Name"
+
+msgid "الشعار"
+msgstr ""
+
+#, fuzzy
+#| msgid "عرض كل الشركاء"
+msgid "شعارات الشركاء"
+msgstr "View All Partners"
+
+#, fuzzy
+#| msgid "مبادئنا التوجيهية"
+msgid "قسم المبادئ التوجيهية"
+msgstr "Our Guiding Principles"
+
+#, fuzzy
+#| msgid "مبادئنا التوجيهية"
+msgid "أقسام المبادئ التوجيهية"
+msgstr "Our Guiding Principles"
+
+#, fuzzy
+#| msgid "العربية"
+msgid "النص (عربي)"
+msgstr "Arabic"
+
+msgid "النص (إنجليزي)"
+msgstr ""
+
+#, fuzzy
+#| msgid "مبادئنا التوجيهية"
+msgid "عنصر مبدأ توجيهي"
+msgstr "Our Guiding Principles"
+
+#, fuzzy
+#| msgid "مبادئنا التوجيهية"
+msgid "عناصر المبادئ التوجيهية"
+msgstr "Our Guiding Principles"
+
+#, fuzzy
+#| msgid "الأسمدة الحبيبية"
+msgid "قسم دورة الحياة"
+msgstr "Granular Fertilizers"
+
+#, fuzzy
+#| msgid "الأسمدة الحبيبية"
+msgid "أقسام دورة الحياة"
+msgstr "Granular Fertilizers"
+
+msgid "الرقم"
+msgstr ""
+
+msgid "مرحلة"
+msgstr ""
+
+#, fuzzy
+#| msgid "القدرة المركبة"
+msgid "مراحل دورة الحياة"
+msgstr "Installed Capacity"
+
+msgid "خطوة"
+msgstr ""
+
+#, fuzzy
+#| msgid "أدوات التخريم"
+msgid "خطوات المراحل"
+msgstr "Punching Tools"
+
+#~ msgid "استكشف شركاتنا"
+#~ msgstr "Explore Our Companies"
+
+#~ msgid "شركاتنا"
+#~ msgstr "Our Companies"
+
+#~ msgid "شركة المياه الوطنية"
+#~ msgstr "National Water Company"
+
+#~ msgid "أرامكو"
+#~ msgstr "Aramco"
+
+#~ msgid "وزارة البيئة والمياه والزراعة"
+#~ msgstr "Ministry of Environment, Water & Agriculture"
+
+#~ msgid "الهيئة الملكية"
+#~ msgstr "Royal Commission"
+
+#~ msgid "المؤسسة العامة لتحلية المياه"
+#~ msgstr "Saline Water Conversion Corporation"
+
+#~ msgid "معالجة وتعقيم المياه"
+#~ msgstr "Water Disinfection"
+
+#~ msgid "الدمام والخبر — أنظمة الترشيح الحيوي (LTOM)"
+#~ msgstr "Al Khobar"
+
+#~ msgid "التحكم في الروائح والترشيح الحيوي"
+#~ msgstr "Odor Control"
+
+#~ msgid "مشروع مياه جازان (المرحلة الأولى)"
+#~ msgstr "Jazan Water Project (Phase 1)"
+
+#~ msgid "تقنياتٌ كيميائية متقدمة وحلولُ طاقةٍ نظيفة"
+#~ msgstr "Advanced Chemical Technologies and Clean Energy Solutions"
+
+#~ msgid "تقنيات كيميائية متخصصة وخدمات فنية لمعالجة المياه والتطبيقات الصناعية، وحلول الطاقة الشمسية."
+#~ msgstr "Specialized chemical technologies and technical services for water treatment and industrial applications, plus solar energy solutions."
+
+#~ msgid "الكيماويات والطاقة"
+#~ msgstr "Chemicals & Energy"
+
+#~ msgid "تقنيات كيميائية متقدمة وخدمات فنية لمعالجة المياه والتطبيقات الصناعية."
+#~ msgstr "Advanced chemical technologies and technical services for water treatment and industrial applications."

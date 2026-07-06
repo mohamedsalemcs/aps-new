@@ -1,0 +1,42 @@
+{% extends "manage/base.html" %}
+{% block title %}ملفي الشخصي{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:dashboard' %}">الرئيسية</a> / ملفي الشخصي</div>
+<div class="m-top"><h1 class="m-h1">ملفي الشخصي</h1></div>
+
+<div style="max-width:640px">
+  <form method="post" action="">
+    {% csrf_token %}
+    <div class="m-card" data-no-collapse>
+      <h2 class="m-card__title">البيانات الشخصية</h2>
+      <p class="m-card__hint">اسم المستخدم: <strong dir="ltr">{{ request.user.username }}</strong></p>
+      <div class="f-grid">
+        {% include "manage/_field.html" with field=pform.first_name %}
+        {% include "manage/_field.html" with field=pform.last_name %}
+        {% include "manage/_field.html" with field=pform.email full=1 %}
+      </div>
+      <div class="m-actions" style="position:static;background:none;border:none;box-shadow:none;padding:0;margin-top:14px">
+        <button class="btnm" type="submit" name="save_profile" value="1">💾 حفظ البيانات</button>
+      </div>
+    </div>
+  </form>
+
+  <form method="post" action="">
+    {% csrf_token %}
+    <div class="m-card" data-no-collapse>
+      <h2 class="m-card__title">تغيير كلمة المرور</h2>
+      {% for field in pwform %}
+        <div class="f-row" style="margin-bottom:12px">
+          <label class="f-lbl" for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% for e in field.errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+          {% if field.help_text %}<div class="f-help">{{ field.help_text|safe }}</div>{% endif %}
+        </div>
+      {% endfor %}
+      <div class="m-actions" style="position:static;background:none;border:none;box-shadow:none;padding:0;margin-top:6px">
+        <button class="btnm" type="submit" name="change_password" value="1">🔒 تغيير كلمة المرور</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

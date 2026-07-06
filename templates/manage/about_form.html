@@ -1,0 +1,146 @@
+{% extends "manage/base.html" %}
+{% load static cms_extras %}
+{% block title %}صفحة من نحن{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:dashboard' %}">الرئيسية</a> / صفحة من نحن</div>
+<div class="m-top">
+  <h1 class="m-h1">من نحن</h1>
+  <a class="btnm btnm--ghost btnm--sm" href="/about/" target="_blank">معاينة على الموقع {% icon 'external' size=14 %}</a>
+</div>
+
+<form method="post" enctype="multipart/form-data" action="" data-tabroot>
+  {% csrf_token %}
+
+  <nav class="a-tabs" data-tabs>
+    <button type="button" data-tab="content" class="is-active">محتوى الصفحة</button>
+    <button type="button" data-tab="seo">SEO (اختياري)</button>
+  </nav>
+
+  <div class="a-tabpanel is-active" data-tabpanel="content">
+  {# ===== Intro ===== #}
+  <section class="ed-sec">
+    <h2 class="ed-sec__title">المقدمة</h2>
+    <div class="ed-sec__grid" id="about-intro">
+      <div class="ed-sec__form">
+        <div class="m-card">
+          <h3 class="m-card__title">محتوى المقدمة</h3>
+          {% include "manage/_bi.html" with ar=intro.intro_eyebrow_ar en=intro.intro_eyebrow_en base="سطر علوي" pv="eyebrow" %}
+          {% include "manage/_bi.html" with ar=intro.intro_title_ar en=intro.intro_title_en base="العنوان" pv="title" %}
+          {% include "manage/_bi.html" with ar=intro.intro_lead_ar en=intro.intro_lead_en base="المقدمة" pv="lead" %}
+          {% include "manage/_bi.html" with ar=intro.intro_bullets_ar en=intro.intro_bullets_en base="النقاط (سطر لكل نقطة)" %}
+          {% include "manage/_bi.html" with ar=intro.intro_cta_ar en=intro.intro_cta_en base="نص الزر" %}
+          <div class="f-row f-row--full" style="margin-bottom:13px">
+            <label class="f-lbl">{% icon 'link' size=14 %} وجهة الزر — اختر الصفحة اللي يروحها الزائر عند الضغط</label>
+            {{ intro.intro_cta_href }}
+          </div>
+          {% include "manage/_dropbox.html" with field=intro.intro_image label="صورة المقدمة" pv="about-intro-img" %}
+        </div>
+      </div>
+      <div class="ed-sec__pv">
+        <div class="pv"><span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+          <div class="pv__stage"><div class="hpv">
+            <div>
+              <div class="hpv__eyebrow" data-pv-out="eyebrow">{{ intro.intro_eyebrow_ar.value|default:'' }}</div>
+              <h3 class="hpv__title" data-pv-out="title">{{ intro.intro_title_ar.value|default:'' }}</h3>
+              <p class="hpv__lead" data-pv-out="lead">{{ intro.intro_lead_ar.value|default:'' }}</p>
+              <ul class="hpv__bullets" id="about-intro-bul"></ul>
+              <a class="hpv__btn" id="about-intro-btn"{% if not intro.intro_cta_ar.value %} style="display:none"{% endif %}><span data-pv-out="cta">{{ intro.intro_cta_ar.value|default:'' }}</span><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="transform:scaleX(-1)"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg></a>
+            </div>
+            <img class="hpv__img" id="about-intro-img" src="{% if intro.instance.intro_image %}{{ intro.instance.intro_image.url }}{% endif %}" alt="">
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# ===== Facts ===== #}
+  <section class="ed-sec" data-editor="facts">
+    <h2 class="ed-sec__title">الأرقام والحقائق <span class="cnt">{{ facts.total_form_count }}</span></h2>
+    <div class="ed-sec__grid">
+      <div class="ed-sec__form"><div class="m-card">
+        <h3 class="m-card__title">الأرقام</h3>
+        <p class="m-card__hint">«القيمة» رقم، «اللاحقة» مثل + أو %، و«الوصف» يشرح الرقم.</p>
+        {% include "manage/_cards_facts.html" with items=facts %}
+      </div></div>
+      <div class="ed-sec__pv"><div class="pv pv--facts">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage"><div class="pv-grid" data-pv-grid></div>
+          <div class="pv__empty" data-pv-empty>أضف رقماً لتظهر المعاينة.</div></div>
+      </div></div>
+    </div>
+  </section>
+
+  {# ===== Guiding / Principles / HSE ===== #}
+  {% for g in groups %}
+  <section class="ed-sec" data-editor="guiding">
+    <h2 class="ed-sec__title">{{ g.label }} <span class="cnt">{{ g.items.total_form_count }}</span></h2>
+    <div class="ed-sec__grid">
+      <div class="ed-sec__form">
+        <div class="m-card">
+          <h3 class="m-card__title">عنوان القسم</h3>
+          {% if g.key == 'guiding' %}
+            {% include "manage/_bi.html" with ar=g.head.guiding_eyebrow_ar en=g.head.guiding_eyebrow_en base="سطر علوي" pv="eyebrow" %}
+            {% include "manage/_bi.html" with ar=g.head.guiding_heading_ar en=g.head.guiding_heading_en base="العنوان" pv="title" %}
+          {% elif g.key == 'principles' %}
+            {% include "manage/_bi.html" with ar=g.head.principles_eyebrow_ar en=g.head.principles_eyebrow_en base="سطر علوي" pv="eyebrow" %}
+            {% include "manage/_bi.html" with ar=g.head.principles_heading_ar en=g.head.principles_heading_en base="العنوان" pv="title" %}
+            {% include "manage/_bi.html" with ar=g.head.principles_subtitle_ar en=g.head.principles_subtitle_en base="الوصف" %}
+          {% elif g.key == 'hse' %}
+            {% include "manage/_bi.html" with ar=g.head.hse_eyebrow_ar en=g.head.hse_eyebrow_en base="سطر علوي" pv="eyebrow" %}
+            {% include "manage/_bi.html" with ar=g.head.hse_heading_ar en=g.head.hse_heading_en base="العنوان" pv="title" %}
+            {% include "manage/_bi.html" with ar=g.head.hse_subtitle_ar en=g.head.hse_subtitle_en base="الوصف" %}
+          {% endif %}
+        </div>
+        <div class="m-card">
+          <h3 class="m-card__title">العناصر</h3>
+          <p class="m-card__hint">الأيقونة: eye، target، handshake، award، shield، drop، check، star، globe، building، layers.</p>
+          {% include "manage/_cards_guiding.html" with items=g.items %}
+        </div>
+      </div>
+      <div class="ed-sec__pv"><div class="pv pv--guiding">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage">
+          <div class="pv__head"><div class="pv__eyebrow" data-pv-out="eyebrow"></div><h3 class="pv__title" data-pv-out="title"></h3></div>
+          <div class="pv-grid" data-pv-grid></div>
+          <div class="pv__empty" data-pv-empty>أضف عنصراً لتظهر المعاينة.</div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+  {% endfor %}
+  </div>{# /content panel #}
+
+  <div class="a-tabpanel" data-tabpanel="seo">
+    <div class="m-card">
+      <h3 class="m-card__title">إعدادات SEO</h3>
+      <p class="m-card__hint">تظهر في نتائج البحث ومشاركة الروابط. اختيارية.</p>
+      {% include "manage/_bi.html" with ar=intro.seo_title_ar en=intro.seo_title_en base="عنوان SEO" %}
+      {% include "manage/_bi.html" with ar=intro.seo_description_ar en=intro.seo_description_en base="وصف SEO" %}
+      <div class="f-row f-row--full"><label class="f-lbl">صورة SEO (مسار)</label>{{ intro.seo_image }}</div>
+    </div>
+  </div>{# /seo panel #}
+
+  <div class="m-savebar">
+    <span class="m-savebar__note">كل التعديلات في الصفحة تُحفظ معاً</span>
+    <a class="btnm btnm--ghost" href="{{ request.path }}" data-confirm="تجاهل كل التعديلات غير المحفوظة على هذه الصفحة؟">{% icon 'discard' size=16 %} تجاهل التغييرات</a>
+    <button class="btnm" type="submit">{% icon 'save' size=16 %} حفظ كل التغييرات</button>
+  </div>
+</form>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/manage_cards.js' %}"></script>
+<script>
+(function(){
+  var f=document.getElementById('about-intro'); if(!f)return;
+  function q(s){return f.querySelector('[name$="-'+s+'"]');}
+  [['intro_eyebrow_ar','eyebrow'],['intro_title_ar','title'],['intro_lead_ar','lead']].forEach(function(p){
+    var i=q(p[0]),o=f.querySelector('[data-pv-out="'+p[1]+'"]'); if(i&&o)i.addEventListener('input',function(){o.textContent=i.value;});
+  });
+  var bt=q('intro_bullets_ar'),bl=document.getElementById('about-intro-bul');
+  function bul(){if(!bt||!bl)return;bl.innerHTML='';bt.value.split('\n').map(function(s){return s.trim();}).filter(Boolean).forEach(function(s){var li=document.createElement('li');li.textContent=s;bl.appendChild(li);});}
+  if(bt){bt.addEventListener('input',bul);bul();}
+  // CTA button: mirror label into the preview button; hide it when empty.
+  var ci=q('intro_cta_ar'),cbt=f.querySelector('[data-pv-out="cta"]'),cbx=document.getElementById('about-intro-btn');
+  function cta(){var v=ci?ci.value.trim():'';if(cbt)cbt.textContent=v;if(cbx)cbx.style.display=v?'':'none';}
+  if(ci){ci.addEventListener('input',cta);cta();}
+})();
+</script>{% endblock %}

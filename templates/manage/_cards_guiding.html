@@ -1,0 +1,66 @@
+{% comment %}Reusable icon+title+text card grid. Pass `items` = formset (data-editor="guiding").{% endcomment %}{% load cms_extras %}
+{% load static %}
+<div data-cards data-prefix="{{ items.prefix }}">
+  {{ items.management_form }}
+  {% for e in items.non_form_errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+  <div class="pcards" data-cardlist style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">
+    {% for form in items %}
+      <div class="pcard" data-card>
+        <div class="pcard__move"><button type="button" data-move="up" title="تحريك لأعلى"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button><button type="button" data-move="down" title="تحريك لأسفل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button></div>
+        <button type="button" class="pcard__del" data-del title="حذف">{% icon 'trash' size=15 %}</button>
+        {% for h in form.hidden_fields %}{{ h }}{% endfor %}
+        <div class="pcard__fields">
+          <div>
+            <span class="pcard__lab">الأيقونة</span>
+            <div class="iconctl" data-icon data-icon-name="{{ form.icon.value|default:'' }}">
+              <span class="iconctl__cur">
+                {% if form.instance.icon_image %}<img src="{{ form.instance.icon_image.url }}" alt="">
+                {% elif form.icon.value %}<svg><use href="{% static 'icons/sprite.svg' %}#i-{{ form.icon.value }}"></use></svg>
+                {% else %}<svg><use href="{% static 'icons/sprite.svg' %}#i-star"></use></svg>{% endif %}
+              </span>
+              <label class="dropbox" data-dropbox style="min-height:56px"><span class="dropbox__t"><b>＋</b>ارفع أيقونة<small>PNG · SVG · JPG · WEBP</small></span>{{ form.icon_image }}</label>
+            </div>
+            <span data-f="icon" style="display:none">{{ form.icon }}</span>
+          </div>
+          <div class="f-bi">
+            <div class="f-row" data-f="title"><span class="pcard__lab">العنوان (ع)</span>{{ form.title_ar }}</div>
+            <div class="f-row"><span class="pcard__lab">العنوان (EN)</span>{{ form.title_en }}</div>
+          </div>
+          <div class="f-bi">
+            <div class="f-row" data-f="text"><span class="pcard__lab">النص (ع)</span>{{ form.text_ar }}</div>
+            <div class="f-row"><span class="pcard__lab">النص (EN)</span>{{ form.text_en }}</div>
+          </div>
+          <span style="display:none">{{ form.DELETE }}</span>
+          {% for e in form.errors.values %}<div class="f-err">{{ e|striptags }}</div>{% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <template data-empty>
+    <div class="pcard" data-card>
+      <div class="pcard__move"><button type="button" data-move="up" title="تحريك لأعلى"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button><button type="button" data-move="down" title="تحريك لأسفل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button></div>
+      <button type="button" class="pcard__del" data-del title="حذف">{% icon 'trash' size=15 %}</button>
+      {% for h in items.empty_form.hidden_fields %}{{ h }}{% endfor %}
+      <div class="pcard__fields">
+        <div>
+          <span class="pcard__lab">الأيقونة</span>
+          <div class="iconctl" data-icon data-icon-name="">
+            <span class="iconctl__cur"><svg><use href="{% static 'icons/sprite.svg' %}#i-star"></use></svg></span>
+            <label class="dropbox" data-dropbox style="min-height:56px"><span class="dropbox__t"><b>＋</b>ارفع أيقونة<small>PNG · SVG · JPG · WEBP</small></span>{{ items.empty_form.icon_image }}</label>
+          </div>
+          <span data-f="icon" style="display:none">{{ items.empty_form.icon }}</span>
+        </div>
+        <div class="f-bi">
+          <div class="f-row" data-f="title"><span class="pcard__lab">العنوان (ع)</span>{{ items.empty_form.title_ar }}</div>
+          <div class="f-row"><span class="pcard__lab">العنوان (EN)</span>{{ items.empty_form.title_en }}</div>
+        </div>
+        <div class="f-bi">
+          <div class="f-row" data-f="text"><span class="pcard__lab">النص (ع)</span>{{ items.empty_form.text_ar }}</div>
+          <div class="f-row"><span class="pcard__lab">النص (EN)</span>{{ items.empty_form.text_en }}</div>
+        </div>
+        <span style="display:none">{{ items.empty_form.DELETE }}</span>
+      </div>
+    </div>
+  </template>
+</div>
+<button type="button" class="btnm btnm--ghost btnm--sm card-add" data-add>＋ أضف عنصراً</button>

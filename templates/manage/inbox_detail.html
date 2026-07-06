@@ -1,0 +1,31 @@
+{% extends "manage/base.html" %}
+{% block title %}رسالة من {{ msg.name }}{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:inbox' %}">صندوق الوارد</a> / {{ msg.name }}</div>
+<div class="m-top">
+  <h1 class="m-h1">رسالة من {{ msg.name }}</h1>
+  <a class="btnm btnm--ghost btnm--sm" href="{% url 'cms:inbox' %}">‹ رجوع للصندوق</a>
+</div>
+
+<div class="m-card" data-no-collapse>
+  <div class="f-grid">
+    <div class="f-row"><span class="f-lbl">الاسم</span><div>{{ msg.name }}</div></div>
+    <div class="f-row"><span class="f-lbl">البريد الإلكتروني</span><div><a dir="ltr" href="mailto:{{ msg.email }}">{{ msg.email }}</a></div></div>
+    <div class="f-row"><span class="f-lbl">الهاتف</span><div class="num" dir="ltr">{{ msg.phone|default:"—" }}</div></div>
+    <div class="f-row"><span class="f-lbl">الشركة</span><div>{{ msg.company|default:"—" }}</div></div>
+    <div class="f-row f-row--full"><span class="f-lbl">الموضوع</span><div>{{ msg.subjects|default:"استفسار عام" }}</div></div>
+    <div class="f-row f-row--full"><span class="f-lbl">التاريخ</span><div class="num" dir="ltr">{{ msg.created_at|date:"Y/m/d — H:i" }}</div></div>
+  </div>
+</div>
+
+<div class="m-card" data-no-collapse>
+  <h2 class="m-card__title">نص الرسالة</h2>
+  <p style="white-space:pre-wrap;line-height:1.9;color:var(--ink)">{{ msg.message }}</p>
+</div>
+
+<div class="m-actions">
+  <a class="btnm" href="mailto:{{ msg.email }}?subject=رد على استفسارك — مجموعة APS">✉️ الرد عبر البريد</a>
+  <form method="post" action="" style="display:inline"><input type="hidden" name="action" value="unread">{% csrf_token %}<button class="btnm btnm--ghost" type="submit">وضع علامة غير مقروءة</button></form>
+  <form method="post" action="" style="display:inline">{% csrf_token %}<button class="btnm btnm--danger" type="submit" name="action" value="delete" data-confirm="حذف هذه الرسالة نهائياً؟">حذف</button></form>
+</div>
+{% endblock %}

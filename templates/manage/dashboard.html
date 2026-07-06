@@ -1,0 +1,108 @@
+{% extends "manage/base.html" %}
+{% load cms_extras %}
+{% block title %}الرئيسية{% endblock %}
+{% block content %}
+
+{# keeps the topbar breadcrumb reading "… / الرئيسية" (hidden by base JS) #}
+<div class="m-top"><div class="m-h1">الرئيسية</div></div>
+
+{# ---- Greeting ---- #}
+<section class="dash-hero">
+  <h1 class="dash-hero__title">
+    {% if request.user.get_full_name %}مرحباً بعودتك، {{ request.user.get_full_name }}{% else %}مرحباً بك{% endif %} 👋
+  </h1>
+  <p class="dash-hero__sub">هذه لوحة تحكّم محتوى موقع مجموعة APS. اختر ما تريد تعديله.</p>
+</section>
+
+{# ---- 4 page cards (with last-updated) ---- #}
+<div class="dash-cards">
+  {% for p in pages %}
+    <a class="dash-card" href="{% url p.urlname %}">
+      <div class="dash-card__ic">{% icon p.icon size=22 %}</div>
+      <div class="dash-card__t">{{ p.label }}</div>
+      <div class="dash-card__d">{{ p.desc }}</div>
+      <div class="dash-card__meta">
+        {% icon 'clock' size=13 %}
+        <span>آخر تحديث: {% if p.updated %}{{ p.updated|date:"Y/m/d" }}{% else %}—{% endif %}</span>
+      </div>
+    </a>
+  {% endfor %}
+</div>
+
+{# ---- Inbox row ---- #}
+<div class="dash-inbox">
+  <div class="dash-inbox__ic">{% icon 'inbox' size=26 %}</div>
+  <div class="dash-inbox__body">
+    <div class="dash-inbox__t">صندوق الوارد</div>
+    <div class="dash-inbox__stats">
+      <span class="dash-stat"><b class="num">{{ inbox_total }}</b> رسالة</span>
+      <span class="dash-sep"></span>
+      <span class="dash-stat dash-stat--new"><b class="num">{{ inbox_new }}</b> جديدة</span>
+    </div>
+  </div>
+  <a class="btnm" href="{% url 'cms:inbox' %}">
+    فتح صندوق الوارد {% icon 'chevrons-left' size=16 %}
+  </a>
+</div>
+
+{# ---- Companies (8) + identity brief (4) ---- #}
+<div class="dash-grid">
+  <div class="m-card dash-col">
+    <div class="dash-col__head">
+      <h2 class="m-card__title">مجموعة الشركات <span class="badge badge--ok">{{ company_count }}</span></h2>
+      <a class="btnm btnm--ghost btnm--sm" href="{% url 'cms:companies' %}">إدارة الشركات</a>
+    </div>
+    <table class="m-table dash-table">
+      <thead>
+        <tr><th>الشركة</th><th>الحالة</th><th>آخر تحديث</th><th></th></tr>
+      </thead>
+      <tbody>
+        {% for c in companies %}
+          <tr>
+            <td class="dash-table__name">{{ c.name_ar }}</td>
+            <td>{% if c.is_published %}<span class="badge badge--ok">منشورة</span>{% else %}<span class="badge badge--off">مخفية</span>{% endif %}</td>
+            <td class="num dash-table__date">{% if c.last_updated %}{{ c.last_updated|date:"Y/m/d" }}{% else %}—{% endif %}</td>
+            <td class="dash-table__go">
+              <a href="{% url 'cms:company_edit' c.slug %}" title="تعديل الشركة" aria-label="تعديل {{ c.name_ar }}">{% icon 'chevrons-left' size=16 %}</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="m-card dash-col">
+    <div class="dash-col__head">
+      <h2 class="m-card__title">بيانات التواصل</h2>
+      <a class="btnm btnm--ghost btnm--sm" href="{% url 'cms:settings' %}">تعديل الهوية</a>
+    </div>
+    {% if group %}
+      <ul class="dash-contact">
+        <li>
+          <span class="dash-contact__ic">{% icon 'phone' size=16 %}</span>
+          <span class="dash-contact__k">الهاتف</span>
+          <span class="dash-contact__v num" dir="ltr">{{ group.phone|default:"—" }}</span>
+        </li>
+        <li>
+          <span class="dash-contact__ic">{% icon 'mail' size=16 %}</span>
+          <span class="dash-contact__k">البريد الإلكتروني</span>
+          <span class="dash-contact__v" dir="ltr">{{ group.email|default:"—" }}</span>
+        </li>
+        <li>
+          <span class="dash-contact__ic">{% icon 'external' size=16 %}</span>
+          <span class="dash-contact__k">الموقع الإلكتروني</span>
+          <span class="dash-contact__v" dir="ltr">{{ group.website|default:"—" }}</span>
+        </li>
+        <li>
+          <span class="dash-contact__ic">{% icon 'id' size=16 %}</span>
+          <span class="dash-contact__k">الموقع الجغرافي</span>
+          <span class="dash-contact__v">{{ group.location_ar|default:"—" }}</span>
+        </li>
+      </ul>
+    {% else %}
+      <p class="m-card__hint">لم تُضبط بيانات الهوية بعد.</p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

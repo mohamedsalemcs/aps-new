@@ -1,0 +1,76 @@
+{% extends "manage/base.html" %}
+{% load static %}
+{% block title %}{{ group_label }} — من نحن{% endblock %}
+{% block content %}
+<div class="m-crumb"><a href="{% url 'cms:about' %}">صفحة من نحن</a> / {{ group_label }}</div>
+<div class="m-top">
+  <h1 class="m-h1">{{ group_label }}</h1>
+  <a class="btnm btnm--ghost btnm--sm" href="/about/" target="_blank">معاينة على الموقع ↗</a>
+</div>
+
+<form method="post" action="" data-editor="guiding">
+  {% csrf_token %}
+  <div class="m-card">
+    <h2 class="m-card__title">العناصر</h2>
+    <p class="m-card__hint">الأيقونة: معرّف جاهز مثل eye، target، handshake، award، shield، drop، check، star، globe، building، layers.</p>
+    <div data-cards data-prefix="{{ items.prefix }}">
+      {{ items.management_form }}
+      {% for e in items.non_form_errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+      <div class="pcards" data-cardlist style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+        {% for form in items %}
+          <div class="pcard" data-card>
+            <span class="pcard__idx num">{{ forloop.counter }}</span>
+            <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+            {% for h in form.hidden_fields %}{{ h }}{% endfor %}
+            <div class="pcard__fields">
+              <div data-f="icon"><span class="pcard__lab">الأيقونة</span>{{ form.icon }}</div>
+              <div data-f="title"><span class="pcard__lab">العنوان</span>{{ form.title_ar }}</div>
+              <div data-f="text"><span class="pcard__lab">النص</span>{{ form.text_ar }}</div>
+              <details class="pcard__en"><summary>الإنجليزية (اختياري)</summary>
+                <input type="text" placeholder="Title (EN)" class="f-in" name="{{ form.title_en.html_name }}" value="{{ form.title_en.value|default:'' }}">
+                <textarea placeholder="Text (EN)" class="f-in" rows="2" name="{{ form.text_en.html_name }}">{{ form.text_en.value|default:'' }}</textarea>
+              </details>
+              <span style="display:none">{{ form.DELETE }}</span>
+              {% for e in form.errors.values %}<div class="f-err">{{ e|striptags }}</div>{% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <template data-empty>
+        <div class="pcard" data-card>
+          <span class="pcard__idx num">+</span>
+          <button type="button" class="pcard__del" data-del title="حذف">🗑</button>
+          {% for h in items.empty_form.hidden_fields %}{{ h }}{% endfor %}
+          <div class="pcard__fields">
+            <div data-f="icon"><span class="pcard__lab">الأيقونة</span>{{ items.empty_form.icon }}</div>
+            <div data-f="title"><span class="pcard__lab">العنوان</span>{{ items.empty_form.title_ar }}</div>
+            <div data-f="text"><span class="pcard__lab">النص</span>{{ items.empty_form.text_ar }}</div>
+            <details class="pcard__en"><summary>الإنجليزية (اختياري)</summary>
+              <input type="text" placeholder="Title (EN)" class="f-in" name="{{ items.empty_form.title_en.html_name }}">
+              <textarea placeholder="Text (EN)" class="f-in" rows="2" name="{{ items.empty_form.text_en.html_name }}"></textarea>
+            </details>
+            <span style="display:none">{{ items.empty_form.DELETE }}</span>
+          </div>
+        </div>
+      </template>
+    </div>
+    <div class="pcards" style="margin-top:16px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+      <div class="pcard pcard--add" data-add><span class="big">＋</span><span>أضف عنصراً</span></div>
+    </div>
+  </div>
+
+  <div class="pv pv--guiding">
+    <span class="pv__tag">👁 معاينة كما ستظهر على الموقع</span>
+    <div class="pv__stage">
+      <div class="pv-grid" data-pv-grid></div>
+      <div class="pv__empty" data-pv-empty>أضف عنصراً لتظهر المعاينة هنا.</div>
+    </div>
+  </div>
+
+  <div class="m-actions">
+    <button class="btnm" type="submit">💾 حفظ العناصر</button>
+    <a class="btnm btnm--ghost" href="{% url 'cms:about' %}">رجوع لصفحة من نحن</a>
+  </div>
+</form>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/manage_cards.js' %}"></script>{% endblock %}

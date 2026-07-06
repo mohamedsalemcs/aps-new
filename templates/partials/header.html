@@ -1,0 +1,95 @@
+{% load static i18n %}{% get_current_language as LANG %}
+<header class="site-header is-top" data-header>
+  <div class="site-header__inner container-wide">
+    <a class="brand" href="{{ lang_prefix }}/" aria-label="{% trans 'مجموعة APS، الصفحة الرئيسية' %}">
+      <img src="{{ group.logo|default:'/static/logos/aps-logo.png' }}" alt="{% trans 'مجموعة APS' %}" width="180" height="69" class="brand__logo">
+    </a>
+
+    <nav class="main-nav" aria-label="{% trans 'القائمة الرئيسية' %}">
+      <ul class="main-nav__list">
+        {% for item in nav %}
+          {% if item.dropdown %}
+            <li class="main-nav__item has-dropdown" data-dropdown>
+              <a class="main-nav__link" href="{{ lang_prefix }}{{ item.href }}">{{ item.label }}
+                <svg class="main-nav__caret icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-chevron"></use></svg></a>
+              <div class="dropdown">
+                <ul class="dropdown__list">
+                  {% for s in subsidiaries %}
+                    <li><a class="dropdown__link" href="{{ lang_prefix }}/companies/{{ s.slug }}/">
+                      <span class="dropdown__name">{{ s.name }}</span>
+                      <span class="dropdown__sector">{{ s.sector }}</span>
+                    </a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </li>
+          {% else %}
+            <li><a class="main-nav__link" href="{{ lang_prefix }}{{ item.href }}">{{ item.label }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="{% trans 'تبديل اللغة' %}">
+        {% if LANG == 'ar' %}
+          <span class="lang-switch__active">ع</span>
+          <form class="lang-switch__form" action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="language" value="en">
+            <input type="hidden" name="next" value="{{ url_en }}">
+            <button type="submit" hreflang="en" aria-label="English">EN</button>
+          </form>
+        {% else %}
+          <form class="lang-switch__form" action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="language" value="ar">
+            <input type="hidden" name="next" value="{{ url_ar }}">
+            <button type="submit" hreflang="ar" aria-label="العربية">ع</button>
+          </form>
+          <span class="lang-switch__active">EN</span>
+        {% endif %}
+      </div>
+
+      <a class="btn btn--primary header-cta" href="{{ lang_prefix }}/contact/">
+        {% trans "تواصل معنا" %}
+        <svg class="icon icon--flip" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg>
+      </a>
+
+      <button class="menu-toggle" data-menu-toggle aria-label="{% trans 'فتح القائمة' %}" aria-expanded="false">
+        <svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-menu"></use></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div class="drawer" data-drawer aria-hidden="true">
+  <div class="drawer__panel">
+    <div class="drawer__head">
+      <img src="{{ group.logo|default:'/static/logos/aps-logo.png' }}" alt="{% trans 'مجموعة APS' %}" width="150" height="57">
+      <button class="menu-toggle" data-menu-close aria-label="{% trans 'إغلاق القائمة' %}">
+        <svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-close"></use></svg>
+      </button>
+    </div>
+    <nav aria-label="{% trans 'قائمة الجوال' %}">
+      <ul class="drawer__list">
+        {% for item in nav %}
+          <li>
+            <a href="{{ lang_prefix }}{{ item.href }}" data-drawer-link>{{ item.label }}</a>
+            {% if item.dropdown %}
+              <ul class="drawer__sublist">
+                {% for s in subsidiaries %}
+                  <li><a href="{{ lang_prefix }}/companies/{{ s.slug }}/" data-drawer-link>{{ s.name }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <a class="btn btn--primary drawer__cta" href="{{ lang_prefix }}/contact/" data-drawer-link>{% trans "تواصل معنا" %}</a>
+    <a class="drawer__phone num" dir="ltr" href="tel:{{ group.phone|cut:' ' }}">{{ group.phone }}</a>
+  </div>
+  <div class="drawer__scrim" data-menu-close></div>
+</div>

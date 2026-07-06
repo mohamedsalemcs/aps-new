@@ -1,0 +1,317 @@
+{% extends "manage/base.html" %}
+{% load static cms_extras %}
+{% block title %}{% if company %}تعديل: {{ company.name_ar }}{% else %}إضافة شركة{% endif %}{% endblock %}
+{% block content %}
+<div class="m-top m-top--keep">
+  <div class="m-top__head">
+    <h1 class="m-h1">{% if company %}تعديل شركة: {{ company.name_ar }}{% else %}إضافة شركة جديدة{% endif %}</h1>
+    <div class="m-crumb m-crumb--under"><a href="{% url 'cms:dashboard' %}">الرئيسية</a> / <a href="{% url 'cms:companies' %}">قائمة الشركات</a> / {% if company %}{{ company.name_ar }}{% else %}إضافة شركة{% endif %}</div>
+  </div>
+  {% if company %}<a class="btnm btnm--ghost btnm--sm" href="/companies/{{ company.slug }}/" target="_blank">معاينة على الموقع {% icon 'external' size=14 %}</a>{% endif %}
+</div>
+
+{% if not company %}<div class="m-note">{% icon 'info' size=16 %} أنشئ الشركة أولاً، وبعد الحفظ تظهر بقية الأقسام (الأرقام، المبادئ، الأنظمة، دورة الحياة، المشاريع، الشركاء، التواصل) بترتيب ظهورها على الموقع.</div>{% endif %}
+
+<form method="post" enctype="multipart/form-data" action="">
+  {% csrf_token %}
+
+  {# ---- Publish toggle (admin only, not a site section) ---- #}
+  <div class="co-pub">
+    <label class="f-inline-check">{{ form.is_published }}<span>منشورة</span></label>
+    <span class="co-pub__note">{% icon 'info' size=14 %} عند إلغاء التحديد تُخفى الشركة من الموقع — إعداد إداري لا يظهر على الموقع</span>
+  </div>
+
+  {# ===== 1. Identity + Hero ===== #}
+  <section class="ed-sec">
+    <h2 class="ed-sec__title">الهوية والواجهة</h2>
+    <div class="ed-sec__grid" id="co-hero">
+      <div class="ed-sec__form">
+        <div class="m-card">
+          <h3 class="m-card__title">المحتوى</h3>
+          {% include "manage/_bi.html" with ar=form.name_ar en=form.name_en base="اسم الشركة" pv="name" %}
+          {% include "manage/_bi.html" with ar=form.eyebrow_ar en=form.eyebrow_en base="العنوان الفرعي" pv="eyebrow" %}
+          {% include "manage/_bi.html" with ar=form.sector_ar en=form.sector_en base="القطاع" pv="sector" %}
+        </div>
+        <div class="m-card">
+          <h3 class="m-card__title">الواجهة (Hero)</h3>
+          {% include "manage/_dropbox.html" with field=form.logo label="شعار الشركة" %}
+          {% include "manage/_dropbox.html" with field=form.hero_image label="صورة الواجهة" %}
+        </div>
+      </div>
+      <div class="ed-sec__pv"><div class="pv">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage"><div class="hpv">
+          <div>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+              <img id="co-logo" class="cpv-logo" src="{% if company.logo %}{{ company.logo.url }}{% endif %}" alt=""{% if not company.logo %} style="display:none"{% endif %}>
+              <span class="hpv__eyebrow" data-pv-out="eyebrow">{{ form.eyebrow_ar.value|default:'' }}</span>
+            </div>
+            <h3 class="hpv__title" data-pv-out="name">{{ form.name_ar.value|default:'' }}</h3>
+            <div class="cpv-sector" data-pv-out="sector">{{ form.sector_ar.value|default:'' }}</div>
+          </div>
+          <img class="hpv__img" id="co-heroimg" src="{% if company.hero_image %}{{ company.hero_image.url }}{% endif %}" alt=""{% if not company.hero_image %} style="display:none"{% endif %}>
+        </div></div>
+      </div></div>
+    </div>
+  </section>
+
+  {# ===== 2. About ===== #}
+  <section class="ed-sec">
+    <h2 class="ed-sec__title">النبذة</h2>
+    <div class="ed-sec__grid" id="co-about">
+      <div class="ed-sec__form"><div class="m-card">
+        <h3 class="m-card__title">نبذة الشركة</h3>
+        <p class="m-card__hint">النقاط: اكتب نقطة واحدة في كل سطر.</p>
+        {% include "manage/_bi.html" with ar=form.about_paragraph_ar en=form.about_paragraph_en base="النبذة" pv="lead" %}
+        {% include "manage/_bi.html" with ar=form.about_bullets_ar en=form.about_bullets_en base="النقاط (سطر لكل نقطة)" %}
+        {% include "manage/_bi.html" with ar=form.hero_cta_ar en=form.hero_cta_en base="نص الزر" %}
+        <div class="f-row f-row--full"><label class="f-lbl">{% icon 'link' size=14 %} وجهة الزر</label>{{ form.hero_cta_href }}</div>
+      </div></div>
+      <div class="ed-sec__pv"><div class="pv">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage">
+          <p class="hpv__lead" data-pv-out="lead">{{ form.about_paragraph_ar.value|default:'' }}</p>
+          <ul class="hpv__bullets" id="co-bullets"></ul>
+          <span class="cpv-cta" id="co-cta">{{ form.hero_cta_ar.value|default:'' }}</span>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  {% if company %}
+  {# ===== 3. Facts ===== #}
+  <section class="ed-sec" data-editor="facts">
+    <h2 class="ed-sec__title">الأرقام والحقائق <span class="cnt">{{ facts.total_form_count }}</span></h2>
+    <div class="ed-sec__grid">
+      <div class="ed-sec__form"><div class="m-card">
+        <h3 class="m-card__title">الأرقام</h3>
+        {% include "manage/_cards_facts.html" with items=facts %}
+      </div></div>
+      <div class="ed-sec__pv"><div class="pv pv--facts">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage"><div class="pv-grid" data-pv-grid></div>
+          <div class="pv__empty" data-pv-empty>أضف رقماً لتظهر المعاينة.</div></div>
+      </div></div>
+    </div>
+  </section>
+
+  {# ===== 4. Guiding ===== #}
+  <section class="ed-sec" data-editor="guiding">
+    <h2 class="ed-sec__title">المبادئ التوجيهية <span class="cnt">{{ gd_items.total_form_count }}</span></h2>
+    <div class="ed-sec__grid">
+      <div class="ed-sec__form">
+        <div class="m-card">
+          <h3 class="m-card__title">عنوان القسم</h3>
+          {% include "manage/_bi.html" with ar=gd_form.eyebrow_ar en=gd_form.eyebrow_en base="سطر علوي" pv="eyebrow" %}
+          {% include "manage/_bi.html" with ar=gd_form.heading_ar en=gd_form.heading_en base="العنوان" pv="title" %}
+        </div>
+        <div class="m-card">
+          <h3 class="m-card__title">العناصر</h3>
+          {% include "manage/_cards_guiding.html" with items=gd_items %}
+        </div>
+      </div>
+      <div class="ed-sec__pv"><div class="pv pv--guiding">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage">
+          <div class="pv__head"><div class="pv__eyebrow" data-pv-out="eyebrow"></div><h3 class="pv__title" data-pv-out="title"></h3></div>
+          <div class="pv-grid" data-pv-grid></div>
+          <div class="pv__empty" data-pv-empty>أضف عنصراً لتظهر المعاينة.</div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  {# ===== 5. Systems ===== #}
+  <section class="ed-sec" data-editor="systems">
+    <h2 class="ed-sec__title">الأنظمة والحلول <span class="cnt">{{ sys_items.total_form_count }}</span></h2>
+    <div class="ed-sec__grid">
+      <div class="ed-sec__form">
+        <div class="m-card">
+          <h3 class="m-card__title">عنوان القسم</h3>
+          <div class="f-row f-row--full"><label class="f-lbl">نمط العرض</label>{{ sys_form.mode }}</div>
+          {% include "manage/_bi.html" with ar=sys_form.eyebrow_ar en=sys_form.eyebrow_en base="سطر علوي" pv="eyebrow" %}
+          {% include "manage/_bi.html" with ar=sys_form.heading_ar en=sys_form.heading_en base="العنوان" pv="title" %}
+          {% include "manage/_bi.html" with ar=sys_form.subtitle_ar en=sys_form.subtitle_en base="الوصف" pv="sub" %}
+        </div>
+        <div class="m-card">
+          <h3 class="m-card__title">العناصر</h3>
+          {% include "manage/_cards_sysitems.html" with items=sys_items %}
+        </div>
+      </div>
+      <div class="ed-sec__pv"><div class="pv pv--systems">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage">
+          <div class="pv__head"><div class="pv__eyebrow" data-pv-out="eyebrow"></div><h3 class="pv__title" data-pv-out="title"></h3><p class="pv__sub" data-pv-out="sub"></p></div>
+          <div class="pv-grid" data-pv-grid></div>
+          <div class="pv__empty" data-pv-empty>أضف عنصراً لتظهر المعاينة.</div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  {# ===== 5b. System tabs (only used in "tabs" mode) ===== #}
+  <section class="ed-sec" data-editor="guiding">
+    <h2 class="ed-sec__title">تبويبات الأنظمة <span class="cnt">{{ tabs.total_form_count }}</span></h2>
+    <div class="ed-sec__grid">
+      <div class="ed-sec__form"><div class="m-card">
+        <h3 class="m-card__title">التبويبات</h3>
+        <p class="m-card__hint">تُستخدم فقط عندما يكون نمط العرض «تبويبات». بعد إضافة تبويب، احفظ لتربط العناصر به.</p>
+        {% include "manage/_cards_systabs.html" with items=tabs %}
+      </div></div>
+      <div class="ed-sec__pv"><div class="pv pv--guiding">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage"><div class="pv-grid" data-pv-grid></div>
+          <div class="pv__empty" data-pv-empty>أضف تبويباً لتظهر المعاينة.</div></div>
+      </div></div>
+    </div>
+  </section>
+
+  {# ===== 6. Lifecycle ===== #}
+  <section class="ed-sec" data-editor="lifecycle">
+    <h2 class="ed-sec__title">دورة حياة المشروع <span class="cnt">{{ phases.total_form_count }}</span></h2>
+    <div class="ed-sec__grid">
+      <div class="ed-sec__form">
+        <div class="m-card">
+          <h3 class="m-card__title">عنوان القسم</h3>
+          {% include "manage/_bi.html" with ar=lc_form.eyebrow_ar en=lc_form.eyebrow_en base="سطر علوي" pv="eyebrow" %}
+          {% include "manage/_bi.html" with ar=lc_form.heading_ar en=lc_form.heading_en base="العنوان" pv="title" %}
+          {% include "manage/_bi.html" with ar=lc_form.subtitle_ar en=lc_form.subtitle_en base="الوصف" pv="sub" %}
+        </div>
+        <div class="m-card">
+          <h3 class="m-card__title">المراحل</h3>
+          {% include "manage/_cards_phases.html" with items=phases %}
+        </div>
+      </div>
+      <div class="ed-sec__pv"><div class="pv pv--lifecycle">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage">
+          <div class="pv__head"><div class="pv__eyebrow" data-pv-out="eyebrow"></div><h3 class="pv__title" data-pv-out="title"></h3><p class="pv__sub" data-pv-out="sub"></p></div>
+          <div class="pv-grid" data-pv-grid></div>
+          <div class="pv__empty" data-pv-empty>أضف مرحلة لتظهر المعاينة.</div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  {# ===== 7. Projects ===== #}
+  <section class="ed-sec" data-editor="projects">
+    <h2 class="ed-sec__title">المشاريع <span class="cnt">{{ projects.total_form_count }}</span></h2>
+    <div class="ed-sec__grid">
+      <div class="ed-sec__form">
+        <div class="m-card">
+          <h3 class="m-card__title">عنوان القسم</h3>
+          <label class="f-inline-check">{{ prj_form.detailed }}<span>بطاقات تفصيلية (تعرض تفاصيل كل مشروع)</span></label>
+          {% include "manage/_bi.html" with ar=prj_form.eyebrow_ar en=prj_form.eyebrow_en base="سطر علوي" pv="eyebrow" %}
+          {% include "manage/_bi.html" with ar=prj_form.heading_ar en=prj_form.heading_en base="العنوان" pv="title" %}
+          {% include "manage/_bi.html" with ar=prj_form.subtitle_ar en=prj_form.subtitle_en base="الوصف" pv="sub" %}
+        </div>
+        <div class="m-card">
+          <h3 class="m-card__title">المشاريع</h3>
+          {% include "manage/_cards_projects.html" with items=projects %}
+        </div>
+      </div>
+      <div class="ed-sec__pv"><div class="pv pv--projects">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage">
+          <div class="pv__head"><div class="pv__eyebrow" data-pv-out="eyebrow"></div><h3 class="pv__title" data-pv-out="title"></h3><p class="pv__sub" data-pv-out="sub"></p></div>
+          <div class="pv-grid" data-pv-grid></div>
+          <div class="pv__empty" data-pv-empty>أضف مشروعاً لتظهر المعاينة.</div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  {# ===== 8. Partners ===== #}
+  <section class="ed-sec" data-editor="partners">
+    <h2 class="ed-sec__title">الشركاء <span class="cnt">{{ logos.total_form_count }}</span></h2>
+    <div class="ed-sec__grid">
+      <div class="ed-sec__form">
+        <div class="m-card">
+          <h3 class="m-card__title">عنوان القسم</h3>
+          {% include "manage/_bi.html" with ar=prt_form.eyebrow_ar en=prt_form.eyebrow_en base="سطر علوي" pv="eyebrow" %}
+          {% include "manage/_bi.html" with ar=prt_form.heading_ar en=prt_form.heading_en base="العنوان" pv="title" %}
+          {% include "manage/_bi.html" with ar=prt_form.subtitle_ar en=prt_form.subtitle_en base="الوصف" pv="sub" %}
+        </div>
+        <div class="m-card">
+          <h3 class="m-card__title">الشعارات</h3>
+          {% include "manage/_cards_logos.html" with items=logos %}
+        </div>
+      </div>
+      <div class="ed-sec__pv"><div class="pv pv--partners">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage">
+          <div class="pv__head"><div class="pv__eyebrow" data-pv-out="eyebrow"></div><h3 class="pv__title" data-pv-out="title"></h3></div>
+          <div class="pv-grid" data-pv-grid></div>
+          <div class="pv__empty" data-pv-empty>أضف شعاراً لتظهر المعاينة.</div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  {# ===== 9. Contact ===== #}
+  <section class="ed-sec">
+    <h2 class="ed-sec__title">بيانات التواصل</h2>
+    <div class="ed-sec__grid" id="co-contact">
+      <div class="ed-sec__form"><div class="m-card">
+        <h3 class="m-card__title">التواصل</h3>
+        <p class="m-card__hint">المكاتب: اكتب مكتباً واحداً في كل سطر.</p>
+        <div class="f-bi">
+          <div class="f-row"><label class="f-lbl">الهاتف</label>{{ form.contact_phone }}</div>
+          <div class="f-row"><label class="f-lbl">البريد</label>{{ form.contact_email }}</div>
+        </div>
+        <div class="f-bi">
+          <div class="f-row"><label class="f-lbl">الموقع (نص ظاهر)</label>{{ form.contact_website }}</div>
+          <div class="f-row"><label class="f-lbl">رابط الموقع</label>{{ form.contact_website_url }}</div>
+        </div>
+        {% include "manage/_bi.html" with ar=form.contact_offices_ar en=form.contact_offices_en base="المكاتب (سطر لكل مكتب)" %}
+      </div></div>
+      <div class="ed-sec__pv"><div class="pv">
+        <span class="pv__tag">{% icon 'eye' size=15 %} كما يظهر على الموقع</span>
+        <div class="pv__stage">
+          <ul class="cpv-contact" id="co-contact-pv"></ul>
+          <div class="pv__empty" id="co-contact-empty">أدخل بيانات التواصل لتظهر المعاينة.</div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+  {% endif %}
+
+  <div class="m-savebar">
+    <span class="m-savebar__note">{% if company %}كل التعديلات في الصفحة تُحفظ معاً{% else %}احفظ لإنشاء الشركة{% endif %}</span>
+    {% if company %}<a class="btnm btnm--danger-ghost" href="{% url 'cms:company_delete' slug=company.slug %}">{% icon 'trash' size=16 %} حذف الشركة</a>{% endif %}
+    <a class="btnm btnm--ghost" href="{{ request.path }}" data-confirm="تجاهل كل التعديلات غير المحفوظة على هذه الصفحة؟">{% icon 'discard' size=16 %} تجاهل التغييرات</a>
+    <button class="btnm" type="submit">{% icon 'save' size=16 %} {% if company %}حفظ كل التغييرات{% else %}إنشاء الشركة{% endif %}</button>
+  </div>
+</form>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/manage_cards.js' %}"></script>
+<script>
+(function(){
+  var h=document.getElementById('co-hero');
+  if(h){[['name_ar','name'],['eyebrow_ar','eyebrow'],['sector_ar','sector']].forEach(function(p){
+    var i=h.querySelector('[name="'+p[0]+'"]'),o=h.querySelector('[data-pv-out="'+p[1]+'"]');
+    if(i&&o)i.addEventListener('input',function(){o.textContent=i.value;});});
+    function img(name,target){var i=h.querySelector('[name="'+name+'"]'),t=document.getElementById(target);
+      if(i&&t)i.addEventListener('change',function(){if(i.files&&i.files[0]){t.src=URL.createObjectURL(i.files[0]);t.style.display='';}});}
+    img('logo','co-logo');img('hero_image','co-heroimg');
+  }
+  var a=document.getElementById('co-about');
+  if(a){var lo=a.querySelector('[name="about_paragraph_ar"]'),lt=a.querySelector('[data-pv-out="lead"]');
+    if(lo&&lt)lo.addEventListener('input',function(){lt.textContent=lo.value;});
+    var bt=a.querySelector('[name="about_bullets_ar"]'),bl=document.getElementById('co-bullets');
+    function bul(){if(!bt||!bl)return;bl.innerHTML='';bt.value.split('\n').map(function(s){return s.trim();}).filter(Boolean).forEach(function(s){var li=document.createElement('li');li.textContent=s;bl.appendChild(li);});}
+    if(bt){bt.addEventListener('input',bul);bul();}
+    var cta=a.querySelector('[name="hero_cta_ar"]'),co=document.getElementById('co-cta');
+    if(cta&&co){cta.addEventListener('input',function(){co.textContent=cta.value;co.style.display=cta.value?'':'none';});if(!cta.value)co.style.display='none';}}
+  var c=document.getElementById('co-contact');
+  if(c){var ul=document.getElementById('co-contact-pv'),em=document.getElementById('co-contact-empty');
+    function row(v){var li=document.createElement('li');li.textContent=v;return li;}
+    function render(){ul.innerHTML='';var any=false;
+      [['contact_phone'],['contact_email'],['contact_website']].forEach(function(p){
+        var el=c.querySelector('[name="'+p[0]+'"]');if(el&&el.value.trim()){ul.appendChild(row(el.value.trim()));any=true;}});
+      var off=c.querySelector('[name="contact_offices_ar"]');
+      if(off)off.value.split('\n').map(function(s){return s.trim();}).filter(Boolean).forEach(function(s){ul.appendChild(row(s));any=true;});
+      em.style.display=any?'none':'';}
+    c.querySelectorAll('input,textarea').forEach(function(el){el.addEventListener('input',render);});render();}
+})();
+</script>{% endblock %}

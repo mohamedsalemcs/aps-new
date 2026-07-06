@@ -1,0 +1,282 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block seo_jsonld %}
+  {% include "partials/schema_org.html" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ group.name }}",
+    "alternateName": "APS",
+    "url": "{{ request.scheme }}://{{ request.get_host }}/",
+    "inLanguage": "{{ LANG }}"
+  }
+  </script>
+{% endblock %}
+
+{% block content %}
+
+{# ============================ HERO ============================ #}
+<section class="hero" data-hero>
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    {# ---- Text column ---- #}
+    <div class="hero__content">
+      <div class="hero__textwrap">
+        {% for s in hero_slides %}
+          <div class="hero-text {% if forloop.first %}is-active{% endif %}" data-slide-text>
+            <span class="eyebrow">{{ s.eyebrow }}</span>
+            <h1 class="hero__title">{{ s.title }}</h1>
+            <p class="hero__subtitle">{{ s.subtitle }}</p>
+          </div>
+        {% endfor %}
+      </div>
+
+      <ul class="hero__badges">
+        {% for b in hero_badges %}
+          <li><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ b.icon }}"></use></svg>{{ b.label }}</li>
+        {% endfor %}
+      </ul>
+
+      <div class="hero__cta">
+        <a class="btn btn--primary btn--lg" href="{{ lang_prefix }}/contact/">{{ hero_cta_primary }}
+          <svg class="icon icon--flip" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg></a>
+        <a class="btn btn--outline btn--lg" href="#subsidiaries">{{ hero_cta_secondary }}</a>
+      </div>
+
+      <div class="hero__controls">
+        <div class="hero__dots" role="tablist" aria-label="{% trans 'شرائح العرض' %}">
+          {% for s in hero_slides %}
+            <button class="hero__dot {% if forloop.first %}is-active{% endif %}" data-dot="{{ forloop.counter0 }}" aria-label="{% blocktrans with n=forloop.counter %}الشريحة {{ n }}{% endblocktrans %}"></button>
+          {% endfor %}
+        </div>
+        <div class="hero__arrows">
+          <button class="hero__arrow" data-hero-prev aria-label="{% trans 'السابق' %}"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg></button>
+          <button class="hero__arrow" data-hero-next aria-label="{% trans 'التالي' %}"><svg class="icon icon--flip" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg></button>
+        </div>
+      </div>
+    </div>
+
+    {# ---- Media column: layout varies per slide ---- #}
+    <div class="hero__mediawrap">
+      <img class="hero__mark hero__mark--a" src="{% static 'logos/app-icon.svg' %}" alt="" aria-hidden="true">
+      <img class="hero__mark hero__mark--b" src="{% static 'logos/app-icon.svg' %}" alt="" aria-hidden="true">
+      {% for s in hero_slides %}
+        <div class="hero-media hero-media--{{ s.layout }} {% if forloop.first %}is-active{% endif %}" data-slide-media>
+          {% for img in s.images %}
+            <div class="hero-tile hero-tile--{{ forloop.counter }}">
+              <img src="{{ img }}" alt="" {% if forloop.parentloop.first and forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %} width="600" height="600">
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ============================ ABOUT ============================ #}
+<section class="section about" id="about">
+  <div class="container about__grid">
+    <div class="about__media reveal">
+      <img class="about__img-main" src="{{ about.image }}" alt="{% trans 'عمليات APS الصناعية' %}" loading="lazy" width="720" height="820" data-anim="zoom-in">
+      <img class="about__img-sub" src="{{ about.image_secondary }}" alt="{% trans 'غرفة تحكم وتشغيل' %}" loading="lazy" width="360" height="280">
+      <div class="about__badge">
+        <span class="about__badge-num num">{{ about.badge_num }}<i>{{ about.badge_suffix }}</i></span>
+        <span class="about__badge-txt">{{ about.badge_text }}</span>
+      </div>
+    </div>
+    <div class="about__body">
+      <span class="eyebrow reveal">{{ about.eyebrow }}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ about.heading }}</h2>
+      <p class="section__lead reveal" data-reveal-delay="2">{{ about.paragraph }}</p>
+      <ul class="about__list reveal" data-reveal-delay="3">
+        {% for b in about.bullets %}
+          <li><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-check"></use></svg>{{ b }}</li>
+        {% endfor %}
+      </ul>
+      <a class="btn btn--primary reveal" data-reveal-delay="4" href="{{ lang_prefix }}{{ about.cta_href }}">{{ about.cta }}
+        <svg class="icon icon--flip" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg></a>
+    </div>
+  </div>
+</section>
+
+{# ============================ STATS ============================ #}
+<section class="stats">
+  <div class="stats__bg"></div>
+  <div class="container stats__inner">
+    <div class="section__head section__head--center section__head--light">
+      <h2 class="section__title reveal">{{ stats_heading }}</h2>
+      <p class="section__lead reveal" data-reveal-delay="1">{{ stats_subtitle }}</p>
+    </div>
+    <div class="stats__grid">
+      {% for s in stats %}
+        <div class="stat reveal" data-reveal-delay="{{ forloop.counter0 }}">
+          <span class="stat__num num"><span data-count="{{ s.value }}">0</span>{{ s.suffix }}</span>
+          <span class="stat__label">{{ s.label }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ========================= SUBSIDIARIES ========================= #}
+<section class="section subs" id="subsidiaries">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow reveal">{{ subs_eyebrow }}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ subs_heading }}</h2>
+      <p class="section__lead reveal" data-reveal-delay="2">{{ subs_subtitle }}</p>
+    </div>
+    <div class="subs__grid">
+      {% for s in subsidiaries %}
+        <article class="sub-card reveal" data-reveal-delay="{{ forloop.counter0 }}">
+          <div class="sub-card__media">
+            {% if s.image %}<img src="{{ s.image }}" alt="{{ s.name }}" loading="lazy" width="560" height="380">{% endif %}
+            <span class="sub-card__sector">{{ s.sector }}</span>
+          </div>
+          <div class="sub-card__body">
+            <h3 class="sub-card__name">{{ s.name }}</h3>
+            <span class="sub-card__en">{{ s.en }}</span>
+            <p class="sub-card__desc">{{ s.desc }}</p>
+            <a class="link-arrow" href="{{ lang_prefix }}/companies/{{ s.slug }}/">{% trans "استكشف" %} <svg class="icon icon--flip" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg></a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ============================ WHY APS ============================ #}
+<section class="section why">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow reveal">{{ why_eyebrow }}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ why_heading }}</h2>
+      <p class="section__lead reveal" data-reveal-delay="2">{{ why_subtitle }}</p>
+    </div>
+    <div class="why__grid">
+      {% for f in why %}
+        <div class="feature reveal" data-reveal-delay="{{ forloop.counter0 }}">
+          <span class="feature__icon"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ f.icon }}"></use></svg></span>
+          <h3 class="feature__title">{{ f.title }}</h3>
+          <p class="feature__text">{{ f.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# =========================== INDUSTRIES / SECTORS =========================== #}
+{# Full-bleed section: header sits in the container, the marquee row spans the full viewport width. #}
+<section class="sectors" id="industries">
+  <div class="container">
+    <div class="section__head sectors__head">
+      <span class="eyebrow reveal">{{ industries.eyebrow }}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ industries.heading }}</h2>
+      <p class="section__lead reveal" data-reveal-delay="2">{{ industries.subtitle }}</p>
+    </div>
+  </div>
+
+  {# Auto-scrolling single row. Items are rendered twice for a seamless CSS loop. #}
+  <div class="sectors__marquee" data-marquee data-anim="fade">
+    <ul class="sectors__track">
+      {% for it in industries.items %}
+        <li class="sector-card">
+          <img src="{{ it.image }}" alt="{{ it.name }}" loading="lazy" width="440" height="520">
+          <span class="sector-card__overlay"></span>
+          {% if it.companies %}
+            <div class="sector-card__tags">
+              {% for co in it.companies %}<span class="sector-card__tag">{{ co }}</span>{% endfor %}
+            </div>
+          {% endif %}
+          <div class="sector-card__body">
+            <span class="sector-card__icon"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ it.icon }}"></use></svg></span>
+            <h3 class="sector-card__name">{{ it.name }}</h3>
+            <p class="sector-card__desc">{{ it.desc }}</p>
+          </div>
+        </li>
+      {% endfor %}
+      {% for it in industries.items %}
+        <li class="sector-card" aria-hidden="true">
+          <img src="{{ it.image }}" alt="" loading="lazy" width="440" height="520">
+          <span class="sector-card__overlay"></span>
+          {% if it.companies %}
+            <div class="sector-card__tags">
+              {% for co in it.companies %}<span class="sector-card__tag">{{ co }}</span>{% endfor %}
+            </div>
+          {% endif %}
+          <div class="sector-card__body">
+            <span class="sector-card__icon"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ it.icon }}"></use></svg></span>
+            <h3 class="sector-card__name">{{ it.name }}</h3>
+            <p class="sector-card__desc">{{ it.desc }}</p>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  {# Manual nav: a control pair below the cards, at the far-left edge (outside the page container); each arrow steps the row one card. #}
+  <div class="sectors__controls">
+    <button class="sectors__nav sectors__nav--left" type="button" aria-label="{% trans 'تمرير لليسار' %}" data-sectors-left>
+      <svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-chevron"></use></svg>
+    </button>
+    <button class="sectors__nav sectors__nav--right" type="button" aria-label="{% trans 'تمرير لليمين' %}" data-sectors-right>
+      <svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-chevron"></use></svg>
+    </button>
+  </div>
+</section>
+
+{# ============================ PARTNERS ============================ #}
+<section class="section partners" id="partners">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="eyebrow reveal">{{ partners.eyebrow }}</span>
+      <h2 class="section__title reveal" data-reveal-delay="1">{{ partners.heading }}</h2>
+      <p class="section__lead reveal" data-reveal-delay="2">{{ partners.subtitle }}</p>
+    </div>
+    <div class="partners__grid reveal" data-reveal-delay="1">
+      {% for logo in partners.logos %}
+        <div class="partner-cell"><img src="{{ logo }}" alt="{% trans 'شعار شريك' %}" loading="lazy"></div>
+      {% endfor %}
+    </div>
+    <div class="section__actions reveal">
+      <a class="btn btn--outline" href="{{ lang_prefix }}/partners/">{{ partners.cta }}
+        <svg class="icon icon--flip" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg></a>
+    </div>
+  </div>
+</section>
+
+{# ============================ CONTACT ============================ #}
+<section class="contact" id="contact">
+  <div class="contact__media">
+    <img src="{{ contact.image }}" alt="" loading="lazy" width="1200" height="900">
+    <span class="contact__overlay"></span>
+  </div>
+  <div class="container contact__inner">
+    <div class="contact__head">
+      <span class="eyebrow eyebrow--light reveal">{{ contact.eyebrow }}</span>
+      <h2 class="section__title section__title--light reveal" data-reveal-delay="1">{{ contact.heading }}</h2>
+      <p class="section__lead section__lead--light reveal" data-reveal-delay="2">{{ contact.subtitle }}</p>
+      <a class="btn btn--primary btn--lg reveal" data-reveal-delay="3" href="{{ lang_prefix }}/contact/">{{ contact.cta }}
+        <svg class="icon icon--flip" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-arrow"></use></svg></a>
+    </div>
+    <div class="contact__cards">
+      {% for c in contact.items %}
+        <div class="contact-card reveal" data-reveal-delay="{{ forloop.counter0 }}">
+          <span class="contact-card__icon"><svg class="icon" aria-hidden="true"><use href="{% static 'icons/sprite.svg' %}#i-{{ c.icon }}"></use></svg></span>
+          <div class="contact-card__text">
+            <span class="contact-card__label">{{ c.label }}</span>
+            {% if c.href %}
+              <a class="contact-card__value {% if c.ltr %}num{% endif %}" {% if c.ltr %}dir="ltr"{% endif %} href="{{ c.href }}">{{ c.value }}</a>
+            {% else %}
+              <span class="contact-card__value">{{ c.value }}</span>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% comment %}Hero slide cards (data-editor="heroslide"): layout + eyebrow/title/subtitle + up to 3 images.
+Pass `items` = HomeSlideFormSet.{% endcomment %}{% load cms_extras %}
+<div data-cards data-prefix="{{ items.prefix }}">
+  {{ items.management_form }}
+  {% for e in items.non_form_errors %}<div class="f-err">{{ e }}</div>{% endfor %}
+  <div class="pcards" data-cardlist style="grid-template-columns:1fr">
+    {% for form in items %}
+      <div class="pcard" data-card>
+        <div class="pcard__move"><button type="button" data-move="up" title="تحريك لأعلى"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button><button type="button" data-move="down" title="تحريك لأسفل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button></div>
+        <button type="button" class="pcard__del" data-del title="حذف">{% icon 'trash' size=15 %}</button>
+        {% for h in form.hidden_fields %}{{ h }}{% endfor %}
+        <div class="pcard__fields">
+          <div class="f-bi">
+            <div class="f-row" data-f="eyebrow"><span class="pcard__lab">سطر علوي (ع)</span>{{ form.eyebrow_ar }}</div>
+            <div class="f-row"><span class="pcard__lab">سطر علوي (EN)</span>{{ form.eyebrow_en }}</div>
+          </div>
+          <div class="f-bi">
+            <div class="f-row" data-f="title"><span class="pcard__lab">العنوان (ع)</span>{{ form.title_ar }}</div>
+            <div class="f-row"><span class="pcard__lab">العنوان (EN)</span>{{ form.title_en }}</div>
+          </div>
+          <div class="f-bi">
+            <div class="f-row" data-f="subtitle"><span class="pcard__lab">الوصف (ع)</span>{{ form.subtitle_ar }}</div>
+            <div class="f-row"><span class="pcard__lab">الوصف (EN)</span>{{ form.subtitle_en }}</div>
+          </div>
+          <div class="f-row"><span class="pcard__lab">نمط الصور</span>{{ form.layout }}</div>
+          <span class="pcard__lab">الصور (حسب النمط: صورة / صورتان / ثلاث)</span>
+          <div class="hero-drops">
+            <label class="drop" data-drop>{% if form.instance.image1 %}<img src="{{ form.instance.image1.url }}" alt="">{% endif %}<span class="drop__ph"><b>＋</b>صورة 1</span><span class="drop__edit"{% if not form.instance.image1 %} style="display:none"{% endif %}>تغيير</span>{{ form.image1 }}</label>
+            <label class="drop" data-drop>{% if form.instance.image2 %}<img src="{{ form.instance.image2.url }}" alt="">{% endif %}<span class="drop__ph"><b>＋</b>صورة 2</span><span class="drop__edit"{% if not form.instance.image2 %} style="display:none"{% endif %}>تغيير</span>{{ form.image2 }}</label>
+            <label class="drop" data-drop>{% if form.instance.image3 %}<img src="{{ form.instance.image3.url }}" alt="">{% endif %}<span class="drop__ph"><b>＋</b>صورة 3</span><span class="drop__edit"{% if not form.instance.image3 %} style="display:none"{% endif %}>تغيير</span>{{ form.image3 }}</label>
+          </div>
+          <span style="display:none">{{ form.DELETE }}</span>
+          {% for e in form.errors.values %}<div class="f-err">{{ e|striptags }}</div>{% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <template data-empty>
+    <div class="pcard" data-card>
+      <div class="pcard__move"><button type="button" data-move="up" title="تحريك لأعلى"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button><button type="button" data-move="down" title="تحريك لأسفل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button></div>
+      <button type="button" class="pcard__del" data-del title="حذف">{% icon 'trash' size=15 %}</button>
+      {% for h in items.empty_form.hidden_fields %}{{ h }}{% endfor %}
+      <div class="pcard__fields">
+        <div class="f-bi">
+          <div class="f-row" data-f="eyebrow"><span class="pcard__lab">سطر علوي (ع)</span>{{ items.empty_form.eyebrow_ar }}</div>
+          <div class="f-row"><span class="pcard__lab">سطر علوي (EN)</span>{{ items.empty_form.eyebrow_en }}</div>
+        </div>
+        <div class="f-bi">
+          <div class="f-row" data-f="title"><span class="pcard__lab">العنوان (ع)</span>{{ items.empty_form.title_ar }}</div>
+          <div class="f-row"><span class="pcard__lab">العنوان (EN)</span>{{ items.empty_form.title_en }}</div>
+        </div>
+        <div class="f-bi">
+          <div class="f-row" data-f="subtitle"><span class="pcard__lab">الوصف (ع)</span>{{ items.empty_form.subtitle_ar }}</div>
+          <div class="f-row"><span class="pcard__lab">الوصف (EN)</span>{{ items.empty_form.subtitle_en }}</div>
+        </div>
+        <div class="f-row"><span class="pcard__lab">نمط الصور</span>{{ items.empty_form.layout }}</div>
+        <span class="pcard__lab">الصور (حسب النمط: صورة / صورتان / ثلاث)</span>
+        <div class="hero-drops">
+          <label class="drop" data-drop><span class="drop__ph"><b>＋</b>صورة 1</span><span class="drop__edit" style="display:none">تغيير</span>{{ items.empty_form.image1 }}</label>
+          <label class="drop" data-drop><span class="drop__ph"><b>＋</b>صورة 2</span><span class="drop__edit" style="display:none">تغيير</span>{{ items.empty_form.image2 }}</label>
+          <label class="drop" data-drop><span class="drop__ph"><b>＋</b>صورة 3</span><span class="drop__edit" style="display:none">تغيير</span>{{ items.empty_form.image3 }}</label>
+        </div>
+        <span style="display:none">{{ items.empty_form.DELETE }}</span>
+      </div>
+    </div>
+  </template>
+</div>
+<button type="button" class="btnm btnm--ghost btnm--sm card-add" data-add>＋ أضف شريحة</button>
