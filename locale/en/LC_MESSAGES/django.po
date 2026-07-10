@@ -122,7 +122,7 @@ msgid "عاماً من الخبرة الصناعية"
 msgstr "years of industrial experience"
 
 msgid "شركات المجموعة"
-msgstr "Group Companies"
+msgstr "Subsidiaries"
 
 msgid "استكشف"
 msgstr "Explore"
@@ -251,10 +251,10 @@ msgid "أزوليس الشرق الأوسط"
 msgstr "AZOLIS Middle East"
 
 msgid "طاقةٌ شمسية متكاملة للقطاع التجاري والصناعي"
-msgstr "Commercial"
+msgstr "Integrated solar power for the commercial & industrial sector"
 
 msgid "منتجٌ مستقل للطاقة الشمسية يطوّر ويموّل ويهندس ويبني ويشغّل محطات الطاقة الشمسية للقطاع التجاري والصناعي، بأكثر من 200 مشروع عبر ثلاث قارات."
-msgstr "Commercial"
+msgstr "An independent solar power producer that develops, finances, engineers, builds and operates solar power plants for the commercial and industrial sector, with over 200 projects across three continents."
 
 msgid "APS بالأرقام"
 msgstr "APS in Numbers"
@@ -392,7 +392,7 @@ msgid "الطاقة الشمسية"
 msgstr "Solar Energy"
 
 msgid "منتجٌ مستقل للطاقة الشمسية يطوّر وينفّذ ويشغّل محطات الطاقة الشمسية للقطاع التجاري والصناعي عبر ثلاث قارات."
-msgstr "Commercial"
+msgstr "An independent solar power producer that develops, builds and operates solar power plants for the commercial and industrial sector across three continents."
 
 msgid "شركاؤنا"
 msgstr "Our Partners"

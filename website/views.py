@@ -46,19 +46,20 @@ from .models import AboutPage, Company, ContactMessage, ContactPage, FaqPage, Gr
 
 
 def home(request):
-    """Home with the new single full-bleed hero (default)."""
-    return render(request, 'home.html', _home_ctx(request, 'solo'))
+    """Default home: minimal set of sections + the single full-bleed hero
+    (Hero, About, the 5 companies, Partners, Contact)."""
+    return render(request, 'home.html', _home_ctx(request, 'minimal'))
 
 
 def home_slider(request):
-    """Alternate home with the classic multi-slide hero — lets the client
-    compare the two hero versions live, side by side."""
-    return render(request, 'home.html', _home_ctx(request, 'slider'))
+    """Full home: every section (incl. Stats, Why APS, Industries) + the classic
+    multi-slide hero. Lets the client compare the trimmed vs full home live."""
+    return render(request, 'home.html', _home_ctx(request, 'full'))
 
 
-def _home_ctx(request, hero_variant):
+def _home_ctx(request, home_variant):
     ctx = content.home_context()
-    ctx['hero_variant'] = hero_variant
+    ctx['home_variant'] = home_variant
     # The home page is CMS-managed: overlay the DB content (hero, about, stats,
     # subsidiaries header, why, industries, partners, contact, SEO) over the
     # legacy defaults. Falls back to the legacy dict if the page isn't seeded.

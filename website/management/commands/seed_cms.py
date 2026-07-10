@@ -140,7 +140,8 @@ class Command(BaseCommand):
             partners_subtitle_ar=s(c.PARTNERS.get("subtitle")), partners_cta_ar=s(c.PARTNERS.get("cta")),
             partners_cta_href="/partners/",
             contact_eyebrow_ar=s(c.CONTACT.get("eyebrow")), contact_heading_ar=s(c.CONTACT.get("heading")),
-            contact_subtitle_ar=s(c.CONTACT.get("subtitle")), contact_cta_ar="اطلب عرض سعر",
+            contact_subtitle_ar=s(c.CONTACT.get("subtitle")),
+            contact_cta_ar="أرسل لنا رسالة", contact_cta_en="Send us a message",
             contact_image=self.copy_img(c.CONTACT.get("image")),
         )
         for i, sl in enumerate(c.HERO_SLIDES):

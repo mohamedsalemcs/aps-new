@@ -131,7 +131,7 @@ COMPANIES = {
         "contact": {
             "phone": "+966 9200 14 515",
             "email": "sales.sps@aps.com.sa",
-            "website": "spsc.com.sa",
+            "website": "www.spsc.com.sa",
             "website_url": "https://www.spsc.com.sa",
             "offices": [_("جدة (المقر الرئيسي)"), _("الرياض"), _("الخبر")],
         },
@@ -227,8 +227,8 @@ COMPANIES = {
         "contact": {
             "phone": "+966 11 242 8467",
             "email": "sales@betamachinery.com.sa",
-            "website": "beta-machinery.net",
-            "website_url": "https://beta-machinery.net",
+            "website": "www.Beta-machinery.net",
+            "website_url": "https://www.beta-machinery.net",
             "offices": [_("جدة (المقر الرئيسي)"), _("الرياض"), _("الخبر")],
         },
     },
@@ -323,8 +323,8 @@ COMPANIES = {
         "contact": {
             "phone": "+966 12 661 7470",
             "email": "info@envirosystems.com.sa",
-            "website": "envirosystems.com.sa",
-            "website_url": "https://envirosystems.com.sa",
+            "website": "www.envirosystems.com.sa",
+            "website_url": "https://www.envirosystems.com.sa",
             "offices": [_("جدة (المقر الرئيسي)")],
         },
     },
@@ -395,9 +395,9 @@ COMPANIES = {
         },
 
         "contact": {
-            "phone": "+971 4 354 1872",
-            "email": "ags@ags-ae.com",
-            "website": "ags-ae.com",
+            "phone": "+966 9200 14 515",
+            "email": "ags@aps.com.sa",
+            "website": "www.ags-ae.com",
             "website_url": "https://www.ags-ae.com",
             "offices": [_("دبي، الإمارات العربية المتحدة")],
         },
@@ -517,9 +517,9 @@ COMPANIES = {
         },
 
         "contact": {
-            "phone": "+33 1 64 70 78 48",
-            "email": "contact@azolis.com",
-            "website": "azolis.com",
+            "phone": "+966 9200 14 515",
+            "email": "a.ashqar@azolis.com",
+            "website": "www.azolis.com",
             "website_url": "https://www.azolis.com",
             "offices": [_("فونتينبلو، فرنسا"), _("الدار البيضاء، المغرب")],
         },

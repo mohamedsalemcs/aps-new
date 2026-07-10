@@ -17,8 +17,8 @@
 
 {% block content %}
 
-{% if hero_variant == 'slider' %}
-{# ============================ HERO — classic multi-slide (alternate version) ============================ #}
+{% if home_variant == 'full' %}
+{# ============================ HERO — classic multi-slide (full version) ============================ #}
 <section class="hero" data-hero>
   <div class="hero__bg" aria-hidden="true"></div>
   <div class="container hero__inner">
@@ -110,12 +110,7 @@
 <section class="section about" id="about">
   <div class="container about__grid">
     <div class="about__media reveal">
-      <img class="about__img-main" src="{{ about.image }}" alt="{% trans 'عمليات APS الصناعية' %}" loading="lazy" width="720" height="820" data-anim="zoom-in">
-      <img class="about__img-sub" src="{{ about.image_secondary }}" alt="{% trans 'غرفة تحكم وتشغيل' %}" loading="lazy" width="360" height="280">
-      <div class="about__badge">
-        <span class="about__badge-num num">{{ about.badge_num }}<i>{{ about.badge_suffix }}</i></span>
-        <span class="about__badge-txt">{{ about.badge_text }}</span>
-      </div>
+      <img class="about__img-main" src="{{ about.image }}" alt="{% trans 'عمليات APS الصناعية' %}" loading="lazy" width="900" height="520" data-anim="zoom-in">
     </div>
     <div class="about__body">
       <span class="eyebrow reveal">{{ about.eyebrow }}</span>
@@ -132,7 +127,8 @@
   </div>
 </section>
 
-{# ============================ STATS ============================ #}
+{% if home_variant == 'full' %}
+{# ============================ STATS (full only) ============================ #}
 <section class="stats">
   <div class="stats__bg"></div>
   <div class="container stats__inner">
@@ -150,6 +146,7 @@
     </div>
   </div>
 </section>
+{% endif %}
 
 {# ========================= SUBSIDIARIES ========================= #}
 <section class="section subs" id="subsidiaries">
@@ -178,7 +175,8 @@
   </div>
 </section>
 
-{# ============================ WHY APS ============================ #}
+{% if home_variant == 'full' %}
+{# ============================ WHY APS (full only) ============================ #}
 <section class="section why">
   <div class="container">
     <div class="section__head section__head--center">
@@ -257,6 +255,7 @@
     </button>
   </div>
 </section>
+{% endif %}
 
 {# ============================ PARTNERS ============================ #}
 <section class="section partners" id="partners">
